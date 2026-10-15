@@ -6,6 +6,7 @@
 <title>Mi colección de juegos de mesa · Oktapio</title>
 <meta name="description" content="Los juegos de mesa de Oktapio, con nota, dificultad y comentarios sin filtro.">
 <meta name="theme-color" content="#14241b">
+<script>try{var t=localStorage.getItem("oktapio_theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <meta property="og:title" content="Mi colección de juegos de mesa">
 <meta property="og:description" content="50 juegos, notas y comentarios sin filtro. By Oktapio.">
 <meta property="og:image" content="img/azul.webp">
@@ -18,6 +19,11 @@
 <body>
 
 <header class="hero">
+  <div class="themes" role="group" aria-label="Tema de la mesa">
+    <button type="button" class="sw sw-fieltro" data-theme="fieltro" title="Fieltro verde" aria-label="Fieltro verde"></button>
+    <button type="button" class="sw sw-madera" data-theme="madera" title="Mesa de madera" aria-label="Mesa de madera"></button>
+    <button type="button" class="sw sw-noche" data-theme="noche" title="Noche" aria-label="Noche"></button>
+  </div>
   <h1 class="title"><span>Mi colección de</span> juegos de mesa</h1>
   <p class="by"><i aria-hidden="true"></i>By Oktapio<i aria-hidden="true"></i></p>
   <div class="fan" id="fan" aria-label="Los mejor puntuados"></div>
@@ -107,6 +113,7 @@
       <h2 id="m-title"></h2>
       <div class="m-rating" id="m-rating"></div>
       <blockquote id="m-comment"></blockquote>
+      <div class="m-links" id="m-links"></div>
       <div class="m-nav">
         <button class="btn ghost" id="m-prev">← Anterior</button>
         <button class="btn ghost" id="m-next">Siguiente →</button>

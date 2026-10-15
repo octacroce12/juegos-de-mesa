@@ -26,6 +26,8 @@
   const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
   const fmt = n => (Number.isInteger(n) ? String(n) : n.toFixed(1).replace('.', ','));
   const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const hue = s => [...s].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) % 360, 7);
+  const colorOf = g => g.color || `hsl(${hue(g.nombre)} 38% 32%)`;
   const played = g => g.nota !== null && g.nota !== undefined;
   const coinClass = g => !played(g) ? 'none' : g.nota >= 9 ? 'top' : g.nota <= 4 ? 'low' : '';
 
@@ -128,9 +130,15 @@
     $('m-title').textContent = g.nombre;
     $('m-badges').innerHTML = `<span class="tag type">${esc(g.tipo)}</span><span class="tag ${DIFF_CLASS[g.dificultad] || 'd-baja'}">Dificultad: ${esc(g.dificultad)}</span>`;
     const n = played(g) ? g.nota : null;
-    $('m-rating').innerHTML = `<div class="big-coin ${n === null ? 'none' : n <= 4 ? 'low' : ''}">${n === null ? '?' : fmt(n)}</div>
-      <div><div class="pips" aria-hidden="true">${Array.from({ length: 10 }, (_, k) => `<i class="${n !== null && k < Math.round(n) ? 'on' : ''}"></i>`).join('')}</div>
-      <small>${n === null ? 'Todavía sin jugar' : 'Nota final sobre 10'}</small></div>`;
+    const rated = games.filter(played);
+    const rank = n === null ? null : 1 + rated.filter(x => x.nota > n).length;
+    const chips = Array.from({ length: 10 }, (_, k) => `<i style="--f:${Math.round(Math.max(0, Math.min(1, (n || 0) - k)) * 100)}%"></i>`).join('');
+    $('m-rating').innerHTML = `<div class="big-coin ${n === null ? 'none' : n >= 9 ? 'top' : n <= 4 ? 'low' : ''}">${n === null ? '?' : fmt(n)}</div>
+      <div><div class="chips10" role="img" aria-label="${n === null ? 'Sin nota' : 'Nota ' + fmt(n) + ' sobre 10'}">${chips}</div>
+      <small>${n === null ? 'Todavía sin jugar' : `Nota final sobre 10 · puesto ${rank} de ${rated.length}`}</small></div>`;
+    c.style.setProperty('--c', colorOf(g));
+    const q = encodeURIComponent(g.nombre);
+    $('m-links').innerHTML = `<a class="m-link" href="https://www.cazagangas.com.ar/juegos?titulo=${q}" target="_blank" rel="noopener noreferrer">🛒 Ver en Cazagangas</a><a class="m-link" href="https://boardgamegeek.com/geeksearch.php?action=search&objecttype=boardgame&q=${q}" target="_blank" rel="noopener noreferrer">📚 Ver en BoardGameGeek</a>`;
     $('m-comment').textContent = g.comentario;
     $('m-prev').disabled = i === 0;
     $('m-next').disabled = i === visible.length - 1;
@@ -236,6 +244,21 @@
   });
   $('wish-search').addEventListener('input', e => { wstate.q = e.target.value; renderWish(); });
   $('wish-sort').addEventListener('change', e => { wstate.sort = e.target.value; renderWish(); });
+
+  /* ---- temas ---- */
+  const THEME_COLOR = { fieltro: '#14241b', madera: '#3e2411', noche: '#0c1128' };
+  function setTheme(t, save = true) {
+    if (!THEME_COLOR[t]) t = 'fieltro';
+    document.documentElement.dataset.theme = t;
+    document.querySelector('meta[name="theme-color"]').content = THEME_COLOR[t];
+    document.querySelectorAll('.sw').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === t)));
+    if (save) { try { localStorage.setItem('oktapio_theme', t); } catch (e) {} }
+  }
+  document.querySelector('.themes').addEventListener('click', e => {
+    const b = e.target.closest('.sw');
+    if (b) setTheme(b.dataset.theme);
+  });
+  setTheme(document.documentElement.dataset.theme || 'fieltro', false);
 
   /* ---- init ---- */
   renderStats();
