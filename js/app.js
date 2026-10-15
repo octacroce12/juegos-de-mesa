@@ -4,7 +4,7 @@
   const DIFF_CLASS = { 'Inicial': 'd-inicial', 'Baja': 'd-baja', 'Intermedia': 'd-intermedia', 'Alta': 'd-alta', 'Gordo tryhard': 'd-gordo' };
   const DIFF_ICON = { 'Inicial': '🌱', 'Baja': '🍃', 'Intermedia': '⚙️', 'Alta': '🔥', 'Gordo tryhard': '💀' };
   const $ = id => document.getElementById(id);
-  const state = { q: '', diff: 'Todas', family: 'Todas', type: 'Todos', sort: 'nota', layout: 'grid' };
+  const state = { q: '', diff: 'Todas', family: 'Todas', type: 'Todos', sort: 'nota', layout: 'grid', players: 'Todos', time: 'Todas' };
   try { if (localStorage.getItem('oktapio_layout') === 'shelf') state.layout = 'shelf'; } catch (e) {}
   // Familias para navegar: cada juego conserva su tipo original en la ficha.
   const FAMILIES = [
@@ -31,6 +31,42 @@
   const hue = s => [...s].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) % 360, 7);
   const colorOf = g => g.color || `hsl(${hue(g.nombre)} 38% 32%)`;
   const played = g => g.nota !== null && g.nota !== undefined;
+  /* ---- ficha de partida: jugadores, duración, edad ---- */
+  const fmtPl = j => j[1] >= 50 ? `${j[0]}+` : j[0] === j[1] ? `${j[0]}` : `${j[0]}–${j[1]}`;
+  const hrs = m => fmt(Math.round(m / 6) / 10);
+  const fmtDur = d => {
+    const [a, b] = d;
+    if (b <= 75) return a === b ? `${a}'` : `${a}–${b}'`;
+    if (a === b) return `${hrs(a)} h`;
+    return a < 60 ? `${a}'–${hrs(b)} h` : `${hrs(a)}–${hrs(b)} h`;
+  };
+  const meeples = (j, cap, cls = '') => {
+    const n = Math.min(j[1], cap);
+    return `<span class="meeples ${cls}" aria-hidden="true">${Array.from({ length: n }, (_, i) => `<svg class="${i < j[0] ? 'on' : 'opt'}"><use href="#meeple"/></svg>`).join('')}${j[1] > cap ? '<b>+</b>' : ''}</span>`;
+  };
+  const dial = (d, s) => {
+    const r = 14, C = 2 * Math.PI * r, cap = 120;
+    const a = Math.min(d[0], cap) / cap * C, b = Math.min(d[1], cap) / cap * C;
+    return `<svg class="dial" viewBox="0 0 36 36" width="${s}" height="${s}" aria-hidden="true"><g transform="rotate(-90 18 18)"><circle class="d-track" cx="18" cy="18" r="${r}"/><circle class="d-max" cx="18" cy="18" r="${r}" stroke-dasharray="${b.toFixed(1)} ${C.toFixed(1)}"/><circle class="d-min" cx="18" cy="18" r="${r}" stroke-dasharray="${a.toFixed(1)} ${C.toFixed(1)}"/></g></svg>`;
+  };
+  const factsRow = (g, withAge = true) => {
+    const out = [];
+    if (g.jugadores) out.push(`<span class="fact" title="${g.jugadores[0]} a ${g.jugadores[1]} jugadores">${meeples(g.jugadores, 4)}<em>${fmtPl(g.jugadores)}</em></span>`);
+    if (g.duracion) out.push(`<span class="fact" title="Duración aproximada">${dial(g.duracion, 20)}<em>${fmtDur(g.duracion)}</em></span>`);
+    if (g.edad && withAge) out.push(`<span class="fact age" title="Edad mínima recomendada"><b>${g.edad}+</b></span>`);
+    return out.length ? `<div class="facts">${out.join('')}</div>` : '';
+  };
+  const durCenter = d => d[1] <= 75 ? (d[0] === d[1] ? d[0] : `${d[0]}–${d[1]}`) : (d[0] === d[1] ? hrs(d[0]) : `${hrs(d[0])}–${hrs(d[1])}`);
+  const factTiles = g => {
+    if (!g.jugadores && !g.duracion && !g.edad) return `<div class="tile none">Sin datos de jugadores y duración todavía.</div>`;
+    const pl = g.jugadores
+      ? `<div class="tile t-pl"><small>Jugadores</small>${meeples(g.jugadores, 8, 'big')}<strong>${g.jugadores[0] === g.jugadores[1] ? (g.jugadores[0] === 1 ? 'Solo 1' : g.jugadores[0]) : g.jugadores[1] >= 50 ? g.jugadores[0] + ' o más' : g.jugadores[0] + ' a ' + g.jugadores[1]}</strong></div>` : '';
+    const du = g.duracion
+      ? `<div class="tile t-du"><small>Duración</small><span class="dial-wrap">${dial(g.duracion, 64)}<i>${durCenter(g.duracion)}</i></span><strong>${g.duracion[1] <= 75 ? 'minutos' : 'horas'}</strong></div>` : '';
+    const ed = g.edad
+      ? `<div class="tile t-ed"><small>Edad</small><span class="seal"><b>${g.edad}+</b></span><strong>años</strong></div>` : '';
+    return pl + du + ed;
+  };
   const coinClass = g => !played(g) ? 'none' : g.nota >= 9 ? 'top' : g.nota <= 4 ? 'low' : '';
 
   /* ---- estadísticas ---- */
@@ -73,12 +109,19 @@
     const fams = FAMILIES.filter(f => fCounts[f[0]]).map(f => [f[0], f[1]]);
     if (fCounts['Otros']) fams.push(['Otros', '✨']);
     $('family-chips').innerHTML = chip('Todas', 'Todas', 'family', games.length) + fams.map(([n, e]) => chip(`${e} ${n}`, n, 'family', fCounts[n])).join('');
+    const pCounts = {};
+    [1, 2, 3, 4, 5, 6, 7].forEach(n => { pCounts[n] = games.filter(g => fitsPlayers(g, n)).length; });
+    $('players-chips').innerHTML = chip('Cualquiera', 'Todos', 'players', null) + [1, 2, 3, 4, 5, 6, 7].map(n => chip(n === 7 ? '7 o más' : String(n), String(n), 'players', pCounts[n])).join('');
+    const tOpts = [[30, 'Hasta 30′'], [60, 'Hasta 1 h'], [120, 'Hasta 2 h']];
+    $('time-chips').innerHTML = chip('Cualquier rato', 'Todas', 'time', null) + tOpts.map(([m, l]) => chip(l, String(m), 'time', games.filter(g => g.duracion && g.duracion[1] <= m).length)).join('');
     // Tipo exacto: solo aparece al elegir una familia con más de un tipo.
     const fam = FAMILIES.find(f => f[0] === state.family);
     const subs = fam ? fam[2].filter(t => tCounts[t]) : [];
     $('type-group').hidden = subs.length < 2;
     $('type-chips').innerHTML = subs.length < 2 ? '' : chip('Todos', 'Todos', 'type', fCounts[state.family]) + subs.map(t => chip(t, t, 'type', tCounts[t])).join('');
   }
+
+  const fitsPlayers = (g, n) => !!g.jugadores && g.jugadores[0] <= n && (n >= 7 ? g.jugadores[1] >= 7 : g.jugadores[1] >= n);
 
   /* ---- filtrado y orden ---- */
   function compute() {
@@ -87,10 +130,13 @@
       (!q || norm(g.nombre).includes(q)) &&
       (state.diff === 'Todas' || g.dificultad === state.diff) &&
       (state.family === 'Todas' || familyOf(g.tipo) === state.family) &&
-      (state.type === 'Todos' || g.tipo === state.type));
+      (state.type === 'Todos' || g.tipo === state.type) &&
+      (state.players === 'Todos' || fitsPlayers(g, +state.players)) &&
+      (state.time === 'Todas' || (g.duracion && g.duracion[1] <= +state.time)));
     const by = {
       nota: (a, b) => (played(b) ? b.nota : -1) - (played(a) ? a.nota : -1) || a.nombre.localeCompare(b.nombre, 'es'),
       nombre: (a, b) => a.nombre.localeCompare(b.nombre, 'es'),
+      duracion: (a, b) => (a.duracion ? a.duracion[1] : 9999) - (b.duracion ? b.duracion[1] : 9999) || (a.duracion ? a.duracion[0] : 0) - (b.duracion ? b.duracion[0] : 0) || a.nombre.localeCompare(b.nombre, 'es'),
       dificultad: (a, b) => DIFF_ORDER.indexOf(a.dificultad) - DIFF_ORDER.indexOf(b.dificultad) || a.nombre.localeCompare(b.nombre, 'es'),
     };
     visible.sort(by[state.sort]);
@@ -113,10 +159,12 @@
         <div class="box" style="--c:${colorOf(g)}">
           <div class="cover">${coverHTML(g)}</div>
           <span class="coin ${coinClass(g)}" title="${played(g) ? 'Nota final' : 'Todavía sin jugar'}">${played(g) ? fmt(g.nota) : '?'}</span>
+          ${g.edad ? `<span class="age-seal" title="Edad mínima recomendada: ${g.edad} años"><b>${g.edad}+</b></span>` : ''}
         </div>
         <div class="label">
           <h3>${esc(g.nombre)}</h3>
           <div class="tags"><span class="tag ${DIFF_CLASS[g.dificultad] || 'd-baja'}"><i aria-hidden="true">${DIFF_ICON[g.dificultad] || '🎲'}</i>${esc(g.dificultad)}</span><span class="type-txt">${esc(g.tipo)}</span></div>
+          ${factsRow(g, false)}
         </div>
       </button>`).join('');
     $('empty').hidden = visible.length > 0;
@@ -124,7 +172,7 @@
       ? `Mostrando los ${games.length} juegos`
       : `${visible.length} de ${games.length} juegos`;
     renderChips();
-    const nAct = (state.diff !== 'Todas') + (state.family !== 'Todas') + (state.type !== 'Todos');
+    const nAct = (state.diff !== 'Todas') + (state.family !== 'Todas') + (state.type !== 'Todos') + (state.players !== 'Todos') + (state.time !== 'Todas');
     $('filt-n').textContent = nAct ? '(' + nAct + ')' : '';
   }
 
@@ -204,6 +252,7 @@
     </div>`;
     requestAnimationFrame(() => requestAnimationFrame(() => document.querySelector('#m-rating .score')?.classList.add('go')));
     c.style.setProperty('--c', colorOf(g));
+    $('m-facts').innerHTML = factTiles(g);
     const q = encodeURIComponent(g.nombre);
     $('m-links').innerHTML = `<a class="m-link" href="https://www.cazagangas.com.ar/juegos?titulo=${q}" target="_blank" rel="noopener noreferrer">🛒 Ver en Cazagangas</a><a class="m-link" href="https://boardgamegeek.com/geeksearch.php?action=search&objecttype=boardgame&q=${q}" target="_blank" rel="noopener noreferrer">📚 Ver en BoardGameGeek</a>`;
     $('m-comment').textContent = g.comentario;
@@ -239,7 +288,7 @@
   $('fan').addEventListener('click', e => {
     const b = e.target.closest('.fan-card');
     if (!b) return;
-    Object.assign(state, { q: b.dataset.name, diff: 'Todas', family: 'Todas', type: 'Todos' });
+    Object.assign(state, { q: b.dataset.name, diff: 'Todas', family: 'Todas', type: 'Todos', players: 'Todos', time: 'Todas' });
     $('search').value = b.dataset.name;
     render();
     openModal(0);
@@ -247,7 +296,7 @@
   $('search').addEventListener('input', e => { state.q = e.target.value; render(); });
   $('sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
   $('clear').addEventListener('click', () => {
-    Object.assign(state, { q: '', diff: 'Todas', family: 'Todas', type: 'Todos' });
+    Object.assign(state, { q: '', diff: 'Todas', family: 'Todas', type: 'Todos', players: 'Todos', time: 'Todas' });
     $('search').value = '';
     render();
   });
@@ -285,6 +334,7 @@
         <div class="p-photo"><img src="${w.imagen}" alt="Caja de ${esc(w.nombre)}" loading="lazy" decoding="async"></div>
         <h3 class="p-name">${esc(w.nombre)}</h3>
         <p class="p-phrase">“${esc(w.frase)}”</p>
+        ${factsRow(w)}
         <div class="p-reward"><small>${w.precio != null ? 'Recompensa · desde' : 'Recompensa'}</small>${w.precio != null ? `<b>${money(w.precio)}</b>` : '<b class="na">Consultar precio</b>'}</div>
         <a class="p-btn${ml ? ' ml' : ''}" href="${esc(w.url)}" target="_blank" rel="noopener noreferrer">${ml ? 'Buscar en Mercado Libre →' : 'Ver precios en Cazagangas →'}</a>
         <div class="p-edit"><button class="p-have" type="button" data-act="have" data-id="${esc(w.id)}">✅ ¡Ya lo tengo!</button><button class="p-del" type="button" data-act="del" data-id="${esc(w.id)}" title="Quitar de la lista">Quitar</button></div>

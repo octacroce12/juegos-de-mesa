@@ -1,4 +1,4 @@
-// Datos de la colección. nota: null = todavía sin jugar.
+// Datos de la colección. nota: null = todavía sin jugar. jugadores/duracion: [mín, máx]; edad: años mínimos.
 window.GAMES = [
  {
   "id": "g1",
@@ -8,7 +8,10 @@ window.GAMES = [
   "nota": 9,
   "comentario": "No apto para personas gagás.",
   "imagen": "img/cazabombas.webp",
-  "color": "#874237"
+  "color": "#874237",
+  "jugadores": [2, 5],
+  "duracion": [30, 30],
+  "edad": 10
  },
  {
   "id": "g2",
@@ -18,7 +21,10 @@ window.GAMES = [
   "nota": 9.1,
   "comentario": "El kraken destruyó mi comentario sobre el juego.",
   "imagen": "img/skull-king.webp",
-  "color": "#814f3f"
+  "color": "#814f3f",
+  "jugadores": [2, 8],
+  "duracion": [30, 30],
+  "edad": 8
  },
  {
   "id": "g3",
@@ -28,7 +34,10 @@ window.GAMES = [
   "nota": 8,
   "comentario": "Bazas para caminar hasta Mordor: nadie se apura, hasta que aparecen los Nazgûl y se te seca la garganta.",
   "imagen": "img/el-senor-de-los-anillos-la-comunidad-del-anillo.webp",
-  "color": "#803b22"
+  "color": "#803b22",
+  "jugadores": [1, 4],
+  "duracion": [20, 20],
+  "edad": 10
  },
  {
   "id": "g4",
@@ -38,7 +47,10 @@ window.GAMES = [
   "nota": 6,
   "comentario": "Juego de a 4, parece que realmente juega 1 solo.",
   "imagen": "img/la-isla-prohibida.webp",
-  "color": "#5d3125"
+  "color": "#5d3125",
+  "jugadores": [2, 4],
+  "duracion": [30, 30],
+  "edad": 10
  },
  {
   "id": "g5",
@@ -48,7 +60,10 @@ window.GAMES = [
   "nota": 7,
   "comentario": "No apto para personas suceptibles o sensibles con temas fuertes.",
   "imagen": "img/side-effects.webp",
-  "color": "#4f4532"
+  "color": "#4f4532",
+  "jugadores": null,
+  "duracion": null,
+  "edad": null
  },
  {
   "id": "g6",
@@ -58,7 +73,10 @@ window.GAMES = [
   "nota": 8,
   "comentario": "Flasheá lo más que puedas y tratá de convencer a los demás de que no estás loco.",
   "imagen": "img/dany.webp",
-  "color": "#986a62"
+  "color": "#986a62",
+  "jugadores": [3, 8],
+  "duracion": [20, 30],
+  "edad": 16
  },
  {
   "id": "g7",
@@ -68,7 +86,10 @@ window.GAMES = [
   "nota": 5,
   "comentario": "Este juego te va a hacer merecedor de ir al infierno.",
   "imagen": "img/sospechosos-inusuales.webp",
-  "color": "#8b7125"
+  "color": "#8b7125",
+  "jugadores": [3, 18],
+  "duracion": [15, 20],
+  "edad": 8
  },
  {
   "id": "g8",
@@ -78,7 +99,10 @@ window.GAMES = [
   "nota": 9,
   "comentario": "Siempre te reís, no falla nunca.",
   "imagen": "img/say-my-name.webp",
-  "color": "#175760"
+  "color": "#175760",
+  "jugadores": [4, 12],
+  "duracion": [45, 90],
+  "edad": 8
  },
  {
   "id": "g9",
@@ -88,7 +112,10 @@ window.GAMES = [
   "nota": 8,
   "comentario": "Fácil, sencillo y para toda la familia.",
   "imagen": "img/trio.webp",
-  "color": "#9a9511"
+  "color": "#9a9511",
+  "jugadores": [3, 6],
+  "duracion": [15, 15],
+  "edad": 6
  },
  {
   "id": "g10",
@@ -98,7 +125,10 @@ window.GAMES = [
   "nota": 3,
   "comentario": "El uno, pero peor.",
   "imagen": "img/uno-no-mercy.webp",
-  "color": "#8e6d1e"
+  "color": "#8e6d1e",
+  "jugadores": [2, 10],
+  "duracion": [15, 30],
+  "edad": 7
  },
  {
   "id": "g11",
@@ -108,7 +138,10 @@ window.GAMES = [
   "nota": 7,
   "comentario": "Pateas la puerta, saludás al golem, te llevás tus tesoros feliz.",
   "imagen": "img/munchkin.webp",
-  "color": "#9e8763"
+  "color": "#9e8763",
+  "jugadores": [3, 6],
+  "duracion": [60, 120],
+  "edad": 10
  },
  {
   "id": "g12",
@@ -118,7 +151,10 @@ window.GAMES = [
   "nota": 5,
   "comentario": "Paloma es la peor fantasma del universo.",
   "imagen": "img/mysterium-park.webp",
-  "color": "#583320"
+  "color": "#583320",
+  "jugadores": [2, 6],
+  "duracion": [30, 45],
+  "edad": 10
  },
  {
   "id": "g13",
@@ -128,7 +164,10 @@ window.GAMES = [
   "nota": 8,
   "comentario": "Si tu capacidad de retención fue alterada por tiktok, cagaste.",
   "imagen": "img/el-camarero.webp",
-  "color": "#956158"
+  "color": "#956158",
+  "jugadores": [2, 10],
+  "duracion": [30, 30],
+  "edad": 8
  },
  {
   "id": "g14",
@@ -138,7 +177,10 @@ window.GAMES = [
   "nota": 8,
   "comentario": "El chinchón del siglo XXI con políticos",
   "imagen": "img/mejor-pais-del-mundo.webp",
-  "color": "#9e7b29"
+  "color": "#9e7b29",
+  "jugadores": [2, 4],
+  "duracion": [10, 25],
+  "edad": 14
  },
  {
   "id": "g15",
@@ -148,7 +190,10 @@ window.GAMES = [
   "nota": 8,
   "comentario": "Parece un juego relajante de origami, hasta que alguien canta \"stop\" un punto antes de que vos ganaras.",
   "imagen": "img/oceanos-de-papel.webp",
-  "color": "#497182"
+  "color": "#497182",
+  "jugadores": [2, 4],
+  "duracion": [30, 45],
+  "edad": 8
  },
  {
   "id": "g16",
@@ -158,7 +203,10 @@ window.GAMES = [
   "nota": 8,
   "comentario": "Juegardo, pero no sale nunca porque es relativamente largo.",
   "imagen": "img/aventureros-al-tren-europa.webp",
-  "color": "#3b535f"
+  "color": "#3b535f",
+  "jugadores": [2, 5],
+  "duracion": [30, 60],
+  "edad": 8
  },
  {
   "id": "g17",
@@ -168,7 +216,10 @@ window.GAMES = [
   "nota": 9,
   "comentario": "Una experiencia de creatividad muy interesante, conceptualmente es god, la ejecución depende del grupo.",
   "imagen": "img/dixit.webp",
-  "color": "#864a24"
+  "color": "#864a24",
+  "jugadores": [3, 6],
+  "duracion": [30, 30],
+  "edad": 8
  },
  {
   "id": "g18",
@@ -178,7 +229,10 @@ window.GAMES = [
   "nota": 7.5,
   "comentario": "Lo mismo que el común, pero las cartas son objetivamente más complejas de vincular con conceptos flasheros.",
   "imagen": "img/dixit-disney.webp",
-  "color": "#2f3e68"
+  "color": "#2f3e68",
+  "jugadores": [3, 6],
+  "duracion": [30, 30],
+  "edad": 8
  },
  {
   "id": "g19",
@@ -188,7 +242,10 @@ window.GAMES = [
   "nota": 8,
   "comentario": "La timba se volvió un juego de aproximación.",
   "imagen": "img/las-vegas-baby.webp",
-  "color": "#041a47"
+  "color": "#041a47",
+  "jugadores": [5, 99],
+  "duracion": [30, 40],
+  "edad": 13
  },
  {
   "id": "g20",
@@ -198,7 +255,10 @@ window.GAMES = [
   "nota": 7,
   "comentario": "Pensá rápido y con buena ortografía, por favor.",
   "imagen": "img/quickstop.webp",
-  "color": "#9e792e"
+  "color": "#9e792e",
+  "jugadores": [2, 7],
+  "duracion": [15, 15],
+  "edad": 10
  },
  {
   "id": "g21",
@@ -208,7 +268,10 @@ window.GAMES = [
   "nota": 8,
   "comentario": "El juego más bonito del mundo.",
   "imagen": "img/azul.webp",
-  "color": "#8d422b"
+  "color": "#8d422b",
+  "jugadores": [2, 4],
+  "duracion": [30, 45],
+  "edad": 8
  },
  {
   "id": "g22",
@@ -218,7 +281,10 @@ window.GAMES = [
   "nota": 8.5,
   "comentario": "Armá tu ejército de héroes lo mejor que puedas, siempre te van a robar el que querés",
   "imagen": "img/splendor-marvel.webp",
-  "color": "#876b2f"
+  "color": "#876b2f",
+  "jugadores": [2, 4],
+  "duracion": [30, 30],
+  "edad": 10
  },
  {
   "id": "g23",
@@ -228,7 +294,10 @@ window.GAMES = [
   "nota": 7.5,
   "comentario": "Lee la carta, dice literalmente lo que hace, pelotudo.",
   "imagen": "img/gatitos-explosivos.webp",
-  "color": "#7c1921"
+  "color": "#7c1921",
+  "jugadores": [2, 5],
+  "duracion": [15, 15],
+  "edad": 7
  },
  {
   "id": "g24",
@@ -238,7 +307,10 @@ window.GAMES = [
   "nota": 7.5,
   "comentario": "Siempre alguien dice una barbaridad sin sentido y te comés una caquita.",
   "imagen": "img/masomenos.webp",
-  "color": "#957d22"
+  "color": "#957d22",
+  "jugadores": [4, 9],
+  "duracion": [30, 30],
+  "edad": 14
  },
  {
   "id": "g25",
@@ -248,7 +320,10 @@ window.GAMES = [
   "nota": 7,
   "comentario": "Cuántas copas tenés, negro envidioso.",
   "imagen": "img/robots.webp",
-  "color": "#19414e"
+  "color": "#19414e",
+  "jugadores": [2, 5],
+  "duracion": [20, 60],
+  "edad": 10
  },
  {
   "id": "g26",
@@ -258,7 +333,10 @@ window.GAMES = [
   "nota": 8,
   "comentario": "Reclutá tu ejercito y vencé monstruos.",
   "imagen": "img/here-to-slay.webp",
-  "color": "#2e3847"
+  "color": "#2e3847",
+  "jugadores": [2, 6],
+  "duracion": [30, 60],
+  "edad": 10
  },
  {
   "id": "g27",
@@ -268,7 +346,10 @@ window.GAMES = [
   "nota": 6,
   "comentario": "Scrawl de humor negro.",
   "imagen": "img/hdp-dibujame.webp",
-  "color": "#6f6616"
+  "color": "#6f6616",
+  "jugadores": [4, 8],
+  "duracion": [30, 45],
+  "edad": 18
  },
  {
   "id": "g28",
@@ -278,7 +359,10 @@ window.GAMES = [
   "nota": 6,
   "comentario": "Armá tu ejército de unicornios todo falopeados.",
   "imagen": "img/unicornios-inestables.webp",
-  "color": "#1d5b82"
+  "color": "#1d5b82",
+  "jugadores": [2, 8],
+  "duracion": [30, 60],
+  "edad": 8
  },
  {
   "id": "g29",
@@ -288,7 +372,10 @@ window.GAMES = [
   "nota": 7,
   "comentario": "El juego que atormenta a la gente que le gusta demostrar que sabe palabras raras.",
   "imagen": "img/unanimo.webp",
-  "color": "#80281c"
+  "color": "#80281c",
+  "jugadores": [3, 8],
+  "duracion": [30, 30],
+  "edad": 10
  },
  {
   "id": "g30",
@@ -298,7 +385,10 @@ window.GAMES = [
   "nota": 8,
   "comentario": "La generala en esteroides.",
   "imagen": "img/king-of-tokyo-origins.webp",
-  "color": "#93762c"
+  "color": "#93762c",
+  "jugadores": [2, 4],
+  "duracion": [30, 30],
+  "edad": 8
  },
  {
   "id": "g31",
@@ -308,7 +398,10 @@ window.GAMES = [
   "nota": 6,
   "comentario": "Juego de ancianos.",
   "imagen": "img/el-switcher.webp",
-  "color": "#5a301a"
+  "color": "#5a301a",
+  "jugadores": [2, 4],
+  "duracion": [45, 45],
+  "edad": 10
  },
  {
   "id": "g32",
@@ -318,7 +411,10 @@ window.GAMES = [
   "nota": 8.5,
   "comentario": "El skull king ideal si tus amigos tienen down.",
   "imagen": "img/pili-pili.webp",
-  "color": "#5a4717"
+  "color": "#5a4717",
+  "jugadores": [2, 8],
+  "duracion": [20, 30],
+  "edad": 8
  },
  {
   "id": "g33",
@@ -328,7 +424,10 @@ window.GAMES = [
   "nota": 7,
   "comentario": "Ideal para ludópatas, el favorito de el piñas.",
   "imagen": "img/flip-7.webp",
-  "color": "#37818c"
+  "color": "#37818c",
+  "jugadores": [3, 18],
+  "duracion": [20, 20],
+  "edad": 8
  },
  {
   "id": "g34",
@@ -338,7 +437,10 @@ window.GAMES = [
   "nota": 7,
   "comentario": "Un D&D introductorio, si tenés poca creatividad, es tu juego.",
   "imagen": "img/alice-ha-desaparecido.webp",
-  "color": "#7a5057"
+  "color": "#7a5057",
+  "jugadores": [3, 5],
+  "duracion": [120, 180],
+  "edad": 16
  },
  {
   "id": "g35",
@@ -348,7 +450,10 @@ window.GAMES = [
   "nota": 8,
   "comentario": "1v1 para los fans de los TCG, parece fácil, pero es realmente estratégico.",
   "imagen": "img/duelo-por-cardia.webp",
-  "color": "#1c295a"
+  "color": "#1c295a",
+  "jugadores": [2, 4],
+  "duracion": [15, 15],
+  "edad": 9
  },
  {
   "id": "g36",
@@ -358,7 +463,10 @@ window.GAMES = [
   "nota": 6,
   "comentario": "Ideal para personas que ejerzan la cleptomanía.",
   "imagen": "img/abluxxen.webp",
-  "color": "#966a2c"
+  "color": "#966a2c",
+  "jugadores": [2, 5],
+  "duracion": [20, 20],
+  "edad": 10
  },
  {
   "id": "g37",
@@ -368,7 +476,10 @@ window.GAMES = [
   "nota": 8,
   "comentario": "ESTOY SEGURO QUE SOY EL 5!!!!!!!!!!!!!!!",
   "imagen": "img/the-gang.webp",
-  "color": "#7a6c42"
+  "color": "#7a6c42",
+  "jugadores": [3, 6],
+  "duracion": [20, 20],
+  "edad": 10
  },
  {
   "id": "g38",
@@ -378,7 +489,10 @@ window.GAMES = [
   "nota": 7,
   "comentario": "Todo el mundo hace trampa jugando esto.",
   "imagen": "img/the-mind.webp",
-  "color": "#482513"
+  "color": "#482513",
+  "jugadores": [2, 4],
+  "duracion": [20, 20],
+  "edad": 8
  },
  {
   "id": "g39",
@@ -388,7 +502,10 @@ window.GAMES = [
   "nota": 1,
   "comentario": "Más que un juego, es una experiencia para una joda entre amigos.",
   "imagen": "img/decisiones-de-mierda.webp",
-  "color": "#888123"
+  "color": "#888123",
+  "jugadores": [5, 30],
+  "duracion": [20, 40],
+  "edad": 18
  },
  {
   "id": "g40",
@@ -398,7 +515,10 @@ window.GAMES = [
   "nota": null,
   "comentario": "El creador era fan de \"Cuánta tierra necesita un hombre\" de Tolstoi",
   "imagen": "img/deep-sea-adventure.webp",
-  "color": "#045974"
+  "color": "#045974",
+  "jugadores": [2, 6],
+  "duracion": [30, 30],
+  "edad": 8
  },
  {
   "id": "g41",
@@ -408,7 +528,10 @@ window.GAMES = [
   "nota": 9,
   "comentario": "\"Villero 3\": Gonzalo, Celeste y Paloma",
   "imagen": "img/codigo-secreto.webp",
-  "color": "#89173a"
+  "color": "#89173a",
+  "jugadores": [2, 8],
+  "duracion": [15, 15],
+  "edad": 10
  },
  {
   "id": "g42",
@@ -418,7 +541,10 @@ window.GAMES = [
   "nota": 7,
   "comentario": "Lo mismo que el común, pero peor.",
   "imagen": "img/codigo-secreto-imagenes.webp",
-  "color": "#9e5524"
+  "color": "#9e5524",
+  "jugadores": [2, 8],
+  "duracion": [15, 15],
+  "edad": 10
  },
  {
   "id": "g43",
@@ -428,7 +554,10 @@ window.GAMES = [
   "nota": 6,
   "comentario": "Un buen inicio para la mecánica de colocación, quizás demasiado básico y corto.",
   "imagen": "img/cultivos-mutantes.webp",
-  "color": "#947b2e"
+  "color": "#947b2e",
+  "jugadores": [1, 4],
+  "duracion": [15, 30],
+  "edad": 14
  },
  {
   "id": "g44",
@@ -438,7 +567,10 @@ window.GAMES = [
   "nota": 9,
   "comentario": "El GOAT de los cooperativos de palabras.",
   "imagen": "img/pistas-cruzadas.webp",
-  "color": "#619295"
+  "color": "#619295",
+  "jugadores": [2, 6],
+  "duracion": [5, 10],
+  "edad": 7
  },
  {
   "id": "g45",
@@ -448,7 +580,10 @@ window.GAMES = [
   "nota": 7,
   "comentario": "Para qué te esforzás si va a ganar el que saque la carta \"ganá un token\".",
   "imagen": "img/el-erudito.webp",
-  "color": "#8e7d49"
+  "color": "#8e7d49",
+  "jugadores": [2, 4],
+  "duracion": [60, 60],
+  "edad": 15
  },
  {
   "id": "g46",
@@ -458,7 +593,10 @@ window.GAMES = [
   "nota": 4,
   "comentario": "Combiná sushi y hacé puntos, medio aburrido la verdad.",
   "imagen": "img/sushi-go.webp",
-  "color": "#923b28"
+  "color": "#923b28",
+  "jugadores": [2, 5],
+  "duracion": [15, 15],
+  "edad": 8
  },
  {
   "id": "g47",
@@ -468,7 +606,10 @@ window.GAMES = [
   "nota": null,
   "comentario": "Nunca lo jugué y se juega con un CD que no puedo usar porque ya ni existen las lectoras de disco.",
   "imagen": "img/atmosfear.webp",
-  "color": "#72372a"
+  "color": "#72372a",
+  "jugadores": [3, 6],
+  "duracion": [50, 50],
+  "edad": 12
  },
  {
   "id": "g17890127366925903",
@@ -478,7 +619,10 @@ window.GAMES = [
   "nota": 7.5,
   "comentario": "Nota mental: no jugar con la tryhard de Celeste.",
   "imagen": "img/musa.webp",
-  "color": "#0b5672"
+  "color": "#0b5672",
+  "jugadores": [2, 12],
+  "duracion": [30, 30],
+  "edad": 10
  },
  {
   "id": "g17890129656093336",
@@ -488,7 +632,10 @@ window.GAMES = [
   "nota": 8,
   "comentario": "El juego donde nunca elegís la mejor palabra y te putean por eso.",
   "imagen": "img/just-one.webp",
-  "color": "#9e8131"
+  "color": "#9e8131",
+  "jugadores": [3, 7],
+  "duracion": [20, 60],
+  "edad": 8
  },
  {
   "id": "g17890155443503726",
@@ -498,7 +645,10 @@ window.GAMES = [
   "nota": 6,
   "comentario": "Me dejaron una mísera pepita de oro, estoy muy triste :C",
   "imagen": "img/saboteur.webp",
-  "color": "#940d16"
+  "color": "#940d16",
+  "jugadores": [3, 10],
+  "duracion": [30, 30],
+  "edad": 8
  },
  {
   "id": "g-hanabi",
@@ -508,7 +658,10 @@ window.GAMES = [
   "nota": 7.5,
   "comentario": "Jugás a ciegas con las cartas hacia afuera: confianza ciega, pistas rebuscadas y fuegos artificiales que terminan explotándote en la cara.",
   "imagen": "img/hanabi.webp",
-  "color": "#2d2a52"
+  "color": "#2d2a52",
+  "jugadores": [2, 5],
+  "duracion": [25, 25],
+  "edad": 8
  },
  {
   "id": "g-nacidos-bruma",
@@ -518,6 +671,9 @@ window.GAMES = [
   "nota": 8,
   "comentario": "Que la chupe el Lord Legislador.",
   "imagen": "img/nacidos-de-la-bruma.webp",
-  "color": "#3c475d"
+  "color": "#3c475d",
+  "jugadores": [1, 4],
+  "duracion": [30, 60],
+  "edad": 13
  }
 ];

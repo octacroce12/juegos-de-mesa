@@ -149,6 +149,7 @@
       if (!com) return err('Escribí un comentario.');
       if (n !== null && !(n >= 0 && n <= 10)) return err('La nota tiene que estar entre 0 y 10.');
       const slug = slugOf(w);
+      const color = await dominantColor(w.imagen);
       const btn = $('adm-go'); btn.disabled = true; btn.textContent = 'Guardando…';
       try {
         await commit(`Ya tengo ${w.nombre}: pasa de la lista de deseos a la colección`, (games, wish) => {
@@ -156,7 +157,7 @@
           if (i < 0) throw new Error('Ese juego ya no está en la lista de deseos.');
           wish.splice(i, 1);
           if (!games.some(g => g.imagen === 'img/' + slug + '.webp')) {
-            games.push({ id: 'g-' + slug, nombre: w.nombre, tipo, dificultad: $('h-dif').value, nota: n, comentario: com, imagen: 'img/' + slug + '.webp' });
+            games.push({ id: 'g-' + slug, nombre: w.nombre, tipo, dificultad: $('h-dif').value, nota: n, comentario: com, imagen: 'img/' + slug + '.webp', ...(color ? { color } : {}), jugadores: w.jugadores || null, duracion: w.duracion || null, edad: w.edad || null });
           }
           return [['img/wl/' + slug + '.webp', 'img/' + slug + '.webp']];
         });
@@ -165,6 +166,31 @@
         statusView('¡Listo! Ya está en tu colección. La web se actualiza sola en 1 o 2 minutos (recargá pasado ese tiempo).');
       } catch (e) { done(e); }
     };
+  }
+  // Color del lomo: promedio de los píxeles vivos de la tapa (si el navegador no deja leerla, se calcula solo después).
+  function dominantColor(src) {
+    return new Promise(res => {
+      const im = new Image();
+      im.onload = () => {
+        try {
+          const cv = document.createElement('canvas'); cv.width = cv.height = 48;
+          const x = cv.getContext('2d'); x.drawImage(im, 0, 0, 48, 48);
+          const d = x.getImageData(0, 0, 48, 48).data;
+          let r = 0, g = 0, b = 0, wt = 0;
+          for (let i = 0; i < d.length; i += 4) {
+            const mx = Math.max(d[i], d[i + 1], d[i + 2]), mn = Math.min(d[i], d[i + 1], d[i + 2]);
+            if (mn > 225) continue;
+            const w = 0.05 + (mx - mn) / 255;
+            r += d[i] * w; g += d[i + 1] * w; b += d[i + 2] * w; wt += w;
+          }
+          if (!wt) return res(null);
+          const k = 0.7, f = v => Math.round(Math.min(255, v / wt * k)).toString(16).padStart(2, '0');
+          res('#' + f(r) + f(g) + f(b));
+        } catch (e) { res(null); }
+      };
+      im.onerror = () => res(null);
+      im.src = src;
+    });
   }
   function done(e) {
     if (e.status === 401 || e.status === 403) return loginView('El token venció o no tiene permiso. Generá uno nuevo.');

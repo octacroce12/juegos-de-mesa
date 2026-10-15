@@ -293,6 +293,45 @@ footer{text-align:center;padding:10px 20px 50px;font-size:12px;color:#8fa493;let
 .roll-mute{position:absolute;right:10px;top:8px;border:0;background:none;cursor:pointer;font-size:18px;opacity:.6}
 .roll-mute:hover{opacity:1}
 
+
+/* ---------- FICHA DE PARTIDA (jugadores · duración · edad) ---------- */
+.facts{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;--ic:var(--gold)}
+.fact{display:inline-flex;align-items:center;gap:6px;padding:3px 9px 3px 7px;border-radius:99px;background:rgba(0,0,0,.3);border:1px solid rgba(255,248,224,.16);color:#f4e7c1;font:600 12px var(--sans);line-height:1}
+.fact em{font-style:normal}
+.meeples{display:inline-flex;align-items:flex-end;gap:1px}
+.meeples svg{width:12px;height:13px;fill:var(--ic);stroke:rgba(0,0,0,.35);stroke-width:1.5;stroke-linejoin:round;paint-order:stroke}
+.meeples svg.opt{fill:transparent;stroke:var(--ic);stroke-width:2.6;opacity:.6}
+.meeples b{font:800 11px var(--sans);color:var(--ic);margin-left:2px;align-self:center}
+.dial{display:block;flex:none}
+.dial circle{fill:none;stroke-linecap:round}
+.dial .d-track{stroke:rgba(255,248,224,.2);stroke-width:4.5}
+.dial .d-max{stroke:var(--ic);stroke-width:4.5;opacity:.38}
+.dial .d-min{stroke:var(--ic);stroke-width:4.5}
+.fact.age{padding:3px 7px;border-radius:6px;border:1.5px solid var(--ic);background:transparent;color:var(--ic)}
+.fact.age b{font:900 12px var(--serif)}
+.poster .facts{justify-content:center;margin:0 0 12px;--ic:#7a1f0e}
+.poster .fact{background:rgba(90,50,15,.08);border-color:rgba(90,50,15,.3);color:#4a2a0a}
+.poster .meeples svg{stroke:rgba(255,255,255,.4)}
+.poster .meeples svg.opt{opacity:.85;stroke:#7a1f0e}
+.poster .dial .d-track{stroke:rgba(90,50,15,.18)}
+/* tiles de la ficha de detalle: dorso de caja */
+.m-facts{display:grid;grid-template-columns:1.35fr 1fr .62fr;gap:8px;--ic:var(--gold)}
+.tile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:7px;padding:10px 6px 9px;border-radius:12px;color:#f4e7c1;text-align:center;min-height:112px;
+  background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.1),transparent 65%),linear-gradient(180deg,#3a2a18,#241810);box-shadow:inset 0 0 0 1px rgba(224,184,58,.35),0 3px 0 rgba(0,0,0,.25)}
+.tile small{font:700 9.5px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#c9b27a}
+.tile strong{font:800 13px/1.1 var(--sans);color:#fff3cf}
+.tile.none{grid-column:1/-1;min-height:0;font:500 13px var(--sans);color:#c9b27a;padding:12px}
+.meeples.big{flex-wrap:wrap;justify-content:center;gap:2px;max-width:150px}
+.meeples.big svg{width:22px;height:24px}
+.meeples.big b{font-size:16px}
+.dial-wrap{position:relative;display:grid;place-items:center}
+.dial-wrap i{position:absolute;font:900 13px var(--serif);font-style:normal;color:#fff3cf;letter-spacing:-.02em}
+.age-seal{position:absolute;right:8px;bottom:8px;z-index:2;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;border:2px double #f1d77a;background:radial-gradient(circle at 35% 28%,#c13a2a,#8c1f12);box-shadow:0 2px 0 #4a0f08,0 4px 8px rgba(0,0,0,.4);transform:rotate(-8deg)}
+.age-seal b{font:900 12px var(--serif);color:#fff3cf}
+.seal{display:grid;place-items:center;width:54px;height:54px;border-radius:50%;border:3px double var(--gold);background:radial-gradient(circle at 35% 28%,#c13a2a,#8c1f12);box-shadow:0 3px 0 #4a0f08;transform:rotate(-8deg)}
+.seal b{font:900 19px var(--serif);color:#fff3cf}
+@media (max-width:420px){.m-facts{grid-template-columns:1.2fr 1fr .7fr}.meeples.big svg{width:19px;height:21px}.tile strong{font-size:12px}.seal{width:46px;height:46px}.seal b{font-size:16px}}
+
 /* ---------- ESTANTERÍA ---------- */
 .seg{display:flex;gap:2px;padding:3px;border-radius:10px;background:#e7dcc0;border:1px solid #d3c59c;flex:none}
 .seg-b{border:0;background:transparent;font:600 13px var(--sans);color:var(--ink-soft);padding:0 12px;border-radius:8px;cursor:pointer;height:34px;white-space:nowrap}

@@ -9,7 +9,10 @@ window.WISHLIST = [
   "imagen": "img/wl/one-round.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/one-round",
-  "precio": 32990
+  "precio": 32990,
+  "jugadores": [2, 12],
+  "duracion": [15, 15],
+  "edad": 8
  },
  {
   "id": "w-rebirth",
@@ -18,7 +21,10 @@ window.WISHLIST = [
   "imagen": "img/wl/rebirth.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/rebirth",
-  "precio": 99000
+  "precio": 99000,
+  "jugadores": [2, 4],
+  "duracion": [45, 60],
+  "edad": 10
  },
  {
   "id": "w-spirit-island",
@@ -27,7 +33,10 @@ window.WISHLIST = [
   "imagen": "img/wl/spirit-island.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/spirit-island",
-  "precio": 179990
+  "precio": 179990,
+  "jugadores": [1, 4],
+  "duracion": [90, 120],
+  "edad": 13
  },
  {
   "id": "w-heat",
@@ -36,7 +45,10 @@ window.WISHLIST = [
   "imagen": "img/wl/heat.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/heat",
-  "precio": 215000
+  "precio": 215000,
+  "jugadores": [1, 6],
+  "duracion": [30, 60],
+  "edad": 10
  },
  {
   "id": "w-harmonies",
@@ -45,7 +57,10 @@ window.WISHLIST = [
   "imagen": "img/wl/harmonies.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/harmonies",
-  "precio": 95200
+  "precio": 95200,
+  "jugadores": [1, 4],
+  "duracion": [30, 45],
+  "edad": 10
  },
  {
   "id": "w-clank-catacumbas",
@@ -54,7 +69,10 @@ window.WISHLIST = [
   "imagen": "img/wl/clank-catacumbas.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/clank-catacumbas",
-  "precio": 239900
+  "precio": 239900,
+  "jugadores": [2, 4],
+  "duracion": [45, 90],
+  "edad": 13
  },
  {
   "id": "w-7-wonders-segunda-edicion",
@@ -63,7 +81,10 @@ window.WISHLIST = [
   "imagen": "img/wl/7-wonders-segunda-edicion.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/7-wonders-segunda-edicion",
-  "precio": 169065
+  "precio": 169065,
+  "jugadores": [3, 7],
+  "duracion": [30, 30],
+  "edad": 10
  },
  {
   "id": "w-7-wonders-duel",
@@ -72,7 +93,10 @@ window.WISHLIST = [
   "imagen": "img/wl/7-wonders-duel.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/7-wonders-duel",
-  "precio": 84915
+  "precio": 84915,
+  "jugadores": [2, 2],
+  "duracion": [30, 30],
+  "edad": 10
  },
  {
   "id": "w-terraforming-mars",
@@ -81,7 +105,10 @@ window.WISHLIST = [
   "imagen": "img/wl/terraforming-mars.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/terraforming-mars",
-  "precio": 120960
+  "precio": 120960,
+  "jugadores": [1, 5],
+  "duracion": [120, 120],
+  "edad": 12
  },
  {
   "id": "w-wyrmspan",
@@ -90,7 +117,10 @@ window.WISHLIST = [
   "imagen": "img/wl/wyrmspan.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/wyrmspan",
-  "precio": 125000
+  "precio": 125000,
+  "jugadores": [1, 5],
+  "duracion": [90, 90],
+  "edad": 14
  },
  {
   "id": "w-sky-team",
@@ -99,7 +129,10 @@ window.WISHLIST = [
   "imagen": "img/wl/sky-team.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/sky-team",
-  "precio": 85000
+  "precio": 85000,
+  "jugadores": [2, 2],
+  "duracion": [20, 20],
+  "edad": 10
  },
  {
   "id": "w-sagrada",
@@ -108,7 +141,10 @@ window.WISHLIST = [
   "imagen": "img/wl/sagrada.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/sagrada",
-  "precio": 96480
+  "precio": 96480,
+  "jugadores": [1, 4],
+  "duracion": [30, 45],
+  "edad": 14
  },
  {
   "id": "w-the-white-castle",
@@ -117,7 +153,10 @@ window.WISHLIST = [
   "imagen": "img/wl/the-white-castle.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/the-white-castle",
-  "precio": 68000
+  "precio": 68000,
+  "jugadores": [1, 4],
+  "duracion": [80, 80],
+  "edad": 12
  },
  {
   "id": "w-el-senor-de-los-anillos-el-duelo-por-la-tierra-media",
@@ -126,7 +165,10 @@ window.WISHLIST = [
   "imagen": "img/wl/el-senor-de-los-anillos-el-duelo-por-la-tierra-media.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/el-senor-de-los-anillos-el-duelo-por-la-tierra-media",
-  "precio": 84915
+  "precio": 84915,
+  "jugadores": [2, 2],
+  "duracion": [30, 30],
+  "edad": 10
  },
  {
   "id": "w-everdell",
@@ -135,7 +177,10 @@ window.WISHLIST = [
   "imagen": "img/wl/everdell.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/everdell",
-  "precio": 107712
+  "precio": 107712,
+  "jugadores": [1, 4],
+  "duracion": [40, 80],
+  "edad": 10
  },
  {
   "id": "w-ark-nova",
@@ -144,7 +189,10 @@ window.WISHLIST = [
   "imagen": "img/wl/ark-nova.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/ark-nova",
-  "precio": 158950
+  "precio": 158950,
+  "jugadores": [1, 4],
+  "duracion": [90, 150],
+  "edad": 14
  },
  {
   "id": "w-cascadia",
@@ -153,7 +201,10 @@ window.WISHLIST = [
   "imagen": "img/wl/cascadia.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/cascadia",
-  "precio": 180000
+  "precio": 180000,
+  "jugadores": [1, 4],
+  "duracion": [30, 45],
+  "edad": 10
  },
  {
   "id": "w-la-campana",
@@ -162,7 +213,10 @@ window.WISHLIST = [
   "imagen": "img/wl/la-campana.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/la-campana",
-  "precio": 42500
+  "precio": 42500,
+  "jugadores": [2, 5],
+  "duracion": [20, 60],
+  "edad": 10
  },
  {
   "id": "w-dune-imperium",
@@ -171,7 +225,10 @@ window.WISHLIST = [
   "imagen": "img/wl/dune-imperium.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/dune-imperium",
-  "precio": 143100
+  "precio": 143100,
+  "jugadores": [1, 4],
+  "duracion": [60, 120],
+  "edad": 14
  },
  {
   "id": "w-el-senor-de-los-anillos-las-dos-torres-el-juego-de-bazas",
@@ -180,7 +237,10 @@ window.WISHLIST = [
   "imagen": "img/wl/el-senor-de-los-anillos-las-dos-torres-el-juego-de-bazas.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/el-senor-de-los-anillos-las-dos-torres-el-juego-de-bazas",
-  "precio": 65400
+  "precio": 65400,
+  "jugadores": [1, 4],
+  "duracion": [20, 20],
+  "edad": 10
  },
  {
   "id": "w-ace-of-spades",
@@ -189,7 +249,10 @@ window.WISHLIST = [
   "imagen": "img/wl/ace-of-spades.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/ace-of-spades",
-  "precio": 53950
+  "precio": 53950,
+  "jugadores": [1, 2],
+  "duracion": [40, 45],
+  "edad": 14
  },
  {
   "id": "w-la-tripulacion-mision-mar-profundo",
@@ -198,7 +261,10 @@ window.WISHLIST = [
   "imagen": "img/wl/la-tripulacion-mision-mar-profundo.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/la-tripulacion-mision-mar-profundo",
-  "precio": 31000
+  "precio": 31000,
+  "jugadores": [2, 5],
+  "duracion": [20, 20],
+  "edad": 10
  },
  {
   "id": "w-paleo",
@@ -208,7 +274,10 @@ window.WISHLIST = [
   "tienda": "Mercado Libre",
   "url": "https://listado.mercadolibre.com.ar/paleo-juego-de-mesa",
   "precio": null,
-  "precioNota": "Sin precio todavía"
+  "precioNota": "Sin precio todavía",
+  "jugadores": [2, 4],
+  "duracion": [45, 60],
+  "edad": 10
  },
  {
   "id": "w-pinto",
@@ -217,7 +286,10 @@ window.WISHLIST = [
   "imagen": "img/wl/pinto.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/pinto",
-  "precio": 42500
+  "precio": 42500,
+  "jugadores": [4, 8],
+  "duracion": [20, 20],
+  "edad": 8
  },
  {
   "id": "w-agricola-edicion-revisada",
@@ -226,6 +298,9 @@ window.WISHLIST = [
   "imagen": "img/wl/agricola-edicion-revisada.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/agricola-edicion-revisada",
-  "precio": 175500
+  "precio": 175500,
+  "jugadores": [1, 4],
+  "duracion": [30, 120],
+  "edad": 12
  }
 ];

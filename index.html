@@ -14,9 +14,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600&family=Lilita+One&family=Rye&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=202610150323">
+<link rel="stylesheet" href="css/styles.css?v=202610150336">
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="meeple" viewBox="0 0 40 44"><path d="M20 2c-4.500 0-7 3-7 6.500 0 2.200 1 3.800 2.400 5C11 15.600 7 17.500 3 19.600c-1.300.7-1.500 2.300-.6 3.300l7.600 8.400c.8.900 2 1 3 .3L15 29.600 11 41c-.4 1.200.5 2.400 1.800 2.400h14.400c1.300 0 2.200-1.200 1.800-2.400L25 29.600l2-.1 2.100 2.400c1 .7 2.200.6 3-.3l7.600-8.400c.9-1 .7-2.600-.6-3.300C33 17.500 29 15.600 24.600 13.500 26 12.300 27 10.700 27 8.500 27 5 24.500 2 20 2z"/></symbol></svg>
 <div class="floaters" aria-hidden="true"><span style="--x:6%;--s:38px;--t:78s;--d:-12s">🎲</span><span style="--x:17%;--s:30px;--t:92s;--d:-60s">♟️</span><span style="--x:29%;--s:34px;--t:70s;--d:-35s">🃏</span><span style="--x:41%;--s:28px;--t:86s;--d:-5s">🧩</span><span style="--x:53%;--s:40px;--t:96s;--d:-48s">🎲</span><span style="--x:64%;--s:32px;--t:74s;--d:-22s">♟️</span><span style="--x:75%;--s:36px;--t:88s;--d:-70s">🃏</span><span style="--x:86%;--s:30px;--t:80s;--d:-30s">🧩</span><span style="--x:94%;--s:34px;--t:98s;--d:-55s">🎲</span></div>
 <div class="spot" id="spot" aria-hidden="true"></div>
 
@@ -57,6 +58,7 @@
           <option value="nota">Mejor nota primero</option>
           <option value="nombre">Nombre (A–Z)</option>
           <option value="dificultad">Dificultad (fácil → difícil)</option>
+          <option value="duracion">Duración (más cortos primero)</option>
         </select>
       </label>
     </div>
@@ -72,6 +74,14 @@
     <div class="chip-group sub" id="type-group" hidden>
       <span class="chip-label">Más fino</span>
       <div class="chips" id="type-chips"></div>
+    </div>
+    <div class="chip-group">
+      <span class="chip-label">Somos</span>
+      <div class="chips" id="players-chips"></div>
+    </div>
+    <div class="chip-group">
+      <span class="chip-label">Tengo</span>
+      <div class="chips" id="time-chips"></div>
     </div>
     </div>
   </section>
@@ -144,6 +154,7 @@
       <h2 id="m-title"></h2>
       <div class="m-rating" id="m-rating"></div>
       <blockquote id="m-comment"></blockquote>
+      <div class="m-facts" id="m-facts"></div>
       <div class="m-links" id="m-links"></div>
       <div class="m-nav">
         <button class="btn ghost" id="m-prev">← Anterior</button>
@@ -153,9 +164,9 @@
   </div>
 </dialog>
 
-<script src="data/games.js?v=202610150323"></script>
-<script src="data/wishlist.js?v=202610150323"></script>
-<script src="js/app.js?v=202610150323"></script>
-<script src="js/admin.js?v=202610150323"></script>
+<script src="data/games.js?v=202610150336"></script>
+<script src="data/wishlist.js?v=202610150336"></script>
+<script src="js/app.js?v=202610150336"></script>
+<script src="js/admin.js?v=202610150336"></script>
 </body>
 </html>
