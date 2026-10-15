@@ -449,5 +449,14 @@ window.GAMES = [
   "nota": 6,
   "comentario": "Me dejaron una mísera pepita de oro, estoy muy triste :C",
   "imagen": "img/saboteur.webp"
+ },
+ {
+  "id": "g-hanabi",
+  "nombre": "Hanabi",
+  "tipo": "Cooperativo",
+  "dificultad": "Intermedia",
+  "nota": 7.5,
+  "comentario": "Jugás a ciegas con las cartas hacia afuera: confianza ciega, pistas rebuscadas y fuegos artificiales que terminan explotándote en la cara.",
+  "imagen": "img/hanabi.webp"
  }
 ];
