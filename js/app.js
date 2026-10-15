@@ -69,64 +69,59 @@
   };
   const tierOf = n => n >= 9.5 ? 't6' : n >= 9 ? 't5' : n >= 8.5 ? 't4b' : n >= 8 ? 't4' : n >= 7 ? 't3' : n >= 5 ? 't2' : 't1';
 
-  // ---- Medalla de nota (SVG): metal con borde acanalado, bisel, cara en relieve y brillo ----
-  const PAL = { // rim [luz, medio, sombra] · face [luz, medio, sombra] · texto · glow
-    none: { r: ['#9fb3a6', '#5c7165', '#24342b'], f: ['#6f8579', '#465a4e', '#2a3a31'], t: '#e9f3ea', e: 'rgba(0,0,0,.45)' },
-    t1: { r: ['#ece8df', '#a09a8c', '#5a5549'], f: ['#ddd8cc', '#b0aa9a', '#857f6d'], t: '#2e2b23', e: 'rgba(255,255,255,.55)' },
-    t2: { r: ['#ffddb8', '#c7803f', '#6a3410'], f: ['#f6c493', '#cf8847', '#94521f'], t: '#2f1505', e: 'rgba(255,235,210,.55)' },
-    t3: { r: ['#ffffff', '#b0bac5', '#5a6571'], f: ['#fbfdff', '#cfd7df', '#97a3af'], t: '#1f2a35', e: 'rgba(255,255,255,.8)' },
-    t4: { r: ['#fff5c0', '#e3ac20', '#744c05'], f: ['#ffe888', '#ecba33', '#b9840e'], t: '#33230a', e: 'rgba(255,248,200,.7)' },
-    t4b: { r: ['#ffffdc', '#ffcb2b', '#8f5d00'], f: ['#fff6ae', '#ffd13a', '#dc9a00'], t: '#38260a', e: 'rgba(255,255,220,.8)' },
-    t5: { r: ['#fff3b8', '#e6a812', '#6e4204'], f: ['#ff9fc6', '#d8226d', '#560940'], t: '#fff8e0', e: '' },
-    t6: { r: ['#fffbd0', '#f0b81a', '#6e4a04'], f: ['#c4f6ff', '#7d6dff', '#27117c'], t: '#ffffff', e: '' }
+  // ---- Ficha de nota (SVG plano, estilo ficha de póker): borde segmentado, aro, cara con halo y número ----
+  // [claro, claro2, oscuro, oscuro2, aro, cara, halo, texto]
+  const PAL = {
+    none: ['#6f8b7b', '#5f7a6b', '#243a2f', '#1b2d24', '#6f8b7b', '#3d5648', '#4b6a59', '#e9f3ea'],
+    t1: ['#d7d9dc', '#c1c4c8', '#4b5058', '#3b4047', '#d7d9dc', '#eceff2', '#ffffff', '#2c3138'],
+    t2: ['#2fa35a', '#268a4a', '#10351f', '#0b2916', '#2fa35a', '#6fd596', '#9be8b6', '#0c3a1e'],
+    t3: ['#2b72dc', '#235fb8', '#0f2350', '#0a1a3d', '#2b72dc', '#7db4ff', '#a6ccff', '#0a2252'],
+    t4: ['#d62027', '#b5181f', '#3b1219', '#2c0d12', '#d62027', '#f7b719', '#ffcf0a', '#3a1212'],
+    t4b: ['#f5b81c', '#d99a10', '#5a3706', '#472a04', '#f5b81c', '#fff0a0', '#fffbd0', '#4a2e05'],
+    t5: ['#8a35e6', '#7128c4', '#1d0a3d', '#14072d', '#f5b81c', '#ffd93d', '#fff1a0', '#2a0e55'],
+    t6: ['', '', '#1a1030', '#120a24', '#f5b81c', '#ffd93d', '#fff1a0', '#2a0e55']
   };
+  const RAINBOW = ['#ff4d5e', '#ff9a2e', '#ffd92e', '#44d17a', '#2ec9e8', '#4b7dff', '#9a5cff', '#ff5cc0'];
   function medalDefs() {
     if (document.getElementById('medal-defs')) return;
-    let d = '';
-    for (const [k, v] of Object.entries(PAL)) {
-      d += `<linearGradient id="mr-${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${v.r[0]}"/><stop offset=".3" stop-color="${v.r[1]}"/><stop offset=".58" stop-color="${v.r[2]}"/><stop offset=".82" stop-color="${v.r[1]}"/><stop offset="1" stop-color="${v.r[0]}"/></linearGradient>
-      <linearGradient id="mb-${k}" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="${v.r[0]}"/><stop offset=".45" stop-color="${v.r[1]}"/><stop offset="1" stop-color="${v.r[2]}"/></linearGradient>
-      <radialGradient id="mf-${k}" cx=".36" cy=".3" r=".85"><stop offset="0" stop-color="${v.f[0]}"/><stop offset=".55" stop-color="${v.f[1]}"/><stop offset="1" stop-color="${v.f[2]}"/></radialGradient>`;
-    }
-    d += `<linearGradient id="m-gloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-      <linearGradient id="m-sweep" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-      <linearGradient id="m-holo" x1="0" y1="0" x2="1" y2="1" spreadMethod="reflect"><animateTransform attributeName="gradientTransform" type="translate" from="-1 -1" to="1 1" dur="4s" repeatCount="indefinite"/><stop offset="0" stop-color="#ff7ad9"/><stop offset=".25" stop-color="#7af0ff"/><stop offset=".5" stop-color="#fff58a"/><stop offset=".75" stop-color="#9d8bff"/><stop offset="1" stop-color="#ff7ad9"/></linearGradient>
-      <linearGradient id="m-gem" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#ff5c9a"/><stop offset="1" stop-color="#7a0a46"/></linearGradient>
-      <clipPath id="m-clip"><circle cx="50" cy="50" r="37"/></clipPath>`;
     const el = document.createElement('div');
     el.id = 'medal-defs';
     el.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
-    el.innerHTML = `<svg width="0" height="0" aria-hidden="true"><defs>${d}</defs></svg>`;
+    el.innerHTML = `<svg width="0" height="0" aria-hidden="true"><defs>
+      <linearGradient id="m-sweep" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <clipPath id="m-clip"><circle cx="50" cy="50" r="48"/></clipPath></defs></svg>`;
     document.body.appendChild(el);
   }
-  function medal(n, tier, small) {
+  const wedge = (a0, a1, r0, r1) => {
+    const P = (a, r) => [50 + r * Math.cos(a * Math.PI / 180), 50 + r * Math.sin(a * Math.PI / 180)].map(x => x.toFixed(2));
+    const [x0, y0] = P(a0, r1), [x1, y1] = P(a1, r1), [x2, y2] = P(a1, r0), [x3, y3] = P(a0, r0);
+    return `M${x0} ${y0}A${r1} ${r1} 0 0 1 ${x1} ${y1}L${x2} ${y2}A${r0} ${r0} 0 0 0 ${x3} ${y3}Z`;
+  };
+  function medal(n, tier) {
     const k = PAL[tier] ? tier : 't4';
-    const v = PAL[k];
+    const [l, l2, d, d2, ring, face, halo, tx] = PAL[k];
     const epic = k === 't5' || k === 't6';
     const txt = n === null ? '?' : fmt(n);
-    const fs = txt.length >= 3 ? 27 : txt.length === 2 ? 33 : 41;
-    const ty = n === null ? 63 : small ? 62 : 60;
-    const num = n === null || !small ? '' : '';
-    const emboss = v.e ? `<text x="50" y="${ty + 1.6}" text-anchor="middle" class="m-n" font-size="${fs}" fill="${v.e}">${txt}</text>` : '';
-    const main = epic
-      ? `<text x="50" y="${ty}" text-anchor="middle" class="m-n" font-size="${fs}" fill="${v.t}" stroke="${k === 't5' ? '#4a0836' : '#1b0d63'}" stroke-width="3" paint-order="stroke" stroke-linejoin="round">${txt}</text>`
-      : `<text x="50" y="${ty}" text-anchor="middle" class="m-n" font-size="${fs}" fill="${v.t}">${txt}</text>`;
-    const ten = n === null ? '' : `<text x="50" y="76" text-anchor="middle" class="m-ten m10" font-size="9.5" fill="${epic ? '#ffeaa8' : v.t}" fill-opacity=".75">/10</text>`;
-    const gem = epic ? `<g transform="translate(50 4)"><path d="M0-6 L6 0 L0 6 L-6 0Z" fill="url(#m-gem)" stroke="#fff3b8" stroke-width="1.4"/><path d="M0-6 L2.2 0 L0 6 L-2.2 0Z" fill="#fff" fill-opacity=".45"/></g>` : '';
-    const spark = k === 't6' ? '<path class="m-sp" d="M12 20l1.6 4 4 1.6-4 1.6L12 31l-1.6-3.8-4-1.6 4-1.6z" fill="#fff"/><path class="m-sp m-sp2" d="M86 66l1.2 3 3 1.2-3 1.2-1.2 3-1.2-3-3-1.2 3-1.2z" fill="#fff"/>' : '';
-    const holo = k === 't6' ? '<circle cx="50" cy="50" r="37" fill="url(#m-holo)" style="mix-blend-mode:soft-light" opacity=".85"/>' : '';
-    const sweep = epic ? '<g clip-path="url(#m-clip)"><g class="m-sweep"><rect x="-30" y="-10" width="22" height="120" fill="url(#m-sweep)" transform="skewX(-20)"/></g></g>' : '';
+    const fs = txt.length >= 3 ? 25 : txt.length === 2 ? 31 : 38;
+    let edge = `<circle cx="50" cy="50" r="48" fill="${d}"/>`;
+    for (let i = 0; i < 8; i++) {
+      const a0 = -22.5 + i * 45, a1 = a0 + 45;
+      const light = i % 2 === 0;
+      const c1 = k === 't6' ? RAINBOW[i] : (light ? l : d), c2 = k === 't6' ? RAINBOW[i] : (light ? l2 : d2);
+      edge += `<path d="${wedge(a0, a1, 38, 48)}" fill="${c1}"/><path d="${wedge(a0, a1, 38, 42.5)}" fill="${c2}" opacity="${k === 't6' ? .78 : 1}"/>`;
+    }
+    const sp = k === 't6' ? '<path class="m-sp" d="M12 18l1.8 4.2 4.2 1.8-4.2 1.8L12 30l-1.8-4.2L6 24l4.2-1.8z" fill="#fff"/><path class="m-sp m-sp2" d="M88 70l1.4 3.2 3.2 1.4-3.2 1.4L88 79l-1.4-3-3.2-1.4 3.2-1.4z" fill="#fff"/>' : '';
+    const sweep = epic ? '<g clip-path="url(#m-clip)"><g class="m-sweep"><rect x="-30" y="-10" width="20" height="120" fill="url(#m-sweep)" transform="skewX(-20)"/></g></g>' : '';
     return `<svg class="medal" viewBox="0 0 100 100" aria-hidden="true">
-      <circle cx="50" cy="50" r="48" fill="url(#mr-${k})"/>
-      <circle cx="50" cy="50" r="44.6" fill="none" stroke="#000" stroke-opacity=".38" stroke-width="5" stroke-dasharray="1.7 1.9"/>
-      <circle cx="50" cy="50" r="48" fill="none" stroke="#000" stroke-opacity=".35" stroke-width="1.2"/>
-      <circle cx="50" cy="50" r="41" fill="url(#mb-${k})"/>
-      <circle cx="50" cy="50" r="37" fill="url(#mf-${k})"/>
-      <circle cx="50" cy="50" r="37" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/>
-      <circle cx="50" cy="50" r="33.5" fill="none" stroke="#fff" stroke-opacity=".4" stroke-width=".9" stroke-dasharray=".9 2.6" stroke-linecap="round"/>
-      ${holo}${emboss}${main}${ten}
-      <ellipse cx="42" cy="27" rx="21" ry="10" fill="url(#m-gloss)" opacity=".55" transform="rotate(-18 42 27)"/>
-      ${sweep}${gem}${spark}
+      <g class="${k === 't6' ? 'm-spin' : ''}">${edge}</g>
+      <circle cx="50" cy="50" r="37.5" fill="${d}"/>
+      <circle cx="50" cy="50" r="34.5" fill="${ring}"/>
+      <circle cx="50" cy="50" r="31" fill="${d}"/>
+      <circle cx="50" cy="50" r="28.5" fill="${face}"/>
+      <circle cx="50" cy="50" r="20" fill="${halo}" opacity=".7"/>
+      <text x="51.4" y="${n === null ? 64.4 : 62.4}" text-anchor="middle" class="m-n" font-size="${fs}" fill="${d}" fill-opacity=".28">${txt}</text>
+      <text x="50" y="${n === null ? 63 : 61}" text-anchor="middle" class="m-n" font-size="${fs}" fill="${tx}">${txt}</text>
+      ${sweep}${sp}
     </svg>`;
   }
   const coinClass = g => !played(g) ? 'none' : tierOf(g.nota) + (g.nota >= 9 ? ' top' : g.nota <= 4 ? ' low' : '');
