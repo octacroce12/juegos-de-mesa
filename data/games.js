@@ -5,8 +5,8 @@ window.GAMES = [
   "nombre": "Cazabombas",
   "tipo": "Deducción",
   "dificultad": "Intermedia",
-  "nota": null,
-  "comentario": "Vamos a explotar por incompetentes.",
+  "nota": 9,
+  "comentario": "No apto para personas gagás.",
   "imagen": "img/cazabombas.webp"
  },
  {
@@ -23,8 +23,8 @@ window.GAMES = [
   "nombre": "El señor de los anillos: la comunidad del anillo",
   "tipo": "Bazas",
   "dificultad": "Intermedia",
-  "nota": null,
-  "comentario": "Te quiero jugar, demasiado.",
+  "nota": 8,
+  "comentario": "Bazas para caminar hasta Mordor: nadie se apura, hasta que aparecen los Nazgûl y se te seca la garganta.",
   "imagen": "img/el-senor-de-los-anillos-la-comunidad-del-anillo.webp"
  },
  {
@@ -355,8 +355,8 @@ window.GAMES = [
   "id": "g40",
   "nombre": "Deep sea adventure",
   "tipo": "Familiar",
-  "dificultad": "Baja",
-  "nota": 0,
+  "dificultad": "Intermedia",
+  "nota": null,
   "comentario": "El creador era fan de \"Cuánta tierra necesita un hombre\" de Tolstoi",
   "imagen": "img/deep-sea-adventure.webp"
  },
