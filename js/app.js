@@ -67,7 +67,8 @@
       ? `<div class="tile t-ed"><small>Edad</small><span class="seal"><b>${g.edad}+</b></span><strong>años</strong></div>` : '';
     return pl + du + ed;
   };
-  const coinClass = g => !played(g) ? 'none' : g.nota >= 9 ? 'top' : g.nota <= 4 ? 'low' : '';
+  const tierOf = n => n >= 9.5 ? 't6' : n >= 9 ? 't5' : n >= 8.5 ? 't4b' : n >= 8 ? 't4' : n >= 7 ? 't3' : n >= 5 ? 't2' : 't1';
+  const coinClass = g => !played(g) ? 'none' : tierOf(g.nota) + (g.nota >= 9 ? ' top' : g.nota <= 4 ? ' low' : '');
 
   /* ---- estadísticas ---- */
   function renderStats() {
@@ -159,7 +160,7 @@
       <button class="game" type="button" data-i="${i}" style="--i:${Math.min(i, 14)}" aria-label="${esc(g.nombre)}, ver detalle">
         <div class="box" style="--c:${colorOf(g)}">
           <div class="cover">${coverHTML(g)}</div>
-          <span class="coin ${coinClass(g)}" title="${played(g) ? 'Nota final' : 'Todavía sin jugar'}">${played(g) ? fmt(g.nota) : '?'}</span>
+          <span class="coin ${coinClass(g)}" title="${played(g) ? 'Nota final' : 'Todavía sin jugar'}">${played(g) ? fmt(g.nota) : '?'}${g.nota >= 9 ? '<i></i>' : ''}</span>
           ${g.edad ? `<span class="age-seal" title="Edad mínima recomendada: ${g.edad} años"><b>${g.edad}+</b></span>` : ''}
         </div>
         <div class="label">
@@ -201,7 +202,7 @@
       const fs = L <= 13 ? 17 : L <= 22 ? 14.5 : L <= 32 ? 12.5 : 11;
       return `<button class="spine${n !== null && n >= 9 ? ' gold' : ''}" type="button" data-i="${i}" style="--c:${colorOf(g)};--w:${w};--h:${h};--fs:${fs}px" title="${esc(g.nombre)}${n !== null ? ' · ' + fmt(n) : ''}" aria-label="${esc(g.nombre)}, ver detalle">
         <span class="s-name">${esc(g.nombre)}</span>
-        <span class="s-coin ${n === null ? 'none' : ''}">${n === null ? '?' : fmt(n)}</span>
+        <span class="s-coin ${n === null ? 'none' : tierOf(n)}">${n === null ? '?' : fmt(n)}</span>
       </button>`;
     }).join('')}</div></div>`).join('');
   }

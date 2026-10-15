@@ -547,3 +547,37 @@ body.edit .p-edit{display:flex}
   box-shadow:0 0 0 2px #14201a,0 4px 0 2px #14201a,0 8px 12px rgba(0,0,0,.45)}
 .coin.none::after{content:none}
 @media (max-width:760px){.coin{width:42px;height:42px;font-size:15px;padding-bottom:3px}.coin::before{inset:5px}.coin::after{display:none}}
+
+/* Gradación de la ficha según nota: piedra → bronce → plata → oro → oro vivo → épica → mítica */
+.coin.t1{--e1:#cfcac0;--e2:#6f6a60;--f1:#d9d4c8;--f2:#a29c8f;--f3:#77725f;--tx:#3a362d;transform:scale(.94)}
+.coin.t2{--e1:#f0c79b;--e2:#8a4f22;--f1:#f0b98a;--f2:#c27a42;--f3:#8d4d22;--tx:#3b1c08}
+.coin.t3{--e1:#ffffff;--e2:#8e9aa6;--f1:#f7fafc;--f2:#c3ccd5;--f3:#8d98a4;--tx:#27323d}
+.coin.t4{--e1:#fff4c4;--e2:#b57f0c;--f1:#fde58a;--f2:#e2b02a;--f3:#b9830c;--tx:#3b2a05}
+.coin.t4b{--e1:#fffbe0;--e2:#d99a00;--f1:#fff3a8;--f2:#ffcf33;--f3:#d89400;--tx:#3b2a05;transform:scale(1.05);
+  box-shadow:0 0 0 2px #4a2e17,0 4px 0 2px #4a2e17,0 8px 12px rgba(0,0,0,.45),0 0 14px rgba(255,205,51,.5)}
+.coin.t5{--e1:#ffe9a0;--e2:#c4880a;--f1:#ff8fb8;--f2:#d2246e;--f3:#6c0b52;--tx:#fff6d6;transform:scale(1.14);font-size:21px;
+  text-shadow:0 1px 0 rgba(60,0,40,.8),0 0 8px rgba(255,220,120,.9);
+  box-shadow:0 0 0 2px #3a0a2c,0 4px 0 2px #3a0a2c,0 8px 12px rgba(0,0,0,.5),0 0 22px 4px rgba(255,80,160,.55)}
+.coin.t5::after,.coin.t6::after{color:rgba(255,236,170,.85)}
+.coin.t6{--e1:#fff6c0;--e2:#e0a400;--f1:#a8f0ff;--f2:#6a5cff;--f3:#2a1380;--tx:#fff;transform:scale(1.2);font-size:21px;
+  text-shadow:0 1px 0 rgba(20,0,60,.8),0 0 10px rgba(255,255,255,.95);
+  box-shadow:0 0 0 2px #1a0a4a,0 4px 0 2px #1a0a4a,0 8px 12px rgba(0,0,0,.5),0 0 26px 6px rgba(140,120,255,.65)}
+/* épicas: borde con brillo giratorio + destello que pasa por la cara */
+.coin.t5,.coin.t6{overflow:visible}
+.coin.t5::before,.coin.t6::before{overflow:hidden}
+.coin.t5 i,.coin.t6 i{position:absolute;inset:6px;border-radius:50%;overflow:hidden;z-index:-1;pointer-events:none}
+.coin.t5 i::before,.coin.t6 i::before{content:"";position:absolute;top:-20%;bottom:-20%;width:40%;left:-60%;transform:skewX(-20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);animation:coinshine 3.2s ease-in-out infinite}
+.coin.t6 i{background:conic-gradient(from 0deg,rgba(255,120,200,.35),rgba(120,220,255,.35),rgba(255,240,140,.35),rgba(255,120,200,.35));animation:coinspin 6s linear infinite}
+@keyframes coinshine{0%,55%{left:-60%}100%{left:130%}}
+@keyframes coinspin{to{transform:rotate(360deg)}}
+.coin.t5{animation:coinpulse 2.4s ease-in-out infinite}
+@keyframes coinpulse{50%{box-shadow:0 0 0 2px #3a0a2c,0 4px 0 2px #3a0a2c,0 8px 12px rgba(0,0,0,.5),0 0 30px 8px rgba(255,80,160,.75)}}
+/* chapita de la estantería */
+.s-coin.t1{background:radial-gradient(circle at 35% 28%,#d9d4c8,#a29c8f)}
+.s-coin.t2{background:radial-gradient(circle at 35% 28%,#f0b98a,#c27a42)}
+.s-coin.t3{background:radial-gradient(circle at 35% 28%,#fff,#b9c3cd)}
+.s-coin.t5{background:radial-gradient(circle at 35% 28%,#ff8fb8,#c2185b);color:#fff6d6;box-shadow:0 0 8px rgba(255,80,160,.7)}
+.s-coin.t6{background:radial-gradient(circle at 35% 28%,#a8f0ff,#5b4cf0);color:#fff;box-shadow:0 0 10px rgba(140,120,255,.8)}
+@media (prefers-reduced-motion:reduce){.coin.t5,.coin.t5 i::before,.coin.t6 i,.coin.t6 i::before{animation:none}}
+.coin.top,.coin.low,.coin.none{background:repeating-conic-gradient(from -11deg,var(--e1) 0 22.5deg,var(--e2) 22.5deg 45deg)}
