@@ -246,7 +246,7 @@ window.GAMES = [
   "tipo": "Cartas",
   "dificultad": "Baja",
   "nota": 7,
-  "comentario": "Cuántas copas tenés, envidioso.",
+  "comentario": "Cuántas copas tenés, negro envidioso.",
   "imagen": "img/robots.webp",
   "color": "#19414e"
  },
