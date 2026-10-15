@@ -93,6 +93,7 @@
   }
 
   /* ---- chips ---- */
+  const SHORT = {'Fiesta y familiar': 'Fiesta', 'Palabras y saber': 'Palabras', 'Misterio y roles ocultos': 'Misterio', 'Azar y apuestas': 'Azar', 'Rol y aventura': 'Aventura'};
   function chip(label, value, group, count) {
     const on = state[group] === value;
     return `<button class="chip" type="button" data-group="${group}" data-value="${esc(value)}" aria-pressed="${on}">${esc(label)}${count != null ? `<small>${count}</small>` : ''}</button>`;
@@ -108,7 +109,7 @@
     $('diff-chips').innerHTML = chip('Todas', 'Todas', 'diff', games.length) + diffs.map(d => chip(d, d, 'diff', dCounts[d])).join('');
     const fams = FAMILIES.filter(f => fCounts[f[0]]).map(f => [f[0], f[1]]);
     if (fCounts['Otros']) fams.push(['Otros', '✨']);
-    $('family-chips').innerHTML = chip('Todas', 'Todas', 'family', games.length) + fams.map(([n, e]) => chip(`${e} ${n}`, n, 'family', fCounts[n])).join('');
+    $('family-chips').innerHTML = chip('Todas', 'Todas', 'family', games.length) + fams.map(([n]) => chip(SHORT[n] || n, n, 'family', fCounts[n])).join('');
     const pCounts = {};
     [1, 2, 3, 4, 5, 6, 7].forEach(n => { pCounts[n] = games.filter(g => fitsPlayers(g, n)).length; });
     $('players-chips').innerHTML = chip('Cualquiera', 'Todos', 'players', null) + [1, 2, 3, 4, 5, 6, 7].map(n => chip(n === 7 ? '7 o más' : String(n), String(n), 'players', pCounts[n])).join('');

@@ -111,7 +111,9 @@ footer{position:relative;z-index:1}
   font:500 13px var(--sans); padding:6px 12px; border-radius:99px; cursor:pointer; white-space:nowrap;
   transition:background .15s,color .15s,transform .1s;
 }
-.chip small{opacity:.6;margin-left:4px;font-size:11px}
+.chip small{opacity:.45;margin-left:4px;font-size:10.5px;font-weight:400}
+#family-chips{flex-wrap:nowrap;min-width:0;overflow-x:auto;scrollbar-width:none}
+@media(min-width:761px){#family-chips{gap:5px}#family-chips .chip{padding:6px 11px}}
 .chip:hover{background:#ece3c6}
 .chip:active{transform:scale(.96)}
 .chip[aria-pressed="true"]{background:var(--wood);border-color:var(--wood-dark);color:#fff7e0}
