@@ -637,3 +637,20 @@ footer{padding:46px 20px 60px;display:flex;flex-direction:column;align-items:cen
 .rw-stamp em{font:700 10px var(--sans);letter-spacing:.2em;text-transform:uppercase;font-style:normal;opacity:.85}
 .rw-stamp b{font:400 34px/1 'Alfa Slab One',serif;color:#b3261e;letter-spacing:-.01em}
 .rw-stamp b.na{font-size:20px;padding:6px 0;color:#b3261e}
+
+/* podio olímpico */
+.hall-row{max-width:700px;margin:0 auto;gap:8px;overflow:visible;padding:34px 8px 0;justify-content:center}
+.hall-i{min-width:0;max-width:none;flex:1 1 0;gap:6px}
+.hall-i.r1{flex:1.2 1 0}
+.hall-name{min-height:36px;font-size:15px}
+.hall-i.r1 .hall-name{font-size:18px}
+.hall-i .hall-box .coin{--s:50px}.hall-i.r1 .hall-box .coin{--s:64px}
+.hall-i.r1 .hall-box{transform:rotate(-1.5deg)}.hall-i.r2 .hall-box{transform:rotate(2deg)}.hall-i.r3 .hall-box{transform:rotate(-2.5deg)}
+.hall-step{height:var(--h);border-radius:10px 10px 0 0;position:relative}
+.hall-i.r1 .hall-step{--h:150px;background:linear-gradient(180deg,#fff0a0,#f5c431 45%,#b9830c);box-shadow:inset 0 4px 0 rgba(255,255,255,.65),inset 0 -6px 0 rgba(0,0,0,.2),0 5px 0 #6d4b08}
+.hall-i.r2 .hall-step{--h:104px;background:linear-gradient(180deg,#ffffff,#c9d1da 45%,#8a95a1);box-shadow:inset 0 4px 0 rgba(255,255,255,.8),inset 0 -6px 0 rgba(0,0,0,.18),0 5px 0 #49525d}
+.hall-i.r3 .hall-step{--h:72px;background:linear-gradient(180deg,#f7c9a0,#cf8847 45%,#94521f);box-shadow:inset 0 4px 0 rgba(255,255,255,.55),inset 0 -6px 0 rgba(0,0,0,.2),0 5px 0 #4f2a0c}
+.hall-step i{font:normal 400 40px 'Alfa Slab One',serif;text-shadow:0 2px 0 rgba(255,255,255,.55)}
+.hall-i.r1 .hall-step i{font-size:56px;color:#5a3706}.hall-i.r2 .hall-step i{color:#2f3a46}.hall-i.r3 .hall-step i{color:#4a230a}
+.hall-more{margin:16px 0 0;text-align:center;font:600 12px var(--sans);letter-spacing:.04em;color:#a9bfae}
+@media (max-width:760px){.hall-row{padding:30px 2px 0;gap:5px}.hall-name{font-size:12.5px;min-height:32px}.hall-i.r1 .hall-name{font-size:14px}.hall-step i{font-size:30px}.hall-i.r1 .hall-step i{font-size:42px}.hall-i.r1 .hall-step{--h:120px}.hall-i.r2 .hall-step{--h:84px}.hall-i.r3 .hall-step{--h:58px}.hall-i .hall-box .coin{--s:40px}.hall-i.r1 .hall-box .coin{--s:50px}.hall-i .hall-box{border-left-width:7px}}

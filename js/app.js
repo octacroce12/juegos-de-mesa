@@ -238,13 +238,16 @@
     const el = $('hall');
     const filtered = state.q || state.diff !== 'Todas' || state.family !== 'Todas' || state.type !== 'Todos' || state.players !== 'Todos' || state.time !== 'Todas';
     const top = games.filter(g => played(g) && g.nota >= 9).sort((a, b) => b.nota - a.nota || a.nombre.localeCompare(b.nombre, 'es'));
-    el.hidden = view === 'wish' || filtered || state.layout === 'shelf' || top.length < 2;
+    el.hidden = view === 'wish' || filtered || state.layout === 'shelf' || top.length < 3;
     if (el.hidden) return;
-    el.innerHTML = `<div class="hall-head"><span>🏆 Salón de la fama</span><small>las que pasaron el 9</small></div>
-      <div class="hall-row">${top.map((g, r) => `<button class="hall-i" type="button" data-id="${g.id}" style="--c:${colorOf(g)};--h:${Math.max(26, 64 - r * 9)}px" aria-label="${esc(g.nombre)}, puesto ${r + 1}">
-        <div class="hall-box">${r === 0 ? '<span class="hall-crown" aria-hidden="true">👑</span>' : ''}<img src="${g.imagen}" alt="" loading="lazy" decoding="async"><span class="coin ${coinClass(g)}">${medal(g.nota, tierOf(g.nota))}</span></div>
+    const podium = [top[1], top[0], top[2]].map((g, k) => [g, [2, 1, 3][k]]);
+    const rest = top.slice(3).map(g => esc(g.nombre));
+    el.innerHTML = `<div class="hall-head"><span>🏆 Salón de la fama</span><small>el podio de la colección</small></div>
+      <div class="hall-row">${podium.map(([g, r]) => `<button class="hall-i r${r}" type="button" data-id="${g.id}" style="--c:${colorOf(g)}" aria-label="${esc(g.nombre)}, puesto ${r}">
+        <div class="hall-box">${r === 1 ? '<span class="hall-crown" aria-hidden="true">👑</span>' : ''}<img src="${g.imagen}" alt="" loading="lazy" decoding="async"><span class="coin ${coinClass(g)}">${medal(g.nota, tierOf(g.nota))}</span></div>
         <b class="hall-name">${esc(g.nombre)}</b>
-        <div class="hall-step"><i>${r + 1}</i></div></button>`).join('')}</div>`;
+        <div class="hall-step"><i>${r}</i></div></button>`).join('')}</div>
+      ${rest.length ? `<p class="hall-more">También con 9 o más: ${rest.join(' · ')}</p>` : ''}`;
   }
   function render() {
     compute();
