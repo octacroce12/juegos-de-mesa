@@ -1,4 +1,4 @@
-// Datos de la colección. nota: null = todavía sin jugar. jugadores/duracion: [mín, máx]; edad: años mínimos.
+// Datos de la colección. nota: null = todavía sin jugar. jugadores y duracion: mínimo y máximo; edad: años mínimos.
 window.GAMES = [
  {
   "id": "g1",

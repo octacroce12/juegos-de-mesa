@@ -33,7 +33,7 @@
   async function readData(path) {
     const f = await gh('/contents/' + path + '?ref=' + BRANCH);
     const text = fromB64(f.content);
-    const a = text.indexOf('['), z = text.lastIndexOf(']');
+    const a = text.indexOf('= [') + 2, z = text.lastIndexOf(']');
     return { head: text.slice(0, a), arr: JSON.parse(text.slice(a, z + 1)) };
   }
   const dump = (head, arr) => head + JSON.stringify(arr, null, 1) + ';\n';
