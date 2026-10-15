@@ -132,7 +132,7 @@ window.GAMES = [
   "tipo": "Sinergia de cartas",
   "dificultad": "Baja",
   "nota": 8,
-  "comentario": "Todavía no lo jugué, pero quisiera hacerlo.",
+  "comentario": "Parece un juego relajante de origami, hasta que alguien canta \"stop\" un punto antes de que vos ganaras.",
   "imagen": "img/oceanos-de-papel.webp"
  },
  {
