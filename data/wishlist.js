@@ -1,0 +1,231 @@
+// Lista de deseos. precio: estimado en pesos argentinos (mínimo en tiendas de Cazagangas). null = sin precio.
+// Fecha de los precios en PRECIOS_AL.
+window.PRECIOS_AL = "2026-10-14";
+window.WISHLIST = [
+ {
+  "id": "w-one-round",
+  "nombre": "One Round?",
+  "frase": "Una ronda, dicen. Mentira: nunca fue una sola ronda.",
+  "imagen": "img/wl/one-round.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/one-round",
+  "precio": 32990
+ },
+ {
+  "id": "w-rebirth",
+  "nombre": "Rebirth",
+  "frase": "Renacer, sí, pero de mi billetera.",
+  "imagen": "img/wl/rebirth.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/rebirth",
+  "precio": 99000
+ },
+ {
+  "id": "w-spirit-island",
+  "nombre": "Spirit Island",
+  "frase": "Defender la isla de los colonos: la única venganza colonial aceptable.",
+  "imagen": "img/wl/spirit-island.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/spirit-island",
+  "precio": 179990
+ },
+ {
+  "id": "w-heat",
+  "nombre": "Heat",
+  "frase": "Pisar el acelerador en la mesa, que en la calle me da cosa.",
+  "imagen": "img/wl/heat.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/heat",
+  "precio": 215000
+ },
+ {
+  "id": "w-harmonies",
+  "nombre": "Harmonies",
+  "frase": "Para cuando quiera perder con paz mental y bichitos lindos.",
+  "imagen": "img/wl/harmonies.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/harmonies",
+  "precio": 95200
+ },
+ {
+  "id": "w-clank-catacumbas",
+  "nombre": "Clank! Catacumbas",
+  "frase": "Robarle al dragón y salir viva. Spoiler: me van a comer.",
+  "imagen": "img/wl/clank-catacumbas.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/clank-catacumbas",
+  "precio": 239900
+ },
+ {
+  "id": "w-7-wonders-segunda-edicion",
+  "nombre": "7 Wonders",
+  "frase": "Construir maravillas mientras el vecino me espía. Clásico.",
+  "imagen": "img/wl/7-wonders-segunda-edicion.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/7-wonders-segunda-edicion",
+  "precio": 169065
+ },
+ {
+  "id": "w-7-wonders-duel",
+  "nombre": "7 Wonders Duel",
+  "frase": "Lo mismo, pero con testigos reducidos y más ganas de ganarle a él.",
+  "imagen": "img/wl/7-wonders-duel.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/7-wonders-duel",
+  "precio": 84915
+ },
+ {
+  "id": "w-terraforming-mars",
+  "nombre": "Terraforming Mars",
+  "frase": "Arreglar Marte porque la Tierra ya fue.",
+  "imagen": "img/wl/terraforming-mars.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/terraforming-mars",
+  "precio": 120960
+ },
+ {
+  "id": "w-wyrmspan",
+  "nombre": "Wyrmspan",
+  "frase": "Wingspan pero con dragones. Obvio que lo quiero.",
+  "imagen": "img/wl/wyrmspan.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/wyrmspan",
+  "precio": 125000
+ },
+ {
+  "id": "w-sky-team",
+  "nombre": "Sky Team",
+  "frase": "Aterrizar un avión sin hablar. Como cualquier pareja en un viaje.",
+  "imagen": "img/wl/sky-team.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/sky-team",
+  "precio": 85000
+ },
+ {
+  "id": "w-sagrada",
+  "nombre": "Sagrada",
+  "frase": "Vitrales, dados y la dignidad de no repetir color.",
+  "imagen": "img/wl/sagrada.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/sagrada",
+  "precio": 96480
+ },
+ {
+  "id": "w-the-white-castle",
+  "nombre": "The White Castle",
+  "frase": "Castillo blanco, alma negra de euro gamer.",
+  "imagen": "img/wl/the-white-castle.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/the-white-castle",
+  "precio": 68000
+ },
+ {
+  "id": "w-el-senor-de-los-anillos-el-duelo-por-la-tierra-media",
+  "nombre": "El Señor de los Anillos: El Duelo por la Tierra Media",
+  "frase": "Gandalf vs. Sauron, y vos elegís a quién traicionar.",
+  "imagen": "img/wl/el-senor-de-los-anillos-el-duelo-por-la-tierra-media.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/el-senor-de-los-anillos-el-duelo-por-la-tierra-media",
+  "precio": 84915
+ },
+ {
+  "id": "w-everdell",
+  "nombre": "Everdell",
+  "frase": "Ardillas, cartas y un bosque que cobra alquiler.",
+  "imagen": "img/wl/everdell.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/everdell",
+  "precio": 107712
+ },
+ {
+  "id": "w-ark-nova",
+  "nombre": "Ark Nova",
+  "frase": "Armar un zoológico más complicado que el manual de mi heladera.",
+  "imagen": "img/wl/ark-nova.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/ark-nova",
+  "precio": 158950
+ },
+ {
+  "id": "w-cascadia",
+  "nombre": "Cascadia",
+  "frase": "Naturaleza, fichas y cero culpa.",
+  "imagen": "img/wl/cascadia.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/cascadia",
+  "precio": 180000
+ },
+ {
+  "id": "w-la-campana",
+  "nombre": "La Campaña",
+  "frase": "Una campaña electoral sin los políticos de verdad. Menos mal.",
+  "imagen": "img/wl/la-campana.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/la-campana",
+  "precio": 42500
+ },
+ {
+  "id": "w-dune-imperium",
+  "nombre": "Dune: Imperium",
+  "frase": "Que la especia fluya. Y la plata también, pero para la caja.",
+  "imagen": "img/wl/dune-imperium.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/dune-imperium",
+  "precio": 143100
+ },
+ {
+  "id": "w-el-senor-de-los-anillos-las-dos-torres-el-juego-de-bazas",
+  "nombre": "El Señor de los Anillos: Las Dos Torres",
+  "frase": "Bazas con orcos. Un precio justo por un anillo menos.",
+  "imagen": "img/wl/el-senor-de-los-anillos-las-dos-torres-el-juego-de-bazas.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/el-senor-de-los-anillos-las-dos-torres-el-juego-de-bazas",
+  "precio": 65400
+ },
+ {
+  "id": "w-ace-of-spades",
+  "nombre": "Ace of Spades",
+  "frase": "Cartas, filo y mala leche. A mi estilo.",
+  "imagen": "img/wl/ace-of-spades.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/ace-of-spades",
+  "precio": 53950
+ },
+ {
+  "id": "w-la-tripulacion-mision-mar-profundo",
+  "nombre": "La Tripulación: Misión Mar Profundo",
+  "frase": "Bajar al fondo del mar sin hablar. Entrenamiento para reuniones familiares.",
+  "imagen": "img/wl/la-tripulacion-mision-mar-profundo.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/la-tripulacion-mision-mar-profundo",
+  "precio": 31000
+ },
+ {
+  "id": "w-paleo",
+  "nombre": "Paleo",
+  "frase": "Sobrevivir en la prehistoria, y encima cooperativo. Ni un mamut me abandona.",
+  "imagen": "img/wl/paleo.webp",
+  "tienda": "Mercado Libre",
+  "url": "https://listado.mercadolibre.com.ar/paleo-juego-de-mesa",
+  "precio": null,
+  "precioNota": "Sin precio todavía"
+ },
+ {
+  "id": "w-pinto",
+  "nombre": "Pintó",
+  "frase": "El que dibuja mal tiene excusa. Yo también.",
+  "imagen": "img/wl/pinto.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/pinto",
+  "precio": 42500
+ },
+ {
+  "id": "w-agricola-edicion-revisada",
+  "nombre": "Agrícola",
+  "frase": "Sufrir por alimentar a la familia. Realismo puro.",
+  "imagen": "img/wl/agricola-edicion-revisada.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/agricola-edicion-revisada",
+  "precio": 175500
+ }
+];

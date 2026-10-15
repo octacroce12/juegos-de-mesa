@@ -18,6 +18,10 @@
   const familyOf = t => (FAMILIES.find(f => f[2].includes(t)) || ['Otros'])[0];
   let visible = [];
   let current = -1;
+  let view = 'col';
+  const wishes = (window.WISHLIST || []).map((w, i) => ({ ...w, order: i }));
+  const wstate = { q: '', sort: 'asc' };
+  const money = n => '$' + n.toLocaleString('es-AR');
 
   const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
   const fmt = n => (Number.isInteger(n) ? String(n) : n.toFixed(1).replace('.', ','));
@@ -27,6 +31,7 @@
 
   /* ---- estadísticas ---- */
   function renderStats() {
+    if (view === 'wish') return renderWishStats();
     const rated = games.filter(played);
     const items = [
       [games.length, 'juegos'],
@@ -172,11 +177,71 @@
     render();
   });
 
+  /* ---- lista de deseos ---- */
+  function renderWishStats() {
+    const priced = wishes.filter(w => w.precio != null);
+    const total = priced.reduce((s, w) => s + w.precio, 0);
+    const items = [
+      [wishes.length, 'juegos buscados'],
+      [money(total), 'si me los llevo todos'],
+      [money(Math.min(...priced.map(w => w.precio))), 'el más baratito'],
+    ];
+    $('stats').innerHTML = items.map(([n, l]) => `<li><b>${n}</b><span>${l}</span></li>`).join('');
+  }
+  function renderWish() {
+    const q = norm(wstate.q.trim());
+    const list = wishes.filter(w => !q || norm(w.nombre).includes(q));
+    const price = (w, dir) => w.precio == null ? Infinity : dir * w.precio;
+    const by = {
+      asc: (a, b) => price(a, 1) - price(b, 1) || a.nombre.localeCompare(b.nombre, 'es'),
+      desc: (a, b) => (a.precio == null) - (b.precio == null) || b.precio - a.precio || a.nombre.localeCompare(b.nombre, 'es'),
+      nombre: (a, b) => a.nombre.localeCompare(b.nombre, 'es'),
+      orden: (a, b) => a.order - b.order,
+    };
+    list.sort(by[wstate.sort]);
+    const tilts = [-1.6, 1.2, -0.8, 1.7, -1.2, 0.7];
+    $('posters').innerHTML = list.map((w, i) => {
+      const ml = w.tienda !== 'Cazagangas';
+      return `<article class="poster" style="--tilt:${tilts[i % tilts.length]}deg;--i:${Math.min(i, 14)}">
+        <span class="pin" aria-hidden="true"></span>
+        <div class="p-head">SE BUSCA</div>
+        <div class="p-sub">Vivo en mi lista, no en mi estantería</div>
+        <div class="p-photo"><img src="${w.imagen}" alt="Caja de ${esc(w.nombre)}" loading="lazy" decoding="async"></div>
+        <h3 class="p-name">${esc(w.nombre)}</h3>
+        <p class="p-phrase">“${esc(w.frase)}”</p>
+        <div class="p-reward"><small>${w.precio != null ? 'Recompensa · desde' : 'Recompensa'}</small>${w.precio != null ? `<b>${money(w.precio)}</b>` : '<b class="na">Consultar precio</b>'}</div>
+        <a class="p-btn${ml ? ' ml' : ''}" href="${esc(w.url)}" target="_blank" rel="noopener noreferrer">${ml ? 'Buscar en Mercado Libre →' : 'Ver precios en Cazagangas →'}</a>
+      </article>`;
+    }).join('');
+    $('wish-result').textContent = list.length === wishes.length ? `${wishes.length} juegos en la lista de deseos` : `${list.length} de ${wishes.length} juegos`;
+    const d = window.PRECIOS_AL ? new Date(window.PRECIOS_AL + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+    $('wish-note').textContent = `Precios en pesos, estimados: es el más bajo que encontré en tiendas de Cazagangas el ${d}. Cambian seguido, así que tomalos como referencia y mirá el link.`;
+  }
+  function setView(v, push = true) {
+    view = v;
+    const wish = v === 'wish';
+    $('view-col').hidden = wish;
+    $('view-wish').hidden = !wish;
+    $('tab-col').setAttribute('aria-selected', String(!wish));
+    $('tab-wish').setAttribute('aria-selected', String(wish));
+    $('fan').hidden = wish;
+    renderStats();
+    if (wish) renderWish();
+    if (push) history.replaceState(null, '', wish ? '#deseos' : location.pathname + location.search);
+  }
+  document.querySelector('.tabs').addEventListener('click', e => {
+    const t = e.target.closest('.tab');
+    if (t) setView(t.dataset.view);
+  });
+  $('wish-search').addEventListener('input', e => { wstate.q = e.target.value; renderWish(); });
+  $('wish-sort').addEventListener('change', e => { wstate.sort = e.target.value; renderWish(); });
+
   /* ---- init ---- */
   renderStats();
   renderFan();
   renderChips();
   render();
   const hash = decodeURIComponent(location.hash.slice(1));
-  if (hash) { const i = visible.findIndex(g => g.slug === hash); if (i >= 0) openModal(i, false); }
+  if (hash === 'deseos') setView('wish', false);
+  else if (hash) { const i = visible.findIndex(g => g.slug === hash); if (i >= 0) openModal(i, false); }
 })();

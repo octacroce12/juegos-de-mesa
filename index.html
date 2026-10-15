@@ -12,7 +12,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='10' y='10' width='80' height='80' rx='18' fill='%23C9A227'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%232B2015'/%3E%3Ccircle cx='68' cy='32' r='7' fill='%232B2015'/%3E%3Ccircle cx='50' cy='50' r='7' fill='%232B2015'/%3E%3Ccircle cx='32' cy='68' r='7' fill='%232B2015'/%3E%3Ccircle cx='68' cy='68' r='7' fill='%232B2015'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600&family=Rye&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -22,9 +22,14 @@
   <p class="by"><i aria-hidden="true"></i>By Oktapio<i aria-hidden="true"></i></p>
   <div class="fan" id="fan" aria-label="Los mejor puntuados"></div>
   <ul class="stats" id="stats" aria-label="Resumen de la colección"></ul>
+  <nav class="tabs" role="tablist" aria-label="Secciones">
+    <button class="tab" role="tab" id="tab-col" data-view="col" aria-selected="true" aria-controls="view-col">🎲 Mi colección</button>
+    <button class="tab" role="tab" id="tab-wish" data-view="wish" aria-selected="false" aria-controls="view-wish">🎯 Lista de deseos</button>
+  </nav>
 </header>
 
 <main class="wrap">
+<div id="view-col" role="tabpanel" aria-labelledby="tab-col">
   <section class="controls" aria-label="Filtros">
     <div class="search-row">
       <label class="search">
@@ -62,6 +67,31 @@
     <p>Probá con otro nombre o limpiá los filtros.</p>
     <button class="btn" id="clear">Limpiar filtros</button>
   </div>
+</div>
+
+<div id="view-wish" role="tabpanel" aria-labelledby="tab-wish" hidden>
+  <section class="controls wish-controls" aria-label="Orden de la lista de deseos">
+    <div class="search-row">
+      <label class="search">
+        <span class="sr-only">Buscar en la lista de deseos</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="wish-search" placeholder="Buscar entre los más buscados…" autocomplete="off">
+      </label>
+      <label class="sort">
+        <span class="sr-only">Ordenar por</span>
+        <select id="wish-sort">
+          <option value="asc">Precio: más barato primero</option>
+          <option value="desc">Precio: más caro primero</option>
+          <option value="nombre">Nombre (A–Z)</option>
+          <option value="orden">Mi orden original</option>
+        </select>
+      </label>
+    </div>
+  </section>
+  <p class="result-line" id="wish-result" aria-live="polite"></p>
+  <div class="posters" id="posters"></div>
+  <p class="wish-note" id="wish-note"></p>
+</div>
 </main>
 
 <footer>Hecho con fichas, dados y mala leche · Oktapio</footer>
@@ -84,6 +114,7 @@
 </dialog>
 
 <script src="data/games.js"></script>
+<script src="data/wishlist.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
