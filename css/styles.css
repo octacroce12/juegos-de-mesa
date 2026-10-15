@@ -529,3 +529,21 @@ body.edit .p-edit{display:flex}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
 }
+
+/* Ficha de nota: estilo ficha de casino (borde con muescas + cara grabada) */
+.coin{--e1:#fff4c4;--e2:#b57f0c;--f1:#fde58a;--f2:#e2b02a;--f3:#b9830c;--tx:#3b2a05;
+  width:52px;height:52px;border:0;padding:0 0 5px;isolation:isolate;
+  background:repeating-conic-gradient(from -11deg,var(--e1) 0 22.5deg,var(--e2) 22.5deg 45deg);
+  box-shadow:0 0 0 2px #4a2e17,0 4px 0 2px #4a2e17,0 8px 12px rgba(0,0,0,.45);
+  font:900 19px/1 var(--serif);color:var(--tx);text-shadow:0 1px 0 rgba(255,255,255,.55);letter-spacing:-.02em}
+.coin::before{content:"";position:absolute;inset:6px;border-radius:50%;z-index:-1;
+  background:radial-gradient(circle at 34% 26%,var(--f1),var(--f2) 58%,var(--f3));
+  box-shadow:inset 0 0 0 1.5px rgba(74,46,23,.55),inset 0 2px 3px rgba(255,255,255,.55),inset 0 -3px 4px rgba(0,0,0,.22)}
+.coin::after{content:"/10";position:absolute;left:0;right:0;bottom:11px;text-align:center;font:800 7.5px/1 var(--sans);letter-spacing:.06em;color:rgba(59,42,5,.6);text-shadow:none}
+.coin.top{--e1:#fffbe0;--e2:#e8a800;--f1:#fff6b8;--f2:#ffd23d;--f3:#e09a00;transform:scale(1.1);
+  box-shadow:0 0 0 2px #4a2e17,0 4px 0 2px #4a2e17,0 8px 12px rgba(0,0,0,.45),0 0 18px rgba(255,210,61,.55)}
+.coin.low{--e1:#f4efe4;--e2:#8d826c;--f1:#f1ebdc;--f2:#c7bba3;--f3:#9c9078;--tx:#3d362a}
+.coin.none{--e1:#8fa596;--e2:#2f3f36;--f1:#5b6f63;--f2:#41554a;--f3:#2c3b33;--tx:#e8f0e8;font-size:21px;text-shadow:0 1px 0 rgba(0,0,0,.5);
+  box-shadow:0 0 0 2px #14201a,0 4px 0 2px #14201a,0 8px 12px rgba(0,0,0,.45)}
+.coin.none::after{content:none}
+@media (max-width:760px){.coin{width:42px;height:42px;font-size:15px;padding-bottom:3px}.coin::before{inset:5px}.coin::after{display:none}}
