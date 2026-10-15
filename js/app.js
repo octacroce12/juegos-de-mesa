@@ -3,7 +3,19 @@
   const DIFF_ORDER = ['Apto Kuka', 'Baja', 'Intermedia', 'Alta', 'Gordo tryhard'];
   const DIFF_CLASS = { 'Apto Kuka': 'd-kuka', 'Baja': 'd-baja', 'Intermedia': 'd-intermedia', 'Alta': 'd-alta', 'Gordo tryhard': 'd-gordo' };
   const $ = id => document.getElementById(id);
-  const state = { q: '', diff: 'Todas', type: 'Todos', sort: 'nota' };
+  const state = { q: '', diff: 'Todas', family: 'Todas', type: 'Todos', sort: 'nota' };
+  // Familias para navegar: cada juego conserva su tipo original en la ficha.
+  const FAMILIES = [
+    ['Cartas', '🃏', ['Cartas', 'Cartas y puntuación', 'Sinergia de cartas', 'Bazas']],
+    ['Estrategia', '♟️', ['Estrategia', 'Colocación', 'Colocación de trabajadores', 'Recursos', '1v1']],
+    ['Fiesta y familiar', '🎉', ['Fiesta', 'Familiar', 'Memoria', 'Dibujo']],
+    ['Cooperativo', '🤝', ['Cooperativo']],
+    ['Palabras y saber', '💬', ['Palabras', 'Quiz']],
+    ['Misterio y roles ocultos', '🕵️', ['Deducción', 'Roles ocultos']],
+    ['Azar y apuestas', '🎲', ['Dados', 'Apuestas']],
+    ['Rol y aventura', '🗡️', ['Rol', 'RPG', 'Terror']],
+  ];
+  const familyOf = t => (FAMILIES.find(f => f[2].includes(t)) || ['Otros'])[0];
   let visible = [];
   let current = -1;
 
@@ -40,12 +52,22 @@
     return `<button class="chip" type="button" data-group="${group}" data-value="${esc(value)}" aria-pressed="${on}">${esc(label)}${count != null ? `<small>${count}</small>` : ''}</button>`;
   }
   function renderChips() {
-    const dCounts = {}, tCounts = {};
-    games.forEach(g => { dCounts[g.dificultad] = (dCounts[g.dificultad] || 0) + 1; tCounts[g.tipo] = (tCounts[g.tipo] || 0) + 1; });
+    const dCounts = {}, tCounts = {}, fCounts = {};
+    games.forEach(g => {
+      dCounts[g.dificultad] = (dCounts[g.dificultad] || 0) + 1;
+      tCounts[g.tipo] = (tCounts[g.tipo] || 0) + 1;
+      const f = familyOf(g.tipo); fCounts[f] = (fCounts[f] || 0) + 1;
+    });
     const diffs = DIFF_ORDER.filter(d => dCounts[d]);
     $('diff-chips').innerHTML = chip('Todas', 'Todas', 'diff', games.length) + diffs.map(d => chip(d, d, 'diff', dCounts[d])).join('');
-    const types = Object.keys(tCounts).sort((a, b) => tCounts[b] - tCounts[a] || a.localeCompare(b, 'es'));
-    $('type-chips').innerHTML = chip('Todos', 'Todos', 'type', games.length) + types.map(t => chip(t, t, 'type', tCounts[t])).join('');
+    const fams = FAMILIES.filter(f => fCounts[f[0]]).map(f => [f[0], f[1]]);
+    if (fCounts['Otros']) fams.push(['Otros', '✨']);
+    $('family-chips').innerHTML = chip('Todas', 'Todas', 'family', games.length) + fams.map(([n, e]) => chip(`${e} ${n}`, n, 'family', fCounts[n])).join('');
+    // Tipo exacto: solo aparece al elegir una familia con más de un tipo.
+    const fam = FAMILIES.find(f => f[0] === state.family);
+    const subs = fam ? fam[2].filter(t => tCounts[t]) : [];
+    $('type-group').hidden = subs.length < 2;
+    $('type-chips').innerHTML = subs.length < 2 ? '' : chip('Todos', 'Todos', 'type', fCounts[state.family]) + subs.map(t => chip(t, t, 'type', tCounts[t])).join('');
   }
 
   /* ---- filtrado y orden ---- */
@@ -54,6 +76,7 @@
     visible = games.filter(g =>
       (!q || norm(g.nombre).includes(q)) &&
       (state.diff === 'Todas' || g.dificultad === state.diff) &&
+      (state.family === 'Todas' || familyOf(g.tipo) === state.family) &&
       (state.type === 'Todos' || g.tipo === state.type));
     const by = {
       nota: (a, b) => (played(b) ? b.nota : -1) - (played(a) ? a.nota : -1) || a.nombre.localeCompare(b.nombre, 'es'),
@@ -85,7 +108,7 @@
     $('result-line').textContent = visible.length === games.length
       ? `Mostrando los ${games.length} juegos`
       : `${visible.length} de ${games.length} juegos`;
-    document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', String(state[c.dataset.group] === c.dataset.value)));
+    renderChips();
   }
 
   /* ---- modal ---- */
@@ -130,12 +153,13 @@
     const c = e.target.closest('.chip');
     if (!c) return;
     state[c.dataset.group] = c.dataset.value;
+    if (c.dataset.group === 'family') state.type = 'Todos';
     render();
   });
   $('fan').addEventListener('click', e => {
     const b = e.target.closest('.fan-card');
     if (!b) return;
-    Object.assign(state, { q: b.dataset.name, diff: 'Todas', type: 'Todos' });
+    Object.assign(state, { q: b.dataset.name, diff: 'Todas', family: 'Todas', type: 'Todos' });
     $('search').value = b.dataset.name;
     render();
     openModal(0);
@@ -143,7 +167,7 @@
   $('search').addEventListener('input', e => { state.q = e.target.value; render(); });
   $('sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
   $('clear').addEventListener('click', () => {
-    Object.assign(state, { q: '', diff: 'Todas', type: 'Todos' });
+    Object.assign(state, { q: '', diff: 'Todas', family: 'Todas', type: 'Todos' });
     $('search').value = '';
     render();
   });
