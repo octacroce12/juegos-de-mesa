@@ -458,5 +458,14 @@ window.GAMES = [
   "nota": 7.5,
   "comentario": "Jugás a ciegas con las cartas hacia afuera: confianza ciega, pistas rebuscadas y fuegos artificiales que terminan explotándote en la cara.",
   "imagen": "img/hanabi.webp"
+ },
+ {
+  "id": "g-nacidos-bruma",
+  "nombre": "Nacidos de la Bruma",
+  "tipo": "Cartas",
+  "dificultad": "Intermedia",
+  "nota": 8,
+  "comentario": "Que la chupe el Lord Legislador.",
+  "imagen": "img/nacidos-de-la-bruma.webp"
  }
 ];

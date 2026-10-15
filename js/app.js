@@ -24,6 +24,16 @@
     $('stats').innerHTML = items.map(([n, l]) => `<li><b>${n}</b><span>${l}</span></li>`).join('');
   }
 
+  /* ---- abanico de los mejor puntuados ---- */
+  function renderFan() {
+    const top = games.filter(played).sort((a, b) => b.nota - a.nota || a.nombre.localeCompare(b.nombre, 'es')).slice(0, 7);
+    const mid = (top.length - 1) / 2;
+    $('fan').innerHTML = top.map((g, k) => {
+      const off = k - mid;
+      return `<button class="fan-card" type="button" data-name="${esc(g.nombre)}" style="--r:${(off * 6).toFixed(1)};--d:${Math.round(Math.abs(off) * Math.abs(off) * 4)};--k:${k};z-index:${10 - Math.round(Math.abs(off))}" aria-label="${esc(g.nombre)}, nota ${fmt(g.nota)}" title="${esc(g.nombre)} · ${fmt(g.nota)}"><img src="${g.imagen}" alt="" decoding="async"></button>`;
+    }).join('');
+  }
+
   /* ---- chips ---- */
   function chip(label, value, group, count) {
     const on = state[group] === value;
@@ -122,6 +132,14 @@
     state[c.dataset.group] = c.dataset.value;
     render();
   });
+  $('fan').addEventListener('click', e => {
+    const b = e.target.closest('.fan-card');
+    if (!b) return;
+    Object.assign(state, { q: b.dataset.name, diff: 'Todas', type: 'Todos' });
+    $('search').value = b.dataset.name;
+    render();
+    openModal(0);
+  });
   $('search').addEventListener('input', e => { state.q = e.target.value; render(); });
   $('sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
   $('clear').addEventListener('click', () => {
@@ -132,6 +150,7 @@
 
   /* ---- init ---- */
   renderStats();
+  renderFan();
   renderChips();
   render();
   const hash = decodeURIComponent(location.hash.slice(1));
