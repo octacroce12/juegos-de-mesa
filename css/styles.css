@@ -148,15 +148,6 @@ footer{position:relative;z-index:1}
   content:""; position:absolute; inset:0; pointer-events:none;
   background:linear-gradient(115deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,0) 30%);
 }
-.coin{
-  position:absolute; right:8px; top:8px; z-index:2; width:46px; height:46px; border-radius:50%;
-  display:grid; place-items:center; font:900 18px var(--serif); color:#33270a;
-  background:radial-gradient(circle at 35% 28%,#f6d867,var(--gold) 55%,var(--gold-deep));
-  border:2px solid var(--wood-dark); box-shadow:0 3px 0 var(--wood-dark),0 6px 10px rgba(0,0,0,.4);
-}
-.coin.top{background:radial-gradient(circle at 35% 28%,#fff1a8,#ffd23d 50%,#d99a00);transform:scale(1.08)}
-.coin.low{background:radial-gradient(circle at 35% 28%,#e9e0cf,#c7bba3 55%,#9c9078)}
-.coin.none{background:radial-gradient(circle at 35% 28%,#5b6f63,#3d4e44);color:#e8f0e8;font-size:20px;border-color:#1c2a22;box-shadow:0 3px 0 #1c2a22,0 6px 10px rgba(0,0,0,.4)}
 .label{padding:12px 4px 0}
 .label h3{margin:0;font:400 19px/1.15 'Lilita One',var(--serif);letter-spacing:.01em;color:#fbf4dc;text-wrap:balance}
 .tags{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin-top:8px}
@@ -365,11 +356,9 @@ footer{text-align:center;padding:10px 20px 50px;font-size:12px;color:#8fa493;let
 .spine:focus-visible{box-shadow:0 0 0 3px var(--gold),4px 8px 12px rgba(0,0,0,.5)}
 .s-name{writing-mode:vertical-rl;font:700 var(--fs)/1.1 var(--serif);letter-spacing:.01em;text-shadow:0 1px 1px rgba(0,0,0,.5);
   flex:1;min-height:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:12px;max-height:100%}
-.s-coin{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:900 11px var(--serif);color:#33270a;
-  background:radial-gradient(circle at 35% 28%,#f6d867,var(--gold) 55%,var(--gold-deep));border:1.5px solid var(--wood-dark);box-shadow:0 2px 0 var(--wood-dark);transform:none}
-.s-coin.none{background:#3d4e44;color:#e8f0e8;border-color:#1c2a22;box-shadow:0 2px 0 #1c2a22}
+.s-coin{flex:none;width:30px;height:30px;display:block}
 @media (max-width:760px){.shelf{--s:.82}.shelf-row{padding:30px 12px 0}}
-@media (max-width:560px){.shelf{--s:.72}.shelf-row{padding:28px 8px 0}.s-coin{width:22px;height:22px;font-size:10px}.seg{flex:1}.seg-b{flex:1;padding:0 6px}}
+@media (max-width:560px){.shelf{--s:.72}.shelf-row{padding:28px 8px 0}.s-coin{width:24px;height:24px}.seg{flex:1}.seg-b{flex:1;padding:0 6px}}
 
 
 /* ---------- TABLERO DE PUNTAJE ---------- */
@@ -493,7 +482,7 @@ body.edit .p-edit{display:flex}
   .wrap{padding:0 14px 60px}
   .grid{grid-template-columns:repeat(2,1fr);gap:20px 14px}
   .label h3{font-size:15px}
-  .coin{width:38px;height:38px;font-size:15px;right:6px;top:6px}
+  .coin{--s:44px;right:5px;top:5px}
   .hero{padding-top:44px}
   .by{letter-spacing:.16em;font-size:11.5px;padding:6px 14px}
   .fan{margin-top:32px}
@@ -530,54 +519,23 @@ body.edit .p-edit{display:flex}
   *{animation:none!important;transition:none!important}
 }
 
-/* Ficha de nota: estilo ficha de casino (borde con muescas + cara grabada) */
-.coin{--e1:#fff4c4;--e2:#b57f0c;--f1:#fde58a;--f2:#e2b02a;--f3:#b9830c;--tx:#3b2a05;
-  width:52px;height:52px;border:0;padding:0 0 5px;isolation:isolate;
-  background:repeating-conic-gradient(from -11deg,var(--e1) 0 22.5deg,var(--e2) 22.5deg 45deg);
-  box-shadow:0 0 0 2px #4a2e17,0 4px 0 2px #4a2e17,0 8px 12px rgba(0,0,0,.45);
-  font:900 19px/1 var(--serif);color:var(--tx);text-shadow:0 1px 0 rgba(255,255,255,.55);letter-spacing:-.02em}
-.coin::before{content:"";position:absolute;inset:6px;border-radius:50%;z-index:-1;
-  background:radial-gradient(circle at 34% 26%,var(--f1),var(--f2) 58%,var(--f3));
-  box-shadow:inset 0 0 0 1.5px rgba(74,46,23,.55),inset 0 2px 3px rgba(255,255,255,.55),inset 0 -3px 4px rgba(0,0,0,.22)}
-.coin::after{content:"/10";position:absolute;left:0;right:0;bottom:11px;text-align:center;font:800 7.5px/1 var(--sans);letter-spacing:.06em;color:rgba(59,42,5,.6);text-shadow:none}
-.coin.top{--e1:#fffbe0;--e2:#e8a800;--f1:#fff6b8;--f2:#ffd23d;--f3:#e09a00;transform:scale(1.1);
-  box-shadow:0 0 0 2px #4a2e17,0 4px 0 2px #4a2e17,0 8px 12px rgba(0,0,0,.45),0 0 18px rgba(255,210,61,.55)}
-.coin.low{--e1:#f4efe4;--e2:#8d826c;--f1:#f1ebdc;--f2:#c7bba3;--f3:#9c9078;--tx:#3d362a}
-.coin.none{--e1:#8fa596;--e2:#2f3f36;--f1:#5b6f63;--f2:#41554a;--f3:#2c3b33;--tx:#e8f0e8;font-size:21px;text-shadow:0 1px 0 rgba(0,0,0,.5);
-  box-shadow:0 0 0 2px #14201a,0 4px 0 2px #14201a,0 8px 12px rgba(0,0,0,.45)}
-.coin.none::after{content:none}
-@media (max-width:760px){.coin{width:42px;height:42px;font-size:15px;padding-bottom:3px}.coin::before{inset:5px}.coin::after{display:none}}
-
-/* Gradación de la ficha según nota: piedra → bronce → plata → oro → oro vivo → épica → mítica */
-.coin.t1{--e1:#cfcac0;--e2:#6f6a60;--f1:#d9d4c8;--f2:#a29c8f;--f3:#77725f;--tx:#3a362d;transform:scale(.94)}
-.coin.t2{--e1:#f0c79b;--e2:#8a4f22;--f1:#f0b98a;--f2:#c27a42;--f3:#8d4d22;--tx:#3b1c08}
-.coin.t3{--e1:#ffffff;--e2:#8e9aa6;--f1:#f7fafc;--f2:#c3ccd5;--f3:#8d98a4;--tx:#27323d}
-.coin.t4{--e1:#fff4c4;--e2:#b57f0c;--f1:#fde58a;--f2:#e2b02a;--f3:#b9830c;--tx:#3b2a05}
-.coin.t4b{--e1:#fffbe0;--e2:#d99a00;--f1:#fff3a8;--f2:#ffcf33;--f3:#d89400;--tx:#3b2a05;transform:scale(1.05);
-  box-shadow:0 0 0 2px #4a2e17,0 4px 0 2px #4a2e17,0 8px 12px rgba(0,0,0,.45),0 0 14px rgba(255,205,51,.5)}
-.coin.t5{--e1:#ffe9a0;--e2:#c4880a;--f1:#ff8fb8;--f2:#d2246e;--f3:#6c0b52;--tx:#fff6d6;transform:scale(1.14);font-size:21px;
-  text-shadow:0 1px 0 rgba(60,0,40,.8),0 0 8px rgba(255,220,120,.9);
-  box-shadow:0 0 0 2px #3a0a2c,0 4px 0 2px #3a0a2c,0 8px 12px rgba(0,0,0,.5),0 0 22px 4px rgba(255,80,160,.55)}
-.coin.t5::after,.coin.t6::after{color:rgba(255,236,170,.85)}
-.coin.t6{--e1:#fff6c0;--e2:#e0a400;--f1:#a8f0ff;--f2:#6a5cff;--f3:#2a1380;--tx:#fff;transform:scale(1.2);font-size:21px;
-  text-shadow:0 1px 0 rgba(20,0,60,.8),0 0 10px rgba(255,255,255,.95);
-  box-shadow:0 0 0 2px #1a0a4a,0 4px 0 2px #1a0a4a,0 8px 12px rgba(0,0,0,.5),0 0 26px 6px rgba(140,120,255,.65)}
-/* épicas: borde con brillo giratorio + destello que pasa por la cara */
-.coin.t5,.coin.t6{overflow:visible}
-.coin.t5::before,.coin.t6::before{overflow:hidden}
-.coin.t5 i,.coin.t6 i{position:absolute;inset:6px;border-radius:50%;overflow:hidden;z-index:-1;pointer-events:none}
-.coin.t5 i::before,.coin.t6 i::before{content:"";position:absolute;top:-20%;bottom:-20%;width:40%;left:-60%;transform:skewX(-20deg);
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);animation:coinshine 3.2s ease-in-out infinite}
-.coin.t6 i{background:conic-gradient(from 0deg,rgba(255,120,200,.35),rgba(120,220,255,.35),rgba(255,240,140,.35),rgba(255,120,200,.35));animation:coinspin 6s linear infinite}
-@keyframes coinshine{0%,55%{left:-60%}100%{left:130%}}
-@keyframes coinspin{to{transform:rotate(360deg)}}
-.coin.t5{animation:coinpulse 2.4s ease-in-out infinite}
-@keyframes coinpulse{50%{box-shadow:0 0 0 2px #3a0a2c,0 4px 0 2px #3a0a2c,0 8px 12px rgba(0,0,0,.5),0 0 30px 8px rgba(255,80,160,.75)}}
-/* chapita de la estantería */
-.s-coin.t1{background:radial-gradient(circle at 35% 28%,#d9d4c8,#a29c8f)}
-.s-coin.t2{background:radial-gradient(circle at 35% 28%,#f0b98a,#c27a42)}
-.s-coin.t3{background:radial-gradient(circle at 35% 28%,#fff,#b9c3cd)}
-.s-coin.t5{background:radial-gradient(circle at 35% 28%,#ff8fb8,#c2185b);color:#fff6d6;box-shadow:0 0 8px rgba(255,80,160,.7)}
-.s-coin.t6{background:radial-gradient(circle at 35% 28%,#a8f0ff,#5b4cf0);color:#fff;box-shadow:0 0 10px rgba(140,120,255,.8)}
-@media (prefers-reduced-motion:reduce){.coin.t5,.coin.t5 i::before,.coin.t6 i,.coin.t6 i::before{animation:none}}
-.coin.top,.coin.low,.coin.none{background:repeating-conic-gradient(from -11deg,var(--e1) 0 22.5deg,var(--e2) 22.5deg 45deg)}
+/* Medalla de nota: cuelga de la esquina superior derecha de la caja, sin taparla */
+.coin{--s:58px;position:absolute;right:-14px;top:-24px;z-index:3;width:var(--s);height:var(--s);display:block;transform:rotate(8deg);transform-origin:50% 50%;pointer-events:none;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.game:hover .coin{transform:rotate(-4deg) scale(1.08)}
+.medal,.s-coin svg{display:block;width:100%;height:100%;overflow:visible}
+.coin .medal{filter:drop-shadow(0 4px 3px rgba(0,0,0,.5))}
+.s-coin svg{filter:drop-shadow(0 2px 1.5px rgba(0,0,0,.5))}
+.m-n{font-family:'Cinzel','Fraunces',serif;font-weight:900;letter-spacing:-.02em}
+.m-ten{font-family:'Cinzel',serif;font-weight:800}
+.coin.t1{--s:50px}
+.coin.t4b{--s:60px}.coin.t4b .medal{filter:drop-shadow(0 0 7px rgba(255,205,50,.65)) drop-shadow(0 4px 3px rgba(0,0,0,.5))}
+.coin.t5{--s:66px}.coin.t5 .medal{filter:drop-shadow(0 0 9px rgba(255,70,150,.8)) drop-shadow(0 4px 3px rgba(0,0,0,.5));animation:medalpulse 2.4s ease-in-out infinite}
+.coin.t6{--s:70px}.coin.t6 .medal{filter:drop-shadow(0 0 11px rgba(130,110,255,.9)) drop-shadow(0 4px 3px rgba(0,0,0,.5));animation:medalpulse 2.4s ease-in-out infinite}
+@keyframes medalpulse{50%{filter:drop-shadow(0 0 16px rgba(255,120,200,.95)) drop-shadow(0 4px 3px rgba(0,0,0,.5))}}
+.m-sweep{animation:msweep 3.4s ease-in-out infinite}
+@keyframes msweep{0%,50%{transform:translateX(0)}100%{transform:translateX(190px)}}
+.m-sp{transform-box:fill-box;transform-origin:center;animation:msp 2.2s ease-in-out infinite}.m-sp2{animation-delay:1.1s}
+@keyframes msp{0%,100%{opacity:0;transform:scale(.3)}50%{opacity:1;transform:scale(1)}}
+@media (max-width:760px){.coin{--s:46px;right:-6px;top:-16px}.coin.t1{--s:40px}.coin.t4b{--s:48px}.coin.t5{--s:52px}.coin.t6{--s:54px}.coin .m10{display:none}}
+@media (prefers-reduced-motion:reduce){.m-sweep,.m-sp,.coin .medal{animation:none!important}}
+.s-coin .m10{display:none}
