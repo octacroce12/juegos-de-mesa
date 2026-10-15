@@ -3,7 +3,8 @@
   const DIFF_ORDER = ['Apto Kuka', 'Baja', 'Intermedia', 'Alta', 'Gordo tryhard'];
   const DIFF_CLASS = { 'Apto Kuka': 'd-kuka', 'Baja': 'd-baja', 'Intermedia': 'd-intermedia', 'Alta': 'd-alta', 'Gordo tryhard': 'd-gordo' };
   const $ = id => document.getElementById(id);
-  const state = { q: '', diff: 'Todas', family: 'Todas', type: 'Todos', sort: 'nota' };
+  const state = { q: '', diff: 'Todas', family: 'Todas', type: 'Todos', sort: 'nota', layout: 'grid' };
+  try { if (localStorage.getItem('oktapio_layout') === 'shelf') state.layout = 'shelf'; } catch (e) {}
   // Familias para navegar: cada juego conserva su tipo original en la ficha.
   const FAMILIES = [
     ['Cartas', '🃏', ['Cartas', 'Cartas y puntuación', 'Sinergia de cartas', 'Bazas']],
@@ -100,7 +101,12 @@
   function render() {
     compute();
     const grid = $('grid');
-    grid.innerHTML = visible.map((g, i) => `
+    const shelf = state.layout === 'shelf';
+    grid.hidden = shelf;
+    $('shelf').hidden = !shelf;
+    document.querySelectorAll('.seg-b').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.layout === state.layout)));
+    if (shelf) renderShelf();
+    else grid.innerHTML = visible.map((g, i) => `
       <button class="game" type="button" data-i="${i}" style="--i:${Math.min(i, 14)}" aria-label="${esc(g.nombre)}, ver detalle">
         <div class="box">
           <div class="cover">${coverHTML(g)}</div>
@@ -117,6 +123,46 @@
       : `${visible.length} de ${games.length} juegos`;
     renderChips();
   }
+
+
+  /* ---- estantería ---- */
+  const spineSize = g => [36 + hue(g.nombre + 'w') % 24, 206 + hue(g.nombre + 'h') % 48];
+  function renderShelf() {
+    const el = $('shelf');
+    const s = parseFloat(getComputedStyle(el).getPropertyValue('--s')) || 1;
+    const avail = el.clientWidth - 48;
+    const rows = [];
+    let row = [], used = 0;
+    visible.forEach((g, i) => {
+      const w = spineSize(g)[0] * s + 5;
+      if (row.length && used + w > avail) { rows.push(row); row = []; used = 0; }
+      row.push([g, i]); used += w;
+    });
+    if (row.length) rows.push(row);
+    el.innerHTML = rows.map(r => `<div class="shelf-row"><div class="books">${r.map(([g, i]) => {
+      const [w, h] = spineSize(g);
+      const n = played(g) ? g.nota : null;
+      const L = g.nombre.length;
+      const fs = L <= 13 ? 17 : L <= 22 ? 14.5 : L <= 32 ? 12.5 : 11;
+      return `<button class="spine${n !== null && n >= 9 ? ' gold' : ''}" type="button" data-i="${i}" style="--c:${colorOf(g)};--w:${w};--h:${h};--fs:${fs}px" title="${esc(g.nombre)}${n !== null ? ' · ' + fmt(n) : ''}" aria-label="${esc(g.nombre)}, ver detalle">
+        <span class="s-name">${esc(g.nombre)}</span>
+        <span class="s-coin ${n === null ? 'none' : ''}">${n === null ? '?' : fmt(n)}</span>
+      </button>`;
+    }).join('')}</div></div>`).join('');
+  }
+  let rzT;
+  window.addEventListener('resize', () => { clearTimeout(rzT); rzT = setTimeout(() => { if (state.layout === 'shelf' && view === 'col') renderShelf(); }, 150); });
+  document.querySelector('.seg').addEventListener('click', e => {
+    const b = e.target.closest('.seg-b');
+    if (!b) return;
+    state.layout = b.dataset.layout;
+    try { localStorage.setItem('oktapio_layout', state.layout); } catch (e2) {}
+    render();
+  });
+  $('shelf').addEventListener('click', e => {
+    const b = e.target.closest('.spine');
+    if (b) openModal(+b.dataset.i);
+  });
 
   /* ---- modal ---- */
   const modal = $('modal');

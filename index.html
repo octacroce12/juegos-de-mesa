@@ -43,6 +43,10 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <input type="search" id="search" placeholder="Buscar un juego…" autocomplete="off">
       </label>
+      <div class="seg" role="group" aria-label="Vista">
+        <button type="button" class="seg-b" data-layout="grid" aria-pressed="true" title="Ver como cajas">▦ Cajas</button>
+        <button type="button" class="seg-b" data-layout="shelf" aria-pressed="false" title="Ver como estantería">📚 Estantería</button>
+      </div>
       <label class="sort">
         <span class="sr-only">Ordenar por</span>
         <select id="sort">
@@ -68,6 +72,7 @@
 
   <p class="result-line" id="result-line" aria-live="polite"></p>
   <div class="grid" id="grid"></div>
+  <div class="shelf" id="shelf" hidden></div>
   <div class="empty" id="empty" hidden>
     <p class="big">No hay juegos que coincidan</p>
     <p>Probá con otro nombre o limpiá los filtros.</p>
