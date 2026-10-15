@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="420" viewBox="0 0 420 420">
+  <defs>
+    <g id="meeple"><circle cx="50" cy="20" r="13"/><path d="M50 36C38 36 30 40 22 46c-4 3-2 8 3 8h9c-1 10-6 18-12 28-2 4 0 8 5 8h17c3 0 5-2 6-4 1 2 3 4 6 4h17c5 0 7-4 5-8-6-10-11-18-12-28h9c5 0 7-5 3-8-8-6-16-10-28-10z"/></g>
+    <g id="die"><rect x="8" y="8" width="84" height="84" rx="18"/><circle cx="30" cy="30" r="7" fill="#1a3326"/><circle cx="70" cy="30" r="7" fill="#1a3326"/><circle cx="50" cy="50" r="7" fill="#1a3326"/><circle cx="30" cy="70" r="7" fill="#1a3326"/><circle cx="70" cy="70" r="7" fill="#1a3326"/></g>
+    <g id="card"><rect x="14" y="4" width="72" height="92" rx="10"/><path d="M50 26 66 50 50 74 34 50Z" fill="#1a3326"/></g>
+    <g id="hex"><path d="M50 4 90 27v46L50 96 10 73V27z"/><circle cx="50" cy="50" r="14" fill="#1a3326"/></g>
+    <g id="pawn"><circle cx="50" cy="24" r="16"/><path d="M36 44h28c0 14 8 22 12 32H24c4-10 12-18 12-32zM18 80h64v14H18z"/></g>
+    <g id="cube"><rect x="14" y="14" width="72" height="72" rx="10"/></g>
+  </defs>
+  <g fill="#ffffff" opacity=".055">
+    <use href="#meeple" transform="translate(20 20) rotate(-12 50 50) scale(.9)"/>
+    <use href="#die" transform="translate(250 10) rotate(14 50 50) scale(.8)"/>
+    <use href="#card" transform="translate(150 150) rotate(-18 50 50) scale(.95)"/>
+    <use href="#hex" transform="translate(320 180) rotate(8 50 50) scale(.75)"/>
+    <use href="#pawn" transform="translate(30 250) rotate(10 50 50) scale(.8)"/>
+    <use href="#meeple" transform="translate(280 320) rotate(18 50 50) scale(.7)"/>
+    <use href="#cube" transform="translate(170 330) rotate(24 50 50) scale(.5)"/>
+  </g>
+  <g fill="#e0b83a" opacity=".07">
+    <use href="#cube" transform="translate(110 40) rotate(-20 50 50) scale(.35)"/>
+    <use href="#cube" transform="translate(360 90) rotate(15 50 50) scale(.3)"/>
+    <use href="#cube" transform="translate(20 380) rotate(30 50 50) scale(.32)"/>
+    <use href="#cube" transform="translate(240 240) rotate(-10 50 50) scale(.3)"/>
+  </g>
+</svg>

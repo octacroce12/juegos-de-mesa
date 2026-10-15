@@ -16,11 +16,14 @@ html{scroll-behavior:smooth}
 body{
   margin:0; min-height:100vh; color:var(--paper); font-family:var(--sans);
   background:
-    radial-gradient(ellipse at 50% -10%, rgba(255,255,255,.10), transparent 55%),
-    radial-gradient(ellipse at 50% 120%, rgba(0,0,0,.55), transparent 60%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"),
-    var(--felt);
-  background-attachment:fixed;
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(255,214,120,.28), transparent 70%),
+    radial-gradient(ellipse 40% 35% at 0% 35%, rgba(40,160,150,.22), transparent 70%),
+    radial-gradient(ellipse 40% 35% at 100% 55%, rgba(200,70,60,.18), transparent 70%),
+    radial-gradient(ellipse at 50% 120%, rgba(0,0,0,.6), transparent 60%),
+    url("../assets/pattern.svg") center top/420px 420px,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E"),
+    linear-gradient(180deg,#25503a 0%,#1a3a2a 45%,#12281d 100%);
+  background-attachment:fixed,fixed,fixed,fixed,scroll,fixed,fixed;
 }
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .wrap{max-width:1180px;margin:0 auto;padding:0 20px 80px}
@@ -129,15 +132,11 @@ body{
   transition:box-shadow .25s;
 }
 .game:hover .box{box-shadow:8px 10px 0 #0b140f, 0 22px 30px rgba(0,0,0,.45)}
-.cover{position:relative;aspect-ratio:1/1;background:var(--wood);overflow:hidden}
-.cover::before{ /* fondo borroso con la misma foto: rellena lo que "contain" deja libre */
-  content:""; position:absolute; inset:-20px; background:var(--img) center/cover; filter:blur(18px) saturate(1.2) brightness(.85);
-}
+.cover{position:relative;aspect-ratio:1/1;background:#fff;overflow:hidden}
 .cover img{position:relative;width:100%;height:100%;object-fit:contain;display:block}
-.cover.is-square img{object-fit:cover}
 .box::after{ /* brillo de caja */
   content:""; position:absolute; inset:0; pointer-events:none;
-  background:linear-gradient(115deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,0) 32%);
+  background:linear-gradient(115deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,0) 30%);
 }
 .coin{
   position:absolute; right:8px; top:8px; z-index:2; width:46px; height:46px; border-radius:50%;
@@ -185,8 +184,8 @@ dialog[open]{animation:pop .28s cubic-bezier(.2,.9,.3,1.2)}
 }
 .m-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}
 .m-cover{aspect-ratio:auto;min-height:100%;border-radius:20px 0 0 20px}
-.m-cover::before{filter:blur(24px) saturate(1.2) brightness(.8)}
-.m-cover img{position:absolute;inset:0;padding:22px;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(0,0,0,.45))}
+.m-cover{background:#fff}
+.m-cover img{position:absolute;inset:0;padding:10px;object-fit:contain}
 .m-info{padding:38px 32px 28px;display:flex;flex-direction:column;gap:14px}
 .m-badges{display:flex;flex-wrap:wrap;gap:6px}
 .m-badges .tag.type{background:#e7e0cb;color:var(--ink-soft);border:0}

@@ -16,10 +16,8 @@
   /* ---- estadísticas ---- */
   function renderStats() {
     const rated = games.filter(played);
-    const avg = rated.reduce((a, g) => a + g.nota, 0) / rated.length;
     const items = [
       [games.length, 'juegos'],
-      [fmt(Math.round(avg * 10) / 10), 'nota promedio'],
       [rated.filter(g => g.nota >= 9).length, 'obras maestras (9+)'],
       [games.length - rated.length, 'sin jugar todavía'],
     ];
@@ -58,8 +56,6 @@
   function coverHTML(g) {
     return `<img src="${g.imagen}" alt="Caja de ${esc(g.nombre)}" loading="lazy" decoding="async">`;
   }
-  const abs = p => new URL(p, document.baseURI).href; // las url() en variables CSS se resuelven contra la hoja de estilos
-  const squareish = g => g.ratio > 0.92 && g.ratio < 1.08;
 
   function render() {
     compute();
@@ -67,7 +63,7 @@
     grid.innerHTML = visible.map((g, i) => `
       <button class="game" type="button" data-i="${i}" style="--i:${Math.min(i, 14)}" aria-label="${esc(g.nombre)}, ver detalle">
         <div class="box">
-          <div class="cover${squareish(g) ? ' is-square' : ''}" style="--img:url('${abs(g.imagen)}')">${coverHTML(g)}</div>
+          <div class="cover">${coverHTML(g)}</div>
           <span class="coin ${coinClass(g)}" title="${played(g) ? 'Nota final' : 'Todavía sin jugar'}">${played(g) ? fmt(g.nota) : '?'}</span>
         </div>
         <div class="label">
@@ -90,7 +86,6 @@
     const g = visible[i];
     const c = $('m-cover');
     c.className = 'm-cover cover';
-    c.style.setProperty('--img', `url('${abs(g.imagen)}')`);
     c.innerHTML = `<img src="${g.imagen}" alt="Caja de ${esc(g.nombre)}">`;
     $('m-title').textContent = g.nombre;
     $('m-badges').innerHTML = `<span class="tag type">${esc(g.tipo)}</span><span class="tag ${DIFF_CLASS[g.dificultad] || 'd-baja'}">Dificultad: ${esc(g.dificultad)}</span>`;
