@@ -667,7 +667,7 @@ window.GAMES = [
   "id": "g-nacidos-bruma",
   "nombre": "Nacidos de la Bruma",
   "tipo": "Cartas",
-  "dificultad": "Intermedia",
+  "dificultad": "Alta",
   "nota": 8,
   "comentario": "Que la chupe el Lord Legislador.",
   "imagen": "img/nacidos-de-la-bruma.webp",
