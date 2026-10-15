@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi colección de juegos de mesa · Oktapio</title>
+<meta name="description" content="Los juegos de mesa de Oktapio, con nota, dificultad y comentarios sin filtro.">
+<meta name="theme-color" content="#14241b">
+<meta property="og:title" content="Mi colección de juegos de mesa">
+<meta property="og:description" content="50 juegos, notas y comentarios sin filtro. By Oktapio.">
+<meta property="og:image" content="img/azul.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='10' y='10' width='80' height='80' rx='18' fill='%23C9A227'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%232B2015'/%3E%3Ccircle cx='68' cy='32' r='7' fill='%232B2015'/%3E%3Ccircle cx='50' cy='50' r='7' fill='%232B2015'/%3E%3Ccircle cx='32' cy='68' r='7' fill='%232B2015'/%3E%3Ccircle cx='68' cy='68' r='7' fill='%232B2015'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="die die-l" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="die die-r" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="plaque">
+    <p class="kicker">La estantería de</p>
+    <h1>Mi colección de<br>juegos de mesa</h1>
+    <p class="by">By Oktapio</p>
+  </div>
+  <ul class="stats" id="stats" aria-label="Resumen de la colección"></ul>
+</header>
+
+<main class="wrap">
+  <section class="controls" aria-label="Filtros">
+    <div class="search-row">
+      <label class="search">
+        <span class="sr-only">Buscar por nombre</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="search" placeholder="Buscar un juego…" autocomplete="off">
+      </label>
+      <label class="sort">
+        <span class="sr-only">Ordenar por</span>
+        <select id="sort">
+          <option value="nota">Mejor nota primero</option>
+          <option value="nombre">Nombre (A–Z)</option>
+          <option value="dificultad">Dificultad (fácil → difícil)</option>
+        </select>
+      </label>
+    </div>
+    <div class="chip-group">
+      <span class="chip-label">Dificultad</span>
+      <div class="chips" id="diff-chips"></div>
+    </div>
+    <div class="chip-group">
+      <span class="chip-label">Tipo</span>
+      <div class="chips scroll" id="type-chips"></div>
+    </div>
+  </section>
+
+  <p class="result-line" id="result-line" aria-live="polite"></p>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" hidden>
+    <p class="big">No hay juegos que coincidan</p>
+    <p>Probá con otro nombre o limpiá los filtros.</p>
+    <button class="btn" id="clear">Limpiar filtros</button>
+  </div>
+</main>
+
+<footer>Hecho con fichas, dados y mala leche · Oktapio</footer>
+
+<dialog id="modal" aria-labelledby="m-title">
+  <button class="m-close" id="m-close" aria-label="Cerrar">×</button>
+  <div class="m-body">
+    <div class="m-cover cover" id="m-cover"></div>
+    <div class="m-info">
+      <div class="m-badges" id="m-badges"></div>
+      <h2 id="m-title"></h2>
+      <div class="m-rating" id="m-rating"></div>
+      <blockquote id="m-comment"></blockquote>
+      <div class="m-nav">
+        <button class="btn ghost" id="m-prev">← Anterior</button>
+        <button class="btn ghost" id="m-next">Siguiente →</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script src="data/games.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
