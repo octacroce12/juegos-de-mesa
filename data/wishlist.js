@@ -1,6 +1,6 @@
 // Lista de deseos. precio: estimado en pesos argentinos (mínimo en tiendas de Cazagangas). null = sin precio.
 // Fecha de los precios en PRECIOS_AL.
-window.PRECIOS_AL = "2026-10-14";
+window.PRECIOS_AL = "2026-10-15";
 window.WISHLIST = [
  {
   "id": "w-one-round",
@@ -302,5 +302,55 @@ window.WISHLIST = [
   "jugadores": [1, 4],
   "duracion": [30, 120],
   "edad": 12
+ },
+ {
+  "id": "w-concept",
+  "nombre": "Concept",
+  "frase": "Adivinar cosas señalando íconos. Charadas para gente que odia hacer mímica.",
+  "imagen": "img/wl/concept.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/concept",
+  "precio": 94900,
+  "jugadores": [4, 12],
+  "duracion": [40, 40],
+  "edad": 10
+ },
+ {
+  "id": "w-so-clover",
+  "nombre": "So Clover!",
+  "frase": "Cuatro tréboles, ocho pistas y cero chances de que mi pareja me entienda.",
+  "imagen": "img/wl/so-clover.webp",
+  "tienda": "Mercado Libre",
+  "url": "https://listado.mercadolibre.com.ar/so-clover-juego-de-mesa",
+  "precio": null,
+  "precioNota": "Sin precio todavía",
+  "jugadores": [3, 6],
+  "duracion": [30, 30],
+  "edad": 10
+ },
+ {
+  "id": "w-skull",
+  "nombre": "Skull",
+  "frase": "Mentir con una calavera en la mano. Mi talento natural.",
+  "imagen": "img/wl/skull.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/skull",
+  "precio": 55990,
+  "jugadores": [3, 6],
+  "duracion": [15, 45],
+  "edad": 10
+ },
+ {
+  "id": "w-dominion",
+  "nombre": "Dominion",
+  "frase": "Armar un mazo mientras todos me miran con ganas de heredar mi reino.",
+  "imagen": "img/wl/dominion.webp",
+  "tienda": "Mercado Libre",
+  "url": "https://listado.mercadolibre.com.ar/dominion-segunda-edicion-juego-de-mesa",
+  "precio": null,
+  "precioNota": "Sin precio todavía",
+  "jugadores": [2, 4],
+  "duracion": [30, 30],
+  "edad": 14
  }
 ];
