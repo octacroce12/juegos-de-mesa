@@ -270,7 +270,7 @@
         <span class="coin ${coinClass(g)}" title="${played(g) ? 'Nota final' : 'Todavía sin jugar'}">${medal(g.nota, played(g) ? tierOf(g.nota) : 'none')}</span>
         <div class="label">
           <h3>${esc(g.nombre)}</h3>
-          <div class="tags"><span class="tag ${DIFF_CLASS[g.dificultad] || 'd-baja'}"><i aria-hidden="true">${DIFF_ICON[g.dificultad] || '🎲'}</i>${esc(g.dificultad)}</span><span class="type-txt">${typeIcon(g.tipo)}${esc(g.tipo)}</span></div>
+          <div class="tags"><span class="tag ${DIFF_CLASS[g.dificultad] || 'd-baja'}"><i aria-hidden="true">${DIFF_ICON[g.dificultad] || '🎲'}</i>${esc(g.dificultad)}</span><span class="type-txt" title="${esc(g.tipo)}">${typeIcon(g.tipo)}<span class="tt">${esc(g.tipo)}</span></span></div>
           ${factsRow(g, false)}
         </div>
       </button>`).join('');

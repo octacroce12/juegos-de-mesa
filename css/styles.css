@@ -122,7 +122,7 @@ footer{position:relative;z-index:1}
 .result-line{margin:0 4px 14px;font-size:13px;color:#cfd9c8;letter-spacing:.02em}
 
 /* ---------- GRID DE CAJAS ---------- */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:26px 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(224px,1fr));gap:26px 22px}
 .game{
   --lift:0px; position:relative; display:flex; flex-direction:column; text-align:left; padding:0;
   border:0; background:none; color:inherit; font:inherit; cursor:pointer;
@@ -681,3 +681,19 @@ footer{padding:46px 20px 60px;display:flex;flex-direction:column;align-items:cen
 .hall-i .hall-box .coin{right:-14px;top:-18px}
 @media (max-width:760px){.hall-row{gap:14px}.hall-i.r2,.hall-i.r3{padding:0 2px}.hall-i.r2 .hall-box,.hall-i.r3 .hall-box{width:90%}.hall-i .hall-box .coin{right:-10px;top:-14px}}
 @media (max-width:760px){.hall-i .hall-box .coin{--s:32px}.hall-i.r1 .hall-box .coin{--s:44px}.hall-i.r2 .hall-box,.hall-i.r3 .hall-box{width:94%}}
+
+/* tarjetas: etiquetas y datos siempre en un solo renglón */
+.game .label{container-type:inline-size}
+.label .tags{flex-wrap:nowrap;gap:6px}
+.label .tag{flex:none;white-space:nowrap}
+.label .type-txt{min-width:0;flex:0 1 auto}
+.label .type-txt .tt{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.label .facts{flex-wrap:nowrap;gap:5px}
+.label .fact{flex:0 1 auto;min-width:0;white-space:nowrap}
+.label .fact em{overflow:hidden;text-overflow:ellipsis}
+@container (max-width:215px){
+  .label .tag i{display:none}
+  .label .type-txt .tt{display:none}
+  .label .meeples svg:not(:first-child),.label .meeples b{display:none}
+  .label .fact{padding:3px 8px 3px 6px;gap:5px;font-size:11.5px}
+}
