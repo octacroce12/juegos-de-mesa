@@ -131,7 +131,7 @@ window.GAMES = [
   "nombre": "Océanos de papel",
   "tipo": "Sinergia de cartas",
   "dificultad": "Baja",
-  "nota": null,
+  "nota": 8,
   "comentario": "Todavía no lo jugué, pero quisiera hacerlo.",
   "imagen": "img/oceanos-de-papel.webp"
  },
