@@ -672,3 +672,12 @@ footer{padding:46px 20px 60px;display:flex;flex-direction:column;align-items:cen
 .spk.s1{left:-22px;top:18%;font-size:20px}.spk.s2{right:-26px;top:52%;font-size:14px;animation-delay:-.8s}.spk.s3{left:22%;top:-34px;font-size:12px;animation-delay:-1.5s}
 @keyframes twk{0%,100%{opacity:0;transform:scale(.4) rotate(0)}50%{opacity:1;transform:scale(1.15) rotate(25deg)}}
 @media (prefers-reduced-motion:reduce){.spk{animation:none;opacity:.8}}
+/* podio: más aire entre cajas */
+.hall-row{max-width:780px;gap:30px}
+.hall-i.r2,.hall-i.r3{padding:0 6px}
+.hall-i.r2 .hall-box,.hall-i.r3 .hall-box{width:86%}
+.hall-i.r1 .hall-box{width:96%}
+.hall-i.r1 .hall-box{transform:rotate(-1deg)}.hall-i.r2 .hall-box{transform:rotate(1.5deg)}.hall-i.r3 .hall-box{transform:rotate(-1.5deg)}
+.hall-i .hall-box .coin{right:-14px;top:-18px}
+@media (max-width:760px){.hall-row{gap:14px}.hall-i.r2,.hall-i.r3{padding:0 2px}.hall-i.r2 .hall-box,.hall-i.r3 .hall-box{width:90%}.hall-i .hall-box .coin{right:-10px;top:-14px}}
+@media (max-width:760px){.hall-i .hall-box .coin{--s:32px}.hall-i.r1 .hall-box .coin{--s:44px}.hall-i.r2 .hall-box,.hall-i.r3 .hall-box{width:94%}}
