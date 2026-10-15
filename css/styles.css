@@ -31,7 +31,7 @@ body{
 /* ---------- HERO ---------- */
 .hero{position:relative;text-align:center;padding:64px 20px 30px;max-width:1180px;margin:0 auto;overflow:hidden}
 .title{
-  margin:0; font-family:var(--serif); font-weight:900; line-height:.98; letter-spacing:-.01em;
+  margin:0 auto; padding:.06em .14em .2em; font-family:var(--serif); font-weight:900; line-height:1; letter-spacing:-.01em;
   font-size:clamp(40px,8vw,92px); font-variation-settings:'opsz' 144;
   background:linear-gradient(180deg,#fff6cf 0%,#f0cb55 48%,#c99a1c 100%);
   -webkit-background-clip:text; background-clip:text; color:transparent;
