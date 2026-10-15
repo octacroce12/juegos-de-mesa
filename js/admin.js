@@ -161,6 +161,7 @@
           return [['img/wl/' + slug + '.webp', 'img/' + slug + '.webp']];
         });
         document.querySelector(`.poster[data-id="${w.id}"]`)?.remove();
+        if (window.Oktapio) window.Oktapio.confetti();
         statusView('¡Listo! Ya está en tu colección. La web se actualiza sola en 1 o 2 minutos (recargá pasado ese tiempo).');
       } catch (e) { done(e); }
     };

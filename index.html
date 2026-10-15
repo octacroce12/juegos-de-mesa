@@ -32,6 +32,7 @@
     <button class="tab" role="tab" id="tab-col" data-view="col" aria-selected="true" aria-controls="view-col">🎲 Mi colección</button>
     <button class="tab" role="tab" id="tab-wish" data-view="wish" aria-selected="false" aria-controls="view-wish">🎯 Lista de deseos</button>
   </nav>
+  <button class="dice-cta" id="roll-btn" type="button"><span class="die" aria-hidden="true">🎲</span> ¿Qué jugamos hoy?</button>
 </header>
 
 <main class="wrap">
@@ -106,6 +107,14 @@
 </main>
 
 <footer>Hecho con fichas, dados y mala leche · Oktapio<br><button class="foot-link" id="edit-open" type="button">🔑 Modo edición</button></footer>
+
+<dialog id="roll" aria-label="Sorteo de juego">
+  <div class="roll-body">
+    <div class="roll-card"><img id="roll-img" alt=""></div>
+    <p class="roll-name" id="roll-name">Tirando los dados…</p>
+    <button class="roll-mute" id="roll-mute" type="button" aria-label="Sonido" title="Sonido"></button>
+  </div>
+</dialog>
 
 <dialog id="admin" aria-label="Modo edición"><button class="m-close" id="admin-close" aria-label="Cerrar">×</button><div class="admin-body" id="admin-body"></div></dialog>
 

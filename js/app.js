@@ -42,6 +42,7 @@
       [games.length - rated.length, 'sin jugar todavía'],
     ];
     $('stats').innerHTML = items.map(([n, l]) => `<li><b>${n}</b><span>${l}</span></li>`).join('');
+    if (typeof countUp === 'function') countUp();
   }
 
   /* ---- abanico de los mejor puntuados ---- */
@@ -241,6 +242,7 @@
       [money(Math.min(...priced.map(w => w.precio))), 'el más baratito'],
     ];
     $('stats').innerHTML = items.map(([n, l]) => `<li><b>${n}</b><span>${l}</span></li>`).join('');
+    countUp();
   }
   function renderWish() {
     const q = norm(wstate.q.trim());
@@ -280,6 +282,7 @@
     $('tab-col').setAttribute('aria-selected', String(!wish));
     $('tab-wish').setAttribute('aria-selected', String(wish));
     $('fan').hidden = wish;
+    $('roll-btn').hidden = wish;
     renderStats();
     if (wish) renderWish();
     if (push) history.replaceState(null, '', wish ? '#deseos' : location.pathname + location.search);
@@ -290,6 +293,93 @@
   });
   $('wish-search').addEventListener('input', e => { wstate.q = e.target.value; renderWish(); });
   $('wish-sort').addEventListener('change', e => { wstate.sort = e.target.value; renderWish(); });
+
+
+  /* ---- detalles: sonido, confeti, contadores ---- */
+  const reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let muted = false;
+  try { muted = localStorage.getItem('oktapio_mute') === '1'; } catch (e) {}
+  let actx;
+  function audio() {
+    if (!actx) { try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return null; } }
+    if (actx.state === 'suspended') actx.resume();
+    return actx;
+  }
+  function click(vol = .3, freq = 1800) { // golpecito de dado
+    if (muted) return;
+    const a = audio(); if (!a) return;
+    const n = a.sampleRate * .045, buf = a.createBuffer(1, n, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 3);
+    const src = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    src.buffer = buf; f.type = 'bandpass'; f.frequency.value = freq * (.8 + Math.random() * .5); f.Q.value = 1.2; g.gain.value = vol;
+    src.connect(f).connect(g).connect(a.destination); src.start();
+  }
+  function clatter() { // varios golpes al caer
+    [0, 70, 130, 210, 320].forEach((t, k) => setTimeout(() => click(.45 - k * .06, 1200 + k * 250), t));
+  }
+  function confetti() {
+    if (reduced) return;
+    const cv = document.createElement('canvas');
+    cv.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999';
+    cv.width = innerWidth; cv.height = innerHeight; document.body.appendChild(cv);
+    const x = cv.getContext('2d'), cols = ['#e0b83a', '#e8573d', '#3aa98f', '#5b8def', '#f4f0df', '#c06bd1'];
+    const ps = Array.from({ length: 170 }, () => ({ x: innerWidth / 2 + (Math.random() - .5) * 200, y: innerHeight * .6, vx: (Math.random() - .5) * 16, vy: -Math.random() * 17 - 6, s: 6 + Math.random() * 7, r: Math.random() * 6, vr: (Math.random() - .5) * .4, c: cols[Math.random() * cols.length | 0] }));
+    let t0 = performance.now();
+    (function frame(t) {
+      const dt = Math.min(2, (t - t0) / 16.7); t0 = t;
+      x.clearRect(0, 0, cv.width, cv.height);
+      let alive = 0;
+      ps.forEach(p => { p.vy += .35 * dt; p.vx *= .995; p.x += p.vx * dt; p.y += p.vy * dt; p.r += p.vr * dt; if (p.y < cv.height + 20) alive++; x.save(); x.translate(p.x, p.y); x.rotate(p.r); x.fillStyle = p.c; x.fillRect(-p.s / 2, -p.s / 3, p.s, p.s * .6); x.restore(); });
+      if (alive) requestAnimationFrame(frame); else cv.remove();
+    })(t0);
+  }
+  window.Oktapio = { confetti };
+  function countUp() {
+    if (reduced) return;
+    document.querySelectorAll('#stats b').forEach(b => {
+      const txt = b.textContent, n = parseInt(txt.replace(/\D/g, ''), 10), money = txt.startsWith('$');
+      if (!(n > 0)) return;
+      const t0 = performance.now(), dur = 900;
+      (function step(t) {
+        const k = Math.min(1, (t - t0) / dur), v = Math.round(n * (1 - Math.pow(1 - k, 3)));
+        b.textContent = (money ? '$' : '') + (money ? v.toLocaleString('es-AR') : v);
+        if (k < 1) requestAnimationFrame(step);
+      })(t0);
+    });
+  }
+
+  /* ---- ¿Qué jugamos hoy? ---- */
+  const rollDlg = $('roll');
+  function syncMute() { $('roll-mute').textContent = muted ? '🔇' : '🔊'; }
+  syncMute();
+  $('roll-mute').addEventListener('click', () => { muted = !muted; try { localStorage.setItem('oktapio_mute', muted ? '1' : '0'); } catch (e) {} syncMute(); });
+  function roll() {
+    compute();
+    if (!visible.length) return;
+    const pick = Math.floor(Math.random() * visible.length);
+    const winner = visible[pick];
+    const finish = () => { rollDlg.close(); render(); openModal(visible.findIndex(g => g.id === winner.id)); };
+    if (reduced) { finish(); return; }
+    const img = $('roll-img'), name = $('roll-name');
+    name.textContent = 'Tirando los dados…';
+    rollDlg.classList.remove('landed');
+    rollDlg.showModal();
+    const seq = Array.from({ length: 16 }, () => visible[Math.floor(Math.random() * visible.length)]);
+    seq.push(winner);
+    let k = 0, delay = 60;
+    (function tick() {
+      const g = seq[k];
+      img.src = g.imagen; click(.28, 1500 + Math.random() * 900);
+      if (k === seq.length - 1) {
+        name.textContent = g.nombre; rollDlg.classList.add('landed'); clatter();
+        setTimeout(finish, 1100); return;
+      }
+      k++; delay *= 1.13;
+      setTimeout(tick, delay);
+    })();
+  }
+  $('roll-btn').addEventListener('click', roll);
+  rollDlg.addEventListener('click', e => { if (e.target === rollDlg) rollDlg.close(); });
 
   /* ---- temas ---- */
   const THEME_COLOR = { fieltro: '#14241b', madera: '#3e2411', noche: '#0c1128' };
