@@ -654,3 +654,21 @@ footer{padding:46px 20px 60px;display:flex;flex-direction:column;align-items:cen
 .hall-i.r1 .hall-step i{font-size:56px;color:#5a3706}.hall-i.r2 .hall-step i{color:#2f3a46}.hall-i.r3 .hall-step i{color:#4a230a}
 .hall-more{margin:16px 0 0;text-align:center;font:600 12px var(--sans);letter-spacing:.04em;color:#a9bfae}
 @media (max-width:760px){.hall-row{padding:30px 2px 0;gap:5px}.hall-name{font-size:12.5px;min-height:32px}.hall-i.r1 .hall-name{font-size:14px}.hall-step i{font-size:30px}.hall-i.r1 .hall-step i{font-size:42px}.hall-i.r1 .hall-step{--h:120px}.hall-i.r2 .hall-step{--h:84px}.hall-i.r3 .hall-step{--h:58px}.hall-i .hall-box .coin{--s:40px}.hall-i.r1 .hall-box .coin{--s:50px}.hall-i .hall-box{border-left-width:7px}}
+
+/* podio: texturas de metal (generadas con Canva), volumen, foco de luz y piso */
+.hall-row{position:relative;isolation:isolate}
+.hall-row::before{content:"";position:absolute;left:50%;top:-30px;width:130%;height:115%;transform:translateX(-50%);z-index:-1;pointer-events:none;
+  background:conic-gradient(from 180deg at 50% 0%,transparent 152deg,rgba(255,238,170,.07) 160deg,rgba(255,238,170,.2) 180deg,rgba(255,238,170,.07) 200deg,transparent 208deg);
+  -webkit-mask-image:linear-gradient(180deg,#000 30%,transparent 95%);mask-image:linear-gradient(180deg,#000 30%,transparent 95%)}
+.hall-row::after{content:"";position:absolute;left:4%;right:4%;bottom:-16px;height:34px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,rgba(0,0,0,.55),transparent 70%)}
+.hall-step{overflow:visible;border-radius:4px 4px 0 0;border:0}
+.hall-i.r1 .hall-step{background:linear-gradient(180deg,rgba(255,255,255,.22),transparent 28%,rgba(0,0,0,.28)),url("../img/ui/metal-gold.webp") center/cover;box-shadow:inset 0 0 0 2px rgba(255,235,150,.55),inset 0 -8px 12px rgba(80,45,0,.35),0 6px 0 #5a3a05}
+.hall-i.r2 .hall-step{background:linear-gradient(180deg,rgba(255,255,255,.25),transparent 28%,rgba(0,0,0,.28)),url("../img/ui/metal-silver.webp") center/cover;box-shadow:inset 0 0 0 2px rgba(255,255,255,.6),inset 0 -8px 12px rgba(20,30,40,.35),0 6px 0 #3c444e}
+.hall-i.r3 .hall-step{background:linear-gradient(180deg,rgba(255,255,255,.2),transparent 28%,rgba(0,0,0,.3)),url("../img/ui/metal-bronze.webp") center/cover;box-shadow:inset 0 0 0 2px rgba(255,200,150,.5),inset 0 -8px 12px rgba(60,25,5,.4),0 6px 0 #45240a}
+.hall-step::before{content:"";position:absolute;left:0;right:0;top:-11px;height:12px;clip-path:polygon(5% 0,95% 0,100% 100%,0 100%);background:inherit;filter:brightness(1.28) saturate(.95)}
+.hall-step i{position:relative;color:rgba(40,22,4,.42)!important;text-shadow:0 1.5px 0 rgba(255,255,255,.55),0 -1px 0 rgba(0,0,0,.35)!important}
+.hall-i.r2 .hall-step i{color:rgba(30,40,52,.42)!important}.hall-i.r3 .hall-step i{color:rgba(60,25,6,.45)!important}
+.spk{position:absolute;font-style:normal;color:#fff3b0;text-shadow:0 0 8px rgba(255,220,100,.95);pointer-events:none;z-index:4;animation:twk 2.4s ease-in-out infinite}
+.spk.s1{left:-22px;top:18%;font-size:20px}.spk.s2{right:-26px;top:52%;font-size:14px;animation-delay:-.8s}.spk.s3{left:22%;top:-34px;font-size:12px;animation-delay:-1.5s}
+@keyframes twk{0%,100%{opacity:0;transform:scale(.4) rotate(0)}50%{opacity:1;transform:scale(1.15) rotate(25deg)}}
+@media (prefers-reduced-motion:reduce){.spk{animation:none;opacity:.8}}

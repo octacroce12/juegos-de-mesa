@@ -244,7 +244,7 @@
     const rest = top.slice(3).map(g => esc(g.nombre));
     el.innerHTML = `<div class="hall-head"><span>🏆 Salón de la fama</span><small>el podio de la colección</small></div>
       <div class="hall-row">${podium.map(([g, r]) => `<button class="hall-i r${r}" type="button" data-id="${g.id}" style="--c:${colorOf(g)}" aria-label="${esc(g.nombre)}, puesto ${r}">
-        <div class="hall-box">${r === 1 ? '<span class="hall-crown" aria-hidden="true">👑</span>' : ''}<img src="${g.imagen}" alt="" loading="lazy" decoding="async"><span class="coin ${coinClass(g)}">${medal(g.nota, tierOf(g.nota))}</span></div>
+        <div class="hall-box">${r === 1 ? '<span class="hall-crown" aria-hidden="true">👑</span><i class="spk s1" aria-hidden="true">✦</i><i class="spk s2" aria-hidden="true">✦</i><i class="spk s3" aria-hidden="true">✦</i>' : ''}<img src="${g.imagen}" alt="" loading="lazy" decoding="async"><span class="coin ${coinClass(g)}">${medal(g.nota, tierOf(g.nota))}</span></div>
         <b class="hall-name">${esc(g.nombre)}</b>
         <div class="hall-step"><i>${r}</i></div></button>`).join('')}</div>
       ${rest.length ? `<p class="hall-more">También con 9 o más: ${rest.join(' · ')}</p>` : ''}`;
