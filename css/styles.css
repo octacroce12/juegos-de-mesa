@@ -253,6 +253,33 @@ footer{text-align:center;padding:10px 20px 50px;font-size:12px;color:#8fa493;let
   .posters{grid-template-columns:1fr;gap:30px;max-width:340px;margin:0 auto}
 }
 
+/* ---------- MODO EDICIÓN ---------- */
+.foot-link{margin-top:10px;background:none;border:0;color:#6f8573;font:500 12px var(--sans);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.foot-link:hover{color:#cfd9c8}
+.p-edit{display:none;width:100%;gap:8px;margin-top:10px}
+body.edit .p-edit{display:flex}
+.p-have,.p-del{font:600 13px var(--sans);border-radius:8px;padding:9px 10px;cursor:pointer}
+.p-have{flex:1;border:0;background:var(--gold);color:#33270a;box-shadow:0 3px 0 var(--gold-deep)}
+.p-have:active{transform:translateY(2px);box-shadow:0 1px 0 var(--gold-deep)}
+.p-del{border:1px solid #8a6a3a;background:transparent;color:#6a3a14}
+.p-del:hover{background:rgba(120,70,20,.12)}
+#admin{max-width:520px;width:calc(100% - 28px)}
+.admin-body{padding:26px 24px 22px;color:var(--ink);display:flex;flex-direction:column;gap:12px}
+.admin-body h2{margin:0;font:900 26px var(--serif)}
+.admin-body p{margin:0;font-size:14px;line-height:1.5;color:var(--ink-soft)}
+.admin-body a{color:var(--wood-dark)}
+.steps{margin:0;padding-left:20px;font-size:13.5px;line-height:1.55;color:var(--ink-soft)}
+.warn{background:var(--warn-bg);color:var(--warn-tx)!important;padding:8px 12px;border-radius:8px;font-size:13px!important}
+.err{color:#a3321a!important;font-weight:600;min-height:1em}
+.f{display:flex;flex-direction:column;gap:5px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.f input,.f select,.f textarea{font:500 14px var(--sans);color:var(--ink);padding:10px 12px;border-radius:10px;border:1px solid #d3c59c;background:var(--paper-hi);text-transform:none;letter-spacing:0}
+.f textarea{resize:vertical}
+.f.chk{flex-direction:row;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-size:14px;font-weight:500;padding-top:18px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.have-head{display:flex;align-items:center;gap:12px;font:700 17px var(--serif)}
+.have-head img{width:64px;height:64px;object-fit:contain;background:#fff;border-radius:8px;border:1px solid var(--paper-edge)}
+@media (max-width:480px){.f2{grid-template-columns:1fr}}
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:760px){
   .m-body{grid-template-columns:1fr}

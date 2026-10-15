@@ -94,7 +94,9 @@
 </div>
 </main>
 
-<footer>Hecho con fichas, dados y mala leche · Oktapio</footer>
+<footer>Hecho con fichas, dados y mala leche · Oktapio<br><button class="foot-link" id="edit-open" type="button">🔑 Modo edición</button></footer>
+
+<dialog id="admin" aria-label="Modo edición"><button class="m-close" id="admin-close" aria-label="Cerrar">×</button><div class="admin-body" id="admin-body"></div></dialog>
 
 <dialog id="modal" aria-labelledby="m-title">
   <button class="m-close" id="m-close" aria-label="Cerrar">×</button>
@@ -116,5 +118,6 @@
 <script src="data/games.js"></script>
 <script src="data/wishlist.js"></script>
 <script src="js/app.js"></script>
+<script src="js/admin.js"></script>
 </body>
 </html>

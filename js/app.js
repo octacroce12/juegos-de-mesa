@@ -202,7 +202,7 @@
     const tilts = [-1.6, 1.2, -0.8, 1.7, -1.2, 0.7];
     $('posters').innerHTML = list.map((w, i) => {
       const ml = w.tienda !== 'Cazagangas';
-      return `<article class="poster" style="--tilt:${tilts[i % tilts.length]}deg;--i:${Math.min(i, 14)}">
+      return `<article class="poster" data-id="${esc(w.id)}" style="--tilt:${tilts[i % tilts.length]}deg;--i:${Math.min(i, 14)}">
         <span class="pin" aria-hidden="true"></span>
         <div class="p-head">SE BUSCA</div>
         <div class="p-sub">Vivo en mi lista, no en mi estantería</div>
@@ -211,6 +211,7 @@
         <p class="p-phrase">“${esc(w.frase)}”</p>
         <div class="p-reward"><small>${w.precio != null ? 'Recompensa · desde' : 'Recompensa'}</small>${w.precio != null ? `<b>${money(w.precio)}</b>` : '<b class="na">Consultar precio</b>'}</div>
         <a class="p-btn${ml ? ' ml' : ''}" href="${esc(w.url)}" target="_blank" rel="noopener noreferrer">${ml ? 'Buscar en Mercado Libre →' : 'Ver precios en Cazagangas →'}</a>
+        <div class="p-edit"><button class="p-have" type="button" data-act="have" data-id="${esc(w.id)}">✅ ¡Ya lo tengo!</button><button class="p-del" type="button" data-act="del" data-id="${esc(w.id)}" title="Quitar de la lista">Quitar</button></div>
       </article>`;
     }).join('');
     $('wish-result').textContent = list.length === wishes.length ? `${wishes.length} juegos en la lista de deseos` : `${list.length} de ${wishes.length} juegos`;
