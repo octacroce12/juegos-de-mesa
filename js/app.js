@@ -1,7 +1,7 @@
 (() => {
   const games = (window.GAMES || []).map(g => ({ ...g, slug: g.imagen.replace(/^img\//, '').replace(/\.webp$/, '') }));
-  const DIFF_ORDER = ['Apto Kuka', 'Baja', 'Intermedia', 'Alta', 'Gordo tryhard'];
-  const DIFF_CLASS = { 'Apto Kuka': 'd-kuka', 'Baja': 'd-baja', 'Intermedia': 'd-intermedia', 'Alta': 'd-alta', 'Gordo tryhard': 'd-gordo' };
+  const DIFF_ORDER = ['Inicial', 'Baja', 'Intermedia', 'Alta', 'Gordo tryhard'];
+  const DIFF_CLASS = { 'Inicial': 'd-inicial', 'Baja': 'd-baja', 'Intermedia': 'd-intermedia', 'Alta': 'd-alta', 'Gordo tryhard': 'd-gordo' };
   const $ = id => document.getElementById(id);
   const state = { q: '', diff: 'Todas', family: 'Todas', type: 'Todos', sort: 'nota', layout: 'grid' };
   try { if (localStorage.getItem('oktapio_layout') === 'shelf') state.layout = 'shelf'; } catch (e) {}
@@ -179,10 +179,24 @@
     const n = played(g) ? g.nota : null;
     const rated = games.filter(played);
     const rank = n === null ? null : 1 + rated.filter(x => x.nota > n).length;
-    const chips = Array.from({ length: 10 }, (_, k) => `<i style="--f:${Math.round(Math.max(0, Math.min(1, (n || 0) - k)) * 100)}%"></i>`).join('');
-    $('m-rating').innerHTML = `<div class="big-coin ${n === null ? 'none' : n >= 9 ? 'top' : n <= 4 ? 'low' : ''}">${n === null ? '?' : fmt(n)}</div>
-      <div><div class="chips10" role="img" aria-label="${n === null ? 'Sin nota' : 'Nota ' + fmt(n) + ' sobre 10'}">${chips}</div>
-      <small>${n === null ? 'Todavía sin jugar' : `Nota final sobre 10 · puesto ${rank} de ${rated.length}`}</small></div>`;
+    const below = n === null ? 0 : rated.filter(x => x.nota < n).length;
+    const pct = n === null || rated.length < 2 ? null : Math.round(below / (rated.length - 1) * 100);
+    const verdict = n === null ? 'Sin jugar todavía' : n >= 9 ? 'Obra maestra' : n >= 8 ? 'Imperdible' : n >= 7 ? 'Muy bueno' : n >= 6 ? 'Buenón' : n >= 5 ? 'Pasable' : 'Flojito';
+    const tier = n === null ? 'none' : n >= 9 ? 'top' : n <= 4 ? 'low' : '';
+    const hops = n === null ? 0 : Math.max(2, Math.round(n / 1.6));
+    $('m-rating').innerHTML = `<div class="score ${tier}" style="--p:${n === null ? 0 : n / 10};--hops:${hops}">
+      <div class="s-top">
+        <div class="s-num"><b>${n === null ? '?' : fmt(n)}</b><small>${n === null ? '' : '/ 10'}</small></div>
+        <div class="s-verdict">${verdict}</div>
+      </div>
+      <div class="s-track" role="img" aria-label="${n === null ? 'Sin nota' : 'Nota ' + fmt(n) + ' sobre 10'}">
+        <div class="s-bar"><i class="s-fill"></i><i class="s-cells"></i></div>
+        <span class="s-meeple"><svg viewBox="0 0 40 44" aria-hidden="true"><path d="M20 2c-4.500 0-7 3-7 6.500 0 2.200 1 3.800 2.400 5C11 15.600 7 17.500 3 19.600c-1.300.7-1.500 2.300-.6 3.300l7.600 8.400c.8.900 2 1 3 .3L15 29.600 11 41c-.4 1.200.5 2.400 1.800 2.400h14.400c1.300 0 2.200-1.200 1.800-2.400L25 29.600l2-.1 2.100 2.400c1 .7 2.200.6 3-.3l7.600-8.400c.9-1 .7-2.600-.6-3.300C33 17.500 29 15.600 24.600 13.500 26 12.300 27 10.700 27 8.500 27 5 24.500 2 20 2z"/></svg></span>
+        <div class="s-scale"><span>0</span><span>5</span><span>10</span></div>
+      </div>
+      <p class="s-rank">${n === null ? 'Esperando que alguien lo estrene.' : `Puesto <b>${rank}</b> de ${rated.length}${pct !== null ? ` · mejor que el <b>${pct}%</b> de la colección` : ''}`}</p>
+    </div>`;
+    requestAnimationFrame(() => requestAnimationFrame(() => document.querySelector('#m-rating .score')?.classList.add('go')));
     c.style.setProperty('--c', colorOf(g));
     const q = encodeURIComponent(g.nombre);
     $('m-links').innerHTML = `<a class="m-link" href="https://www.cazagangas.com.ar/juegos?titulo=${q}" target="_blank" rel="noopener noreferrer">🛒 Ver en Cazagangas</a><a class="m-link" href="https://boardgamegeek.com/geeksearch.php?action=search&objecttype=boardgame&q=${q}" target="_blank" rel="noopener noreferrer">📚 Ver en BoardGameGeek</a>`;

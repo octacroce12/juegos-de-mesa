@@ -4,7 +4,7 @@
   const REPO = 'octacroce12/juegos-de-mesa', BRANCH = 'main', KEY = 'oktapio_gh_token';
   const $ = id => document.getElementById(id);
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  const DIFFS = ['Apto Kuka', 'Baja', 'Intermedia', 'Alta', 'Gordo tryhard'];
+  const DIFFS = ['Inicial', 'Baja', 'Intermedia', 'Alta', 'Gordo tryhard'];
   let token = '';
   try { token = localStorage.getItem(KEY) || ''; } catch (e) {}
 
