@@ -2,6 +2,7 @@
   const games = (window.GAMES || []).map(g => ({ ...g, slug: g.imagen.replace(/^img\//, '').replace(/\.webp$/, '') }));
   const DIFF_ORDER = ['Inicial', 'Baja', 'Intermedia', 'Alta', 'Gordo tryhard'];
   const DIFF_CLASS = { 'Inicial': 'd-inicial', 'Baja': 'd-baja', 'Intermedia': 'd-intermedia', 'Alta': 'd-alta', 'Gordo tryhard': 'd-gordo' };
+  const DIFF_ICON = { 'Inicial': '🌱', 'Baja': '🍃', 'Intermedia': '⚙️', 'Alta': '🔥', 'Gordo tryhard': '💀' };
   const $ = id => document.getElementById(id);
   const state = { q: '', diff: 'Todas', family: 'Todas', type: 'Todos', sort: 'nota', layout: 'grid' };
   try { if (localStorage.getItem('oktapio_layout') === 'shelf') state.layout = 'shelf'; } catch (e) {}
@@ -51,7 +52,7 @@
     const mid = (top.length - 1) / 2;
     $('fan').innerHTML = top.map((g, k) => {
       const off = k - mid;
-      return `<button class="fan-card" type="button" data-name="${esc(g.nombre)}" style="--r:${(off * 6).toFixed(1)};--d:${Math.round(Math.abs(off) * Math.abs(off) * 4)};--k:${k};z-index:${10 - Math.round(Math.abs(off))}" aria-label="${esc(g.nombre)}, nota ${fmt(g.nota)}" title="${esc(g.nombre)} · ${fmt(g.nota)}"><img src="${g.imagen}" alt="" decoding="async"></button>`;
+      return `<button class="fan-card" type="button" data-name="${esc(g.nombre)}" style="--r:${(off * 6).toFixed(1)};--d:${Math.round(Math.abs(off) * Math.abs(off) * 4)};--k:${k};--z:${(1.7 - Math.abs(off) * .32).toFixed(2)};z-index:${10 - Math.round(Math.abs(off))}" aria-label="${esc(g.nombre)}, nota ${fmt(g.nota)}" title="${esc(g.nombre)} · ${fmt(g.nota)}"><img src="${g.imagen}" alt="" decoding="async"></button>`;
     }).join('');
   }
 
@@ -109,13 +110,13 @@
     if (shelf) renderShelf();
     else grid.innerHTML = visible.map((g, i) => `
       <button class="game" type="button" data-i="${i}" style="--i:${Math.min(i, 14)}" aria-label="${esc(g.nombre)}, ver detalle">
-        <div class="box">
+        <div class="box" style="--c:${colorOf(g)}">
           <div class="cover">${coverHTML(g)}</div>
           <span class="coin ${coinClass(g)}" title="${played(g) ? 'Nota final' : 'Todavía sin jugar'}">${played(g) ? fmt(g.nota) : '?'}</span>
         </div>
         <div class="label">
           <h3>${esc(g.nombre)}</h3>
-          <div class="tags"><span class="tag type">${esc(g.tipo)}</span><span class="tag ${DIFF_CLASS[g.dificultad] || 'd-baja'}">${esc(g.dificultad)}</span></div>
+          <div class="tags"><span class="tag ${DIFF_CLASS[g.dificultad] || 'd-baja'}"><i aria-hidden="true">${DIFF_ICON[g.dificultad] || '🎲'}</i>${esc(g.dificultad)}</span><span class="type-txt">${esc(g.tipo)}</span></div>
         </div>
       </button>`).join('');
     $('empty').hidden = visible.length > 0;
@@ -123,7 +124,11 @@
       ? `Mostrando los ${games.length} juegos`
       : `${visible.length} de ${games.length} juegos`;
     renderChips();
+    const nAct = (state.diff !== 'Todas') + (state.family !== 'Todas') + (state.type !== 'Todos');
+    $('filt-n').textContent = nAct ? '(' + nAct + ')' : '';
   }
+
+  const swap = el => { el.classList.remove('viewin'); void el.offsetWidth; el.classList.add('viewin'); };
 
 
   /* ---- estantería ---- */
@@ -159,6 +164,7 @@
     state.layout = b.dataset.layout;
     try { localStorage.setItem('oktapio_layout', state.layout); } catch (e2) {}
     render();
+    swap($(state.layout === 'shelf' ? 'shelf' : 'grid'));
   });
   $('shelf').addEventListener('click', e => {
     const b = e.target.closest('.spine');
@@ -284,6 +290,7 @@
         <div class="p-edit"><button class="p-have" type="button" data-act="have" data-id="${esc(w.id)}">✅ ¡Ya lo tengo!</button><button class="p-del" type="button" data-act="del" data-id="${esc(w.id)}" title="Quitar de la lista">Quitar</button></div>
       </article>`;
     }).join('');
+    $('wish-empty').hidden = list.length > 0;
     $('wish-result').textContent = list.length === wishes.length ? `${wishes.length} juegos en la lista de deseos` : `${list.length} de ${wishes.length} juegos`;
     const d = window.PRECIOS_AL ? new Date(window.PRECIOS_AL + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
     $('wish-note').textContent = `Precios en pesos, estimados: es el más bajo que encontré en tiendas de Cazagangas el ${d}. Cambian seguido, así que tomalos como referencia y mirá el link.`;
@@ -297,6 +304,9 @@
     $('tab-wish').setAttribute('aria-selected', String(wish));
     $('fan').hidden = wish;
     $('roll-btn').hidden = wish;
+    $('bb-roll').hidden = wish;
+    document.querySelectorAll('.bb[data-view]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.view === v)));
+    if (push) swap($(wish ? 'view-wish' : 'view-col'));
     renderStats();
     if (wish) renderWish();
     if (push) history.replaceState(null, '', wish ? '#deseos' : location.pathname + location.search);
@@ -304,6 +314,17 @@
   document.querySelector('.tabs').addEventListener('click', e => {
     const t = e.target.closest('.tab');
     if (t) setView(t.dataset.view);
+  });
+  document.querySelector('.bottombar').addEventListener('click', e => {
+    const b = e.target.closest('.bb');
+    if (!b) return;
+    if (b.id === 'bb-roll') roll(); else { setView(b.dataset.view); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  });
+  $('filt-btn').addEventListener('click', () => {
+    const ctl = $('view-col').querySelector('.controls');
+    const on = !ctl.classList.contains('open');
+    ctl.classList.toggle('open', on);
+    $('filt-btn').setAttribute('aria-expanded', String(on));
   });
   $('wish-search').addEventListener('input', e => { wstate.q = e.target.value; renderWish(); });
   $('wish-sort').addEventListener('change', e => { wstate.sort = e.target.value; renderWish(); });
@@ -348,6 +369,23 @@
     })(t0);
   }
   window.Oktapio = { confetti };
+  if (!reduced && window.matchMedia && matchMedia('(hover: hover)').matches) {
+    let raf = 0, ev;
+    window.addEventListener('mousemove', e => {
+      ev = e;
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const sp = $('spot');
+        sp.style.setProperty('--sx', ev.clientX + 'px'); sp.style.setProperty('--sy', ev.clientY + 'px');
+        const hero = document.querySelector('.hero');
+        if (hero.getBoundingClientRect().bottom > 0) {
+          hero.style.setProperty('--mx', ((ev.clientX / innerWidth) * 2 - 1).toFixed(3));
+          hero.style.setProperty('--my', ((ev.clientY / innerHeight) * 2 - 1).toFixed(3));
+        }
+      });
+    });
+  }
   function countUp() {
     if (reduced) return;
     document.querySelectorAll('#stats b').forEach(b => {

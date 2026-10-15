@@ -13,10 +13,12 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='10' y='10' width='80' height='80' rx='18' fill='%23C9A227'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%232B2015'/%3E%3Ccircle cx='68' cy='32' r='7' fill='%232B2015'/%3E%3Ccircle cx='50' cy='50' r='7' fill='%232B2015'/%3E%3Ccircle cx='32' cy='68' r='7' fill='%232B2015'/%3E%3Ccircle cx='68' cy='68' r='7' fill='%232B2015'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600&family=Rye&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600&family=Lilita+One&family=Rye&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<div class="floaters" aria-hidden="true"><span style="--x:6%;--s:38px;--t:78s;--d:-12s">🎲</span><span style="--x:17%;--s:30px;--t:92s;--d:-60s">♟️</span><span style="--x:29%;--s:34px;--t:70s;--d:-35s">🃏</span><span style="--x:41%;--s:28px;--t:86s;--d:-5s">🧩</span><span style="--x:53%;--s:40px;--t:96s;--d:-48s">🎲</span><span style="--x:64%;--s:32px;--t:74s;--d:-22s">♟️</span><span style="--x:75%;--s:36px;--t:88s;--d:-70s">🃏</span><span style="--x:86%;--s:30px;--t:80s;--d:-30s">🧩</span><span style="--x:94%;--s:34px;--t:98s;--d:-55s">🎲</span></div>
+<div class="spot" id="spot" aria-hidden="true"></div>
 
 <header class="hero">
   <div class="themes" role="group" aria-label="Tema de la mesa">
@@ -28,11 +30,11 @@
   <p class="by"><i aria-hidden="true"></i>By Oktapio<i aria-hidden="true"></i></p>
   <div class="fan" id="fan" aria-label="Los mejor puntuados"></div>
   <ul class="stats" id="stats" aria-label="Resumen de la colección"></ul>
+  <button class="dice-cta" id="roll-btn" type="button"><span class="die" aria-hidden="true">🎲</span> ¿Qué jugamos hoy?</button>
   <nav class="tabs" role="tablist" aria-label="Secciones">
-    <button class="tab" role="tab" id="tab-col" data-view="col" aria-selected="true" aria-controls="view-col">🎲 Mi colección</button>
+    <button class="tab" role="tab" id="tab-col" data-view="col" aria-selected="true" aria-controls="view-col">🧩 Mi colección</button>
     <button class="tab" role="tab" id="tab-wish" data-view="wish" aria-selected="false" aria-controls="view-wish">🎯 Lista de deseos</button>
   </nav>
-  <button class="dice-cta" id="roll-btn" type="button"><span class="die" aria-hidden="true">🎲</span> ¿Qué jugamos hoy?</button>
 </header>
 
 <main class="wrap">
@@ -48,6 +50,7 @@
         <button type="button" class="seg-b" data-layout="grid" aria-pressed="true" title="Ver como cajas">▦ Cajas</button>
         <button type="button" class="seg-b" data-layout="shelf" aria-pressed="false" title="Ver como estantería">📚 Estantería</button>
       </div>
+      <button class="filt-btn" id="filt-btn" type="button" aria-expanded="false" aria-controls="filters">⚙️ Filtros <b id="filt-n"></b></button>
       <label class="sort">
         <span class="sr-only">Ordenar por</span>
         <select id="sort">
@@ -57,6 +60,7 @@
         </select>
       </label>
     </div>
+    <div class="filters" id="filters">
     <div class="chip-group">
       <span class="chip-label">Dificultad</span>
       <div class="chips" id="diff-chips"></div>
@@ -69,14 +73,16 @@
       <span class="chip-label">Más fino</span>
       <div class="chips" id="type-chips"></div>
     </div>
+    </div>
   </section>
 
   <p class="result-line" id="result-line" aria-live="polite"></p>
   <div class="grid" id="grid"></div>
   <div class="shelf" id="shelf" hidden></div>
   <div class="empty" id="empty" hidden>
-    <p class="big">No hay juegos que coincidan</p>
-    <p>Probá con otro nombre o limpiá los filtros.</p>
+    <div class="e-dice" aria-hidden="true">🎲</div>
+    <p class="big">Ni un dado cayó por acá</p>
+    <p>No hay juegos que coincidan. Probá con otro nombre o limpiá los filtros.</p>
     <button class="btn" id="clear">Limpiar filtros</button>
   </div>
 </div>
@@ -102,11 +108,22 @@
   </section>
   <p class="result-line" id="wish-result" aria-live="polite"></p>
   <div class="posters" id="posters"></div>
+  <div class="empty" id="wish-empty" hidden>
+    <div class="e-dice" aria-hidden="true">🎯</div>
+    <p class="big">Nadie se busca con ese nombre</p>
+    <p>Probá con otra palabra o borrá la búsqueda.</p>
+  </div>
   <p class="wish-note" id="wish-note"></p>
 </div>
 </main>
 
-<footer>Hecho con fichas, dados y mala leche · Oktapio<br><button class="foot-link" id="edit-open" type="button">🔑 Modo edición</button></footer>
+<footer><div class="foot-icons" aria-hidden="true"><span>🎲</span><span>♟️</span><span>🃏</span><span>🧩</span><span>🎲</span></div>Hecho con fichas, dados y mala leche · Oktapio<br><button class="foot-link" id="edit-open" type="button">🔑 Modo edición</button></footer>
+
+<nav class="bottombar" aria-label="Secciones">
+  <button class="bb" type="button" data-view="col" aria-selected="true"><span aria-hidden="true">🧩</span>Colección</button>
+  <button class="bb" type="button" data-view="wish" aria-selected="false"><span aria-hidden="true">🎯</span>Deseos</button>
+  <button class="bb" type="button" id="bb-roll"><span aria-hidden="true">🎲</span>Sorteo</button>
+</nav>
 
 <dialog id="roll" aria-label="Sorteo de juego">
   <div class="roll-body">
