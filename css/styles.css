@@ -540,3 +540,100 @@ body.edit .p-edit{display:flex}
 @media (max-width:760px){.coin{--s:38px;right:-5px;top:-14px}.coin.t1{--s:34px}.coin.t4b{--s:40px}.coin.t5{--s:44px}.coin.t6{--s:46px}.coin .m10{display:none}}
 @media (prefers-reduced-motion:reduce){.m-sweep,.m-sp,.m-spin,.coin .medal{animation:none!important}}
 .s-coin .m10{display:none}
+
+/* ---------- DETALLE: más presencia ---------- */
+.m-cover{background:radial-gradient(circle at 50% 38%,rgba(255,255,255,.3),transparent 60%),radial-gradient(ellipse at 50% 115%,rgba(0,0,0,.5),transparent 62%),var(--grain),var(--c);padding:44px 40px 40px}
+.m-cover img{transform:none;border:0;border-radius:3px 6px 6px 3px;box-shadow:none;display:block}
+.m-box{position:relative;width:100%;transform:rotate(-3.5deg);border-left:16px solid color-mix(in srgb,var(--c) 55%,#000);border-radius:4px 8px 6px 4px;
+  filter:drop-shadow(0 26px 22px rgba(0,0,0,.5)) drop-shadow(0 3px 0 rgba(0,0,0,.3));background:#fff}
+.m-box::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.28),rgba(255,255,255,0) 32%);border-radius:inherit}
+.m-box .coin{--s:92px;right:-42px;top:-46px;transform:rotate(8deg);pointer-events:auto;z-index:4}
+.m-box .coin.t1{--s:78px}.m-box .coin.t4b{--s:98px}.m-box .coin.t5{--s:106px}.m-box .coin.t6{--s:112px}
+.m-tag{position:relative;margin:8px 0 6px 20px;transform:rotate(-1.2deg);filter:drop-shadow(0 5px 4px rgba(70,45,10,.35))}
+.m-tag .tp{position:relative;padding:14px 22px 16px 44px;color:#43301a;clip-path:polygon(0 50%,24px 0,100% 0,100% 100%,24px 100%);
+  background:repeating-linear-gradient(0deg,rgba(120,85,30,.05) 0 2px,transparent 2px 5px),linear-gradient(180deg,#f6e2ac,#ebd08f)}
+.m-tag .tp::before{content:"";position:absolute;left:15px;top:50%;width:11px;height:11px;margin-top:-5.5px;border-radius:50%;background:#2b3a31;box-shadow:0 0 0 3px #d2b46e,inset 0 1px 2px rgba(0,0,0,.6)}
+.m-tag::before{content:"";position:absolute;left:-26px;top:50%;width:46px;height:3px;border-radius:2px;z-index:2;background:repeating-linear-gradient(90deg,#a1804a 0 3px,#7d5f30 3px 6px);transform-origin:100% 50%;transform:translateY(-50%) rotate(-32deg)}
+.tp-head{display:block;font:700 10px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#8a6a3a;padding-bottom:5px;margin-bottom:6px;border-bottom:1.5px dashed rgba(138,106,58,.55)}
+.m-tag p{margin:0;font:700 clamp(23px,2.6vw,28px)/1.12 'Caveat',cursive}
+@media (max-width:760px){.m-cover{padding:34px 60px 30px 52px}.m-box .coin{--s:70px;right:auto;left:-26px;top:-26px}.m-box .coin.t1{--s:60px}.m-box .coin.t4b{--s:74px}.m-box .coin.t5{--s:80px}.m-box .coin.t6{--s:84px}.m-tag{margin-left:14px}}
+
+/* ---------- PANTALLA DE ENTRADA ---------- */
+#intro{position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;background:radial-gradient(ellipse at 50% 40%,#2d5a41,#14241b 70%);transition:opacity .5s ease,visibility .5s}
+#intro.out{opacity:0;visibility:hidden}
+.in-stack{position:relative;width:100px;height:150px}
+.in-chip{position:absolute;left:50%;bottom:calc(var(--i)*15px);width:86px;height:32px;margin-left:-43px;border-radius:50%;background:var(--f);border:6px solid var(--a);box-sizing:border-box;
+  box-shadow:0 9px 0 -1px var(--b),0 11px 0 -1px rgba(0,0,0,.35);animation:chipdrop .55s cubic-bezier(.3,1.5,.5,1) both;animation-delay:calc(var(--i)*.16s)}
+.in-chip::after{content:"";position:absolute;inset:2px;border-radius:50%;border:2.5px dashed rgba(255,255,255,.75)}
+@keyframes chipdrop{0%{transform:translateY(-300px) rotate(-14deg);opacity:0}25%{opacity:1}100%{transform:none;opacity:1}}
+.in-t{margin:0;font:400 22px 'Lilita One',var(--serif);letter-spacing:.03em;color:#f3d77a;animation:fanin .6s ease .9s both}
+
+/* ---------- SALÓN DE LA FAMA ---------- */
+.hall{margin:0 0 26px;padding-top:6px}
+.hall[hidden]{display:none}
+.hall-head{display:flex;align-items:baseline;justify-content:center;gap:12px;margin-bottom:18px}
+.hall-head span{font:400 26px 'Lilita One',var(--serif);color:#f3d77a;letter-spacing:.02em;text-shadow:0 2px 0 rgba(0,0,0,.35)}
+.hall-head small{font:600 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#a9bfae}
+.hall-row{display:flex;align-items:flex-end;justify-content:center;gap:14px;overflow-x:auto;padding:26px 14px 4px;scrollbar-width:none;scroll-snap-type:x proximity}
+.hall-i{flex:1 1 0;min-width:128px;max-width:176px;display:flex;flex-direction:column;align-items:center;gap:8px;border:0;background:none;padding:0;color:inherit;font:inherit;cursor:pointer;scroll-snap-align:center;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.hall-i:hover{transform:translateY(-6px)}
+.hall-box{position:relative;width:100%;border-left:10px solid color-mix(in srgb,var(--c) 55%,#000);border-radius:3px 7px 5px 3px;background:#fff;filter:drop-shadow(0 10px 8px rgba(0,0,0,.45))}
+.hall-box img{display:block;width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:2px 6px 5px 2px}
+.hall-box .coin{--s:44px;right:-10px;top:-16px}
+.hall-i:nth-child(1) .hall-box .coin{--s:54px}
+.hall-crown{position:absolute;left:50%;top:-30px;transform:translateX(-50%) rotate(-8deg);font-size:28px;filter:drop-shadow(0 3px 2px rgba(0,0,0,.4));z-index:3}
+.hall-name{font:400 14px/1.15 'Lilita One',var(--serif);color:var(--cream,#f6efd8);text-align:center;text-wrap:balance;min-height:32px;display:flex;align-items:center}
+.hall-step{width:100%;height:var(--h);border-radius:8px 8px 0 0;background:linear-gradient(180deg,#ffe27a,#e2b02a 55%,#b9830c);box-shadow:inset 0 3px 0 rgba(255,255,255,.55),inset 0 -4px 0 rgba(0,0,0,.18),0 4px 0 #6d4b08;display:grid;place-items:center}
+.hall-step i{font:normal 400 24px 'Alfa Slab One',var(--serif);color:#5a3706;text-shadow:0 1px 0 rgba(255,255,255,.5)}
+@media (max-width:760px){.hall-row{justify-content:flex-start}.hall-i{flex:0 0 132px}.hall-head span{font-size:22px}}
+#fan{display:none!important} /* el Salón de la fama lo reemplaza */
+.hall{margin-top:22px}
+@media (max-width:760px){.hall-head small{display:none}.hall-head span{font-size:21px;white-space:nowrap}}
+
+/* iconos de tipo */
+.type-txt,.tag.type{display:inline-flex;align-items:center;gap:6px}
+.ti{flex:none;width:20px;height:20px;border-radius:50%;background:var(--b);display:inline-grid;place-items:center;box-shadow:0 1.5px 0 rgba(0,0,0,.28)}
+.ti svg{width:14px;height:14px;fill:var(--ic);color:var(--ic);overflow:visible}
+.tag.type .ti{width:22px;height:22px}.tag.type .ti svg{width:15px;height:15px}
+
+/* ---------- PIE: mano de cartas + cartel ---------- */
+footer{padding:46px 20px 60px;display:flex;flex-direction:column;align-items:center;gap:0}
+.f-hand{position:relative;width:160px;height:92px;margin-bottom:-6px}
+.f-hand i{position:absolute;left:50%;bottom:0;width:58px;height:84px;margin-left:-29px;border-radius:7px;background:#fffdf4;border:1px solid #d9cfae;color:#c4202a;font:normal 400 22px/1 'Alfa Slab One',serif;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transform-origin:50% 130%;transform:translateX(var(--x)) rotate(var(--r));box-shadow:0 5px 8px rgba(0,0,0,.4);animation:handfan .7s cubic-bezier(.2,1.3,.4,1) both}
+.f-hand i b{font:normal 400 20px 'Alfa Slab One',serif}
+.f-hand i:nth-child(1){--x:-70px}.f-hand i:nth-child(2){--x:-35px}.f-hand i:nth-child(4){--x:35px}.f-hand i:nth-child(5){--x:70px}
+@keyframes handfan{from{transform:translateX(0) rotate(0)}}
+.f-sign{position:relative;margin-top:14px;padding:14px 30px 12px;text-align:center;border-radius:8px;animation:sway 5s ease-in-out infinite;
+  background:repeating-linear-gradient(90deg,rgba(0,0,0,.06) 0 3px,transparent 3px 9px),linear-gradient(180deg,#a9733c,#7d4d22);border:3px solid #4a2c12;box-shadow:0 8px 14px rgba(0,0,0,.45),inset 0 2px 0 rgba(255,255,255,.25)}
+.f-sign span{display:block;font:400 clamp(24px,4vw,32px)/1 'Rye',serif;letter-spacing:.06em;color:#f6e3b0;text-shadow:0 2px 0 #3a210c}
+.f-sign small{display:block;margin-top:6px;font:600 10.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#e6cf9a}
+@keyframes sway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+.f-credit{margin:22px 0 4px;font-size:12px;color:#8fa493;letter-spacing:.04em}
+@media (prefers-reduced-motion:reduce){.f-sign,.f-hand i{animation:none}}
+
+.grid.flip .game{animation:none}
+
+/* ---------- LISTA DE DESEOS: papel envejecido, clavos y sello ---------- */
+.poster{
+  background:
+    linear-gradient(90deg,transparent 49.6%,rgba(110,70,20,.13) 49.8%,rgba(255,255,255,.18) 50.2%,transparent 50.6%),
+    linear-gradient(0deg,transparent 49.6%,rgba(110,70,20,.11) 49.8%,rgba(255,255,255,.15) 50.2%,transparent 50.6%),
+    radial-gradient(circle at 78% 18%,rgba(140,90,30,.16),transparent 22%),
+    radial-gradient(circle at 12% 74%,rgba(140,90,30,.14),transparent 26%),
+    radial-gradient(ellipse at 20% 0%,rgba(255,255,255,.35),transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .35  0 0 0 0 .22  0 0 0 0 .08  0 0 0 .14 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),
+    #e8d29b;
+  box-shadow:inset 0 0 38px rgba(110,62,14,.38),inset 0 0 0 1px rgba(110,62,14,.25),0 14px 28px rgba(0,0,0,.42)}
+.poster:hover{box-shadow:inset 0 0 38px rgba(110,62,14,.38),inset 0 0 0 1px rgba(110,62,14,.25),0 22px 38px rgba(0,0,0,.5)}
+.pin{display:none}
+.nails i{position:absolute;width:13px;height:13px;border-radius:50%;z-index:3;
+  background:radial-gradient(circle at 35% 30%,#fff 0 8%,#d6d9de 25%,#7d838c 70%,#454a52);box-shadow:0 2px 3px rgba(0,0,0,.55),0 0 0 1.5px rgba(70,50,20,.35)}
+.nails i::after{content:"";position:absolute;left:3px;right:3px;top:50%;height:1.5px;margin-top:-.75px;background:rgba(40,40,48,.6);transform:rotate(35deg)}
+.nails i:nth-child(1){left:9px;top:9px}.nails i:nth-child(2){right:9px;top:9px}.nails i:nth-child(3){left:9px;bottom:9px}.nails i:nth-child(4){right:9px;bottom:9px}
+.p-reward{border:0;padding:4px 0 8px;margin-bottom:10px;align-items:center}
+.rw-stamp{display:inline-flex;flex-direction:column;align-items:center;gap:0;padding:8px 20px 9px;color:#b3261e;border:3px solid #b3261e;border-radius:8px;outline:1.5px solid #b3261e;outline-offset:2px;transform:rotate(-4deg);mix-blend-mode:multiply;opacity:.93;background:rgba(179,38,30,.04)}
+.rw-stamp small{font:400 12px 'Rye',serif;letter-spacing:.16em;color:#b3261e;text-transform:uppercase;padding-bottom:3px;border-bottom:1.5px solid #b3261e;margin-bottom:3px}
+.rw-stamp em{font:700 10px var(--sans);letter-spacing:.2em;text-transform:uppercase;font-style:normal;opacity:.85}
+.rw-stamp b{font:400 34px/1 'Alfa Slab One',serif;color:#b3261e;letter-spacing:-.01em}
+.rw-stamp b.na{font-size:20px;padding:6px 0;color:#b3261e}

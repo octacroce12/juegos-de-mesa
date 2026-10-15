@@ -18,6 +18,36 @@
     ['Rol y aventura', '🗡️', ['Rol', 'RPG', 'Terror']],
   ];
   const familyOf = t => (FAMILIES.find(f => f[2].includes(t)) || ['Otros'])[0];
+
+  // ---- Iconos propios por tipo (planos, sobre disco de color de su familia) ----
+  const FAM_COLOR = { 'Cartas': ['#d62027', '#fff'], 'Estrategia': ['#2b72dc', '#fff'], 'Fiesta y familiar': ['#f5b81c', '#4a2e05'], 'Cooperativo': ['#2fa35a', '#fff'], 'Palabras y saber': ['#8a35e6', '#fff'], 'Misterio y roles ocultos': ['#4a5468', '#fff'], 'Azar y apuestas': ['#ff7a2e', '#fff'], 'Rol y aventura': ['#c23a97', '#fff'] };
+  const G = {
+    card: '<rect x="4.2" y="3.6" width="8.6" height="12" rx="1.7" transform="rotate(-10 8.5 9.6)"/><rect x="8" y="4.4" width="8.6" height="12" rx="1.7" transform="rotate(9 12.3 10.4)" opacity=".65"/>',
+    pawn: '<circle cx="10" cy="6" r="2.9"/><path d="M7.6 9.2h4.8l-.6 3.2h1.9V16H6.3v-3.6h1.9z"/>',
+    grid: '<rect x="3.5" y="3.5" width="6" height="6" rx="1.2"/><rect x="10.5" y="3.5" width="6" height="6" rx="1.2" opacity=".5"/><rect x="3.5" y="10.5" width="6" height="6" rx="1.2" opacity=".5"/><rect x="10.5" y="10.5" width="6" height="6" rx="1.2"/>',
+    meeple: '<use href="#meeple" x="3.4" y="2.6" width="13.2" height="14.5"/>',
+    hex: '<path d="M10 2.6l6.2 3.5v7.8L10 17.4l-6.2-3.5V6.1z"/>',
+    vs: '<text x="10" y="13.4" text-anchor="middle" font-size="8.6" font-family="Alfa Slab One,serif">VS</text>',
+    coop: '<circle cx="7.4" cy="10" r="4.4"/><circle cx="12.6" cy="10" r="4.4" opacity=".6"/>',
+    party: '<path d="M3.4 16.6l3.6-9.4 5.8 5.8z"/><circle cx="13.6" cy="5.4" r="1.2"/><circle cx="16" cy="9.6" r="1"/><circle cx="10.4" cy="3.6" r="1"/>',
+    house: '<path d="M3.4 9.6L10 3.7l6.6 5.9h-1.9v6.1H5.3V9.6z"/>',
+    simon: '<path d="M10 3.4a6.6 6.6 0 0 1 6.6 6.6H10z"/><path d="M16.6 10A6.6 6.6 0 0 1 10 16.6V10z" opacity=".7"/><path d="M10 16.6A6.6 6.6 0 0 1 3.4 10H10z" opacity=".5"/><path d="M3.4 10A6.6 6.6 0 0 1 10 3.4V10z" opacity=".85"/>',
+    pencil: '<path d="M3.8 16.2l.9-3.7 8.1-8.1 2.8 2.8-8.1 8.1z"/><path d="M14.3 3.5l.9-.9a1.2 1.2 0 0 1 1.7 0l.5.5a1.2 1.2 0 0 1 0 1.7l-.9.9z" opacity=".65"/>',
+    bubble: '<path d="M4 4.4h12a1.6 1.6 0 0 1 1.6 1.6v6a1.6 1.6 0 0 1-1.6 1.6H9.6L6 17V13.6H4A1.6 1.6 0 0 1 2.4 12V6A1.6 1.6 0 0 1 4 4.4z"/>',
+    quiz: '<text x="10" y="15.2" text-anchor="middle" font-size="14.5" font-family="Alfa Slab One,serif">?</text>',
+    lens: '<circle cx="8.4" cy="8.4" r="4.6" fill="none" stroke="var(--ic)" stroke-width="2.1"/><path d="M11.9 11.9l4.7 4.7" stroke="var(--ic)" stroke-width="2.6" stroke-linecap="round"/>',
+    eye: '<path d="M2 10s3-5.3 8-5.3S18 10 18 10s-3 5.3-8 5.3S2 10 2 10z"/><circle cx="10" cy="10" r="2.4" fill="var(--b)"/>',
+    die: '<rect x="3.4" y="3.4" width="13.2" height="13.2" rx="3.2"/><g fill="var(--b)"><circle cx="7.1" cy="7.1" r="1.2"/><circle cx="12.9" cy="7.1" r="1.2"/><circle cx="10" cy="10" r="1.2"/><circle cx="7.1" cy="12.9" r="1.2"/><circle cx="12.9" cy="12.9" r="1.2"/></g>',
+    chip: '<circle cx="10" cy="10" r="7.2"/><circle cx="10" cy="10" r="4.2" fill="none" stroke="var(--b)" stroke-width="1.5" stroke-dasharray="1.7 1.5"/>',
+    sword: '<path d="M16.9 3.1v3.3l-7.2 7.2-3.3-3.3 7.2-7.2z"/><path d="M4.9 11.5l3.6 3.6-1.4 1.4-3.6-3.6z" opacity=".7"/><path d="M5 14.4l-1.8 2.4" stroke="var(--ic)" stroke-width="1.8" stroke-linecap="round"/>',
+    shield: '<path d="M10 2.7l6.1 2.2v4.7c0 3.4-2.6 5.8-6.1 7.3-3.5-1.5-6.1-3.9-6.1-7.3V4.9z"/>',
+    ghost: '<path d="M10 3a5.6 5.6 0 0 1 5.6 5.6V17l-2.3-1.7-1.8 1.7-1.5-1.7-1.5 1.7-1.8-1.7L4.4 17V8.6A5.6 5.6 0 0 1 10 3z"/><circle cx="8" cy="9" r="1.15" fill="var(--b)"/><circle cx="12" cy="9" r="1.15" fill="var(--b)"/>'
+  };
+  const TYPE_ICON = { 'Cartas': 'card', 'Cartas y puntuación': 'card', 'Sinergia de cartas': 'card', 'Bazas': 'card', 'Estrategia': 'pawn', 'Colocación': 'grid', 'Colocación de trabajadores': 'meeple', 'Recursos': 'hex', '1v1': 'vs', 'Fiesta': 'party', 'Familiar': 'house', 'Memoria': 'simon', 'Dibujo': 'pencil', 'Cooperativo': 'coop', 'Palabras': 'bubble', 'Quiz': 'quiz', 'Deducción': 'lens', 'Roles ocultos': 'eye', 'Dados': 'die', 'Apuestas': 'chip', 'Rol': 'sword', 'RPG': 'shield', 'Terror': 'ghost' };
+  function typeIcon(t) {
+    const [bg, ic] = FAM_COLOR[familyOf(t)] || ['#4a5468', '#fff'];
+    return `<i class="ti" style="--b:${bg};--ic:${ic}"><svg viewBox="0 0 20 20" aria-hidden="true">${G[TYPE_ICON[t]] || G.die}</svg></i>`;
+  }
   let visible = [];
   let current = -1;
   let view = 'col';
@@ -204,16 +234,32 @@
     return `<img src="${g.imagen}" alt="Caja de ${esc(g.nombre)}" loading="lazy" decoding="async">`;
   }
 
+  function renderHall() {
+    const el = $('hall');
+    const filtered = state.q || state.diff !== 'Todas' || state.family !== 'Todas' || state.type !== 'Todos' || state.players !== 'Todos' || state.time !== 'Todas';
+    const top = games.filter(g => played(g) && g.nota >= 9).sort((a, b) => b.nota - a.nota || a.nombre.localeCompare(b.nombre, 'es'));
+    el.hidden = view === 'wish' || filtered || state.layout === 'shelf' || top.length < 2;
+    if (el.hidden) return;
+    el.innerHTML = `<div class="hall-head"><span>🏆 Salón de la fama</span><small>las que pasaron el 9</small></div>
+      <div class="hall-row">${top.map((g, r) => `<button class="hall-i" type="button" data-id="${g.id}" style="--c:${colorOf(g)};--h:${Math.max(26, 64 - r * 9)}px" aria-label="${esc(g.nombre)}, puesto ${r + 1}">
+        <div class="hall-box">${r === 0 ? '<span class="hall-crown" aria-hidden="true">👑</span>' : ''}<img src="${g.imagen}" alt="" loading="lazy" decoding="async"><span class="coin ${coinClass(g)}">${medal(g.nota, tierOf(g.nota))}</span></div>
+        <b class="hall-name">${esc(g.nombre)}</b>
+        <div class="hall-step"><i>${r + 1}</i></div></button>`).join('')}</div>`;
+  }
   function render() {
     compute();
+    renderHall();
     const grid = $('grid');
+    // Posiciones previas para animar el reacomodo (estilo "barajar")
+    const prev = new Map();
+    if (!reduced && state.layout !== 'shelf' && !grid.hidden) grid.querySelectorAll('.game').forEach(el => prev.set(el.dataset.id, el.getBoundingClientRect()));
     const shelf = state.layout === 'shelf';
     grid.hidden = shelf;
     $('shelf').hidden = !shelf;
     document.querySelectorAll('.seg-b').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.layout === state.layout)));
     if (shelf) renderShelf();
     else grid.innerHTML = visible.map((g, i) => `
-      <button class="game" type="button" data-i="${i}" style="--i:${Math.min(i, 14)}" aria-label="${esc(g.nombre)}, ver detalle">
+      <button class="game" type="button" data-i="${i}" data-id="${g.id}" style="--i:${Math.min(i, 14)}" aria-label="${esc(g.nombre)}, ver detalle">
         <div class="box" style="--c:${colorOf(g)}">
           <div class="cover">${coverHTML(g)}</div>
           ${g.edad ? `<span class="age-seal" title="Edad mínima recomendada: ${g.edad} años"><b>${g.edad}+</b></span>` : ''}
@@ -221,10 +267,24 @@
         <span class="coin ${coinClass(g)}" title="${played(g) ? 'Nota final' : 'Todavía sin jugar'}">${medal(g.nota, played(g) ? tierOf(g.nota) : 'none')}</span>
         <div class="label">
           <h3>${esc(g.nombre)}</h3>
-          <div class="tags"><span class="tag ${DIFF_CLASS[g.dificultad] || 'd-baja'}"><i aria-hidden="true">${DIFF_ICON[g.dificultad] || '🎲'}</i>${esc(g.dificultad)}</span><span class="type-txt">${esc(g.tipo)}</span></div>
+          <div class="tags"><span class="tag ${DIFF_CLASS[g.dificultad] || 'd-baja'}"><i aria-hidden="true">${DIFF_ICON[g.dificultad] || '🎲'}</i>${esc(g.dificultad)}</span><span class="type-txt">${typeIcon(g.tipo)}${esc(g.tipo)}</span></div>
           ${factsRow(g, false)}
         </div>
       </button>`).join('');
+    if (!shelf) {
+      if (prev.size) {
+        grid.classList.add('flip');
+        [...grid.querySelectorAll('.game')].forEach((el, k) => {
+          const o = prev.get(el.dataset.id);
+          if (o) {
+            const n = el.getBoundingClientRect(), dx = o.left - n.left, dy = o.top - n.top;
+            if (dx || dy) el.animate([{ transform: `translate(${dx}px,${dy}px)` }, { transform: 'none' }], { duration: 460, easing: 'cubic-bezier(.2,.8,.2,1)' });
+          } else {
+            el.animate([{ opacity: 0, transform: 'translateY(26px) rotate(-7deg) scale(.82)' }, { opacity: 1, transform: 'none' }], { duration: 420, delay: Math.min(k, 12) * 24, easing: 'cubic-bezier(.2,.9,.3,1.15)', fill: 'backwards' });
+          }
+        });
+      } else grid.classList.remove('flip');
+    }
     $('empty').hidden = visible.length > 0;
     $('result-line').textContent = visible.length === games.length
       ? `Mostrando los ${games.length} juegos`
@@ -285,9 +345,9 @@
     const g = visible[i];
     const c = $('m-cover');
     c.className = 'm-cover cover';
-    c.innerHTML = `<img src="${g.imagen}" alt="Caja de ${esc(g.nombre)}">`;
+    c.innerHTML = `<div class="m-box"><img src="${g.imagen}" alt="Caja de ${esc(g.nombre)}"><span class="coin ${coinClass(g)}" title="${played(g) ? 'Nota final' : 'Todavía sin jugar'}">${medal(played(g) ? g.nota : null, played(g) ? tierOf(g.nota) : 'none')}</span></div>`;
     $('m-title').textContent = g.nombre;
-    $('m-badges').innerHTML = `<span class="tag type">${esc(g.tipo)}</span><span class="tag ${DIFF_CLASS[g.dificultad] || 'd-baja'}">Dificultad: ${esc(g.dificultad)}</span>`;
+    $('m-badges').innerHTML = `<span class="tag type">${typeIcon(g.tipo)}${esc(g.tipo)}</span><span class="tag ${DIFF_CLASS[g.dificultad] || 'd-baja'}">Dificultad: ${esc(g.dificultad)}</span>`;
     const n = played(g) ? g.nota : null;
     const rated = games.filter(played);
     const rank = n === null ? null : 1 + rated.filter(x => x.nota > n).length;
@@ -313,7 +373,7 @@
     $('m-facts').innerHTML = factTiles(g);
     const q = encodeURIComponent(g.nombre);
     $('m-links').innerHTML = `<a class="m-link" href="https://www.cazagangas.com.ar/juegos?titulo=${q}" target="_blank" rel="noopener noreferrer">🛒 Ver en Cazagangas</a><a class="m-link" href="https://boardgamegeek.com/geeksearch.php?action=search&objecttype=boardgame&q=${q}" target="_blank" rel="noopener noreferrer">📚 Ver en BoardGameGeek</a>`;
-    $('m-comment').textContent = g.comentario;
+    $('m-comment').innerHTML = `<div class="tp"><span class="tp-head">Opinión de Oktapio</span><p>${esc(g.comentario)}</p></div>`;
     $('m-prev').disabled = i === 0;
     $('m-next').disabled = i === visible.length - 1;
     if (!modal.open) modal.showModal();
@@ -332,6 +392,10 @@
   });
 
   /* ---- eventos ---- */
+  $('hall').addEventListener('click', e => {
+    const b = e.target.closest('.hall-i');
+    if (b) openModal(visible.findIndex(g => g.id === b.dataset.id));
+  });
   $('grid').addEventListener('click', e => {
     const b = e.target.closest('.game');
     if (b) openModal(+b.dataset.i);
@@ -386,14 +450,14 @@
     $('posters').innerHTML = list.map((w, i) => {
       const ml = w.tienda !== 'Cazagangas';
       return `<article class="poster" data-id="${esc(w.id)}" style="--tilt:${tilts[i % tilts.length]}deg;--i:${Math.min(i, 14)}">
-        <span class="pin" aria-hidden="true"></span>
+        <span class="nails" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         <div class="p-head">SE BUSCA</div>
         <div class="p-sub">Vivo en mi lista, no en mi estantería</div>
         <div class="p-photo"><img src="${w.imagen}" alt="Caja de ${esc(w.nombre)}" loading="lazy" decoding="async"></div>
         <h3 class="p-name">${esc(w.nombre)}</h3>
         <p class="p-phrase">“${esc(w.frase)}”</p>
         ${factsRow(w)}
-        <div class="p-reward"><small>${w.precio != null ? 'Recompensa · desde' : 'Recompensa'}</small>${w.precio != null ? `<b>${money(w.precio)}</b>` : '<b class="na">Consultar precio</b>'}</div>
+        <div class="p-reward"><span class="rw-stamp"><small>★ Recompensa ★</small>${w.precio != null ? `<em>desde</em><b>${money(w.precio)}</b>` : '<b class="na">A consultar</b>'}</span></div>
         <a class="p-btn${ml ? ' ml' : ''}" href="${esc(w.url)}" target="_blank" rel="noopener noreferrer">${ml ? 'Buscar en Mercado Libre →' : 'Ver precios en Cazagangas →'}</a>
         <div class="p-edit"><button class="p-have" type="button" data-act="have" data-id="${esc(w.id)}">✅ ¡Ya lo tengo!</button><button class="p-del" type="button" data-act="del" data-id="${esc(w.id)}" title="Quitar de la lista">Quitar</button></div>
       </article>`;
@@ -415,7 +479,7 @@
     $('bb-roll').hidden = wish;
     document.querySelectorAll('.bb[data-view]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.view === v)));
     if (push) swap($(wish ? 'view-wish' : 'view-col'));
-    renderStats();
+    renderStats(); renderHall();
     if (wish) renderWish();
     if (push) history.replaceState(null, '', wish ? '#deseos' : location.pathname + location.search);
   }
