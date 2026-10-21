@@ -1,6 +1,6 @@
 // Lista de deseos. precio: estimado en pesos argentinos (mínimo en tiendas de Cazagangas). null = sin precio.
 // Fecha de los precios en PRECIOS_AL.
-window.PRECIOS_AL = "2026-10-15";
+window.PRECIOS_AL = "2026-10-21";
 window.WISHLIST = [
  {
   "id": "w-one-round",
@@ -352,5 +352,17 @@ window.WISHLIST = [
   "jugadores": [2, 4],
   "duracion": [30, 30],
   "edad": 14
+ },
+ {
+  "id": "w-jinxo",
+  "nombre": "JinxO",
+  "frase": "Todos cuentan hasta 7 a la vez y nadie se pone de acuerdo. Amistad en riesgo.",
+  "imagen": "img/wl/jinxo.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/jinxo",
+  "precio": 61750,
+  "jugadores": [3, 7],
+  "duracion": [30, 45],
+  "edad": 10
  }
 ];
