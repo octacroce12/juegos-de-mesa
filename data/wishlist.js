@@ -364,5 +364,17 @@ window.WISHLIST = [
   "jugadores": [3, 7],
   "duracion": [30, 45],
   "edad": 10
+ },
+ {
+  "id": "w-finspan",
+  "nombre": "Finspan",
+  "frase": "Wingspan, pero con peces. Sigo sin saber nadar, pero armo un acuario de diez.",
+  "imagen": "img/wl/finspan.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/finspan",
+  "precio": 107712,
+  "jugadores": [1, 5],
+  "duracion": [45, 60],
+  "edad": 10
  }
 ];
