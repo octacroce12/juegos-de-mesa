@@ -675,5 +675,31 @@ window.GAMES = [
   "jugadores": [1, 4],
   "duracion": [30, 60],
   "edad": 13
+ },
+ {
+  "id": "g-one-round",
+  "nombre": "One Round?",
+  "tipo": "Fiesta",
+  "dificultad": "Inicial",
+  "nota": null,
+  "comentario": "\"Una ronda y nos vamos\", dijimos todos, y todos mentimos.",
+  "imagen": "img/one-round.webp",
+  "color": "#6a7366",
+  "jugadores": [2, 12],
+  "duracion": [15, 15],
+  "edad": 8
+ },
+ {
+  "id": "g-take-time",
+  "nombre": "Take Time",
+  "tipo": "Cooperativo",
+  "dificultad": "Baja",
+  "nota": null,
+  "comentario": "Cooperar sin hablar y sin apuro: lo opuesto a mi personalidad.",
+  "imagen": "img/take-time.webp",
+  "color": "#364838",
+  "jugadores": [2, 4],
+  "duracion": [30, 30],
+  "edad": 10
  }
 ];

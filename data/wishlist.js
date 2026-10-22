@@ -3,18 +3,6 @@
 window.PRECIOS_AL = "2026-10-21";
 window.WISHLIST = [
  {
-  "id": "w-one-round",
-  "nombre": "One Round?",
-  "frase": "Una ronda, dicen. Mentira: nunca fue una sola ronda.",
-  "imagen": "img/wl/one-round.webp",
-  "tienda": "Cazagangas",
-  "url": "https://www.cazagangas.com.ar/juego/one-round",
-  "precio": 32990,
-  "jugadores": [2, 12],
-  "duracion": [15, 15],
-  "edad": 8
- },
- {
   "id": "w-rebirth",
   "nombre": "Rebirth",
   "frase": "Renacer, sí, pero de mi billetera.",
