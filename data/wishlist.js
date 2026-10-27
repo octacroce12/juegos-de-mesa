@@ -364,5 +364,29 @@ window.WISHLIST = [
   "jugadores": [1, 5],
   "duracion": [45, 60],
   "edad": 10
+ },
+ {
+  "id": "w-toy-battle",
+  "nombre": "Toy Battle",
+  "frase": "Dos jugadores, quince minutos y juguetes que se pelean. Yo ya hago lo mismo con mis sobrinos.",
+  "imagen": "img/wl/toy-battle.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/toy-battle",
+  "precio": 71900,
+  "jugadores": [2, 2],
+  "duracion": [15, 15],
+  "edad": 8
+ },
+ {
+  "id": "w-magical-athlete",
+  "nombre": "Magical Athlete",
+  "frase": "Una carrera donde todos hacen trampa con permiso oficial. Por fin un deporte para mí.",
+  "imagen": "img/wl/magical-athlete.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/magical-athlete-2025",
+  "precio": 72242,
+  "jugadores": [2, 6],
+  "duracion": [30, 30],
+  "edad": 6
  }
 ];
