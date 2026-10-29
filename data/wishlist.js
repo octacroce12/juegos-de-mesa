@@ -388,5 +388,17 @@ window.WISHLIST = [
   "jugadores": [2, 6],
   "duracion": [30, 30],
   "edad": 6
+ },
+ {
+  "id": "w-patchwork",
+  "nombre": "Patchwork",
+  "frase": "Coser parches en una colcha mientras compito con alguien. Abuela interior desbloqueada.",
+  "imagen": "img/wl/patchwork.webp",
+  "tienda": "Cazagangas",
+  "url": "https://www.cazagangas.com.ar/juego/patchwork",
+  "precio": 93000,
+  "jugadores": [2, 2],
+  "duracion": [15, 30],
+  "edad": 8
  }
 ];
