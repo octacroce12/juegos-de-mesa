@@ -243,18 +243,6 @@ window.WISHLIST = [
   "edad": 14
  },
  {
-  "id": "w-la-tripulacion-mision-mar-profundo",
-  "nombre": "La Tripulación: Misión Mar Profundo",
-  "frase": "Bajar al fondo del mar sin hablar. Entrenamiento para reuniones familiares.",
-  "imagen": "img/wl/la-tripulacion-mision-mar-profundo.webp",
-  "tienda": "Cazagangas",
-  "url": "https://www.cazagangas.com.ar/juego/la-tripulacion-mision-mar-profundo",
-  "precio": 31000,
-  "jugadores": [2, 5],
-  "duracion": [20, 20],
-  "edad": 10
- },
- {
   "id": "w-paleo",
   "nombre": "Paleo",
   "frase": "Sobrevivir en la prehistoria, y encima cooperativo. Ni un mamut me abandona.",

@@ -701,5 +701,18 @@ window.GAMES = [
   "jugadores": [2, 4],
   "duracion": [30, 30],
   "edad": 10
+ },
+ {
+  "id": "g-la-tripulacion-mar-profundo",
+  "nombre": "La Tripulación: Misión Mar Profundo",
+  "tipo": "Cooperativo",
+  "dificultad": "Baja",
+  "nota": 8,
+  "comentario": "Bajar al fondo del mar sin poder hablar: comunicación cero, confianza total y mucha culpa cuando alguien se equivoca de carta.",
+  "imagen": "img/la-tripulacion-mar-profundo.webp",
+  "color": "#1f5c64",
+  "jugadores": [2, 5],
+  "duracion": [20, 20],
+  "edad": 10
  }
 ];
