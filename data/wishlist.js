@@ -1,6 +1,6 @@
 // Lista de deseos. precio: estimado en pesos argentinos (mínimo en tiendas de Cazagangas). null = sin precio.
 // Fecha de los precios en PRECIOS_AL.
-window.PRECIOS_AL = "2026-10-21";
+window.PRECIOS_AL = "2026-11-13";
 window.WISHLIST = [
  {
   "id": "w-rebirth",
@@ -21,7 +21,7 @@ window.WISHLIST = [
   "imagen": "img/wl/spirit-island.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/spirit-island",
-  "precio": 179990,
+  "precio": 179989,
   "jugadores": [1, 4],
   "duracion": [90, 120],
   "edad": 13
@@ -45,7 +45,7 @@ window.WISHLIST = [
   "imagen": "img/wl/harmonies.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/harmonies",
-  "precio": 95200,
+  "precio": 95190,
   "jugadores": [1, 4],
   "duracion": [30, 45],
   "edad": 10
@@ -105,7 +105,7 @@ window.WISHLIST = [
   "imagen": "img/wl/wyrmspan.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/wyrmspan",
-  "precio": 125000,
+  "precio": 124990,
   "jugadores": [1, 5],
   "duracion": [90, 90],
   "edad": 14
@@ -117,7 +117,7 @@ window.WISHLIST = [
   "imagen": "img/wl/sky-team.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/sky-team",
-  "precio": 85000,
+  "precio": 88500,
   "jugadores": [2, 2],
   "duracion": [20, 20],
   "edad": 10
@@ -129,7 +129,7 @@ window.WISHLIST = [
   "imagen": "img/wl/sagrada.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/sagrada",
-  "precio": 96480,
+  "precio": 96470,
   "jugadores": [1, 4],
   "duracion": [30, 45],
   "edad": 14
@@ -141,7 +141,7 @@ window.WISHLIST = [
   "imagen": "img/wl/the-white-castle.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/the-white-castle",
-  "precio": 68000,
+  "precio": 68990,
   "jugadores": [1, 4],
   "duracion": [80, 80],
   "edad": 12
@@ -165,7 +165,7 @@ window.WISHLIST = [
   "imagen": "img/wl/everdell.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/everdell",
-  "precio": 107712,
+  "precio": 108970,
   "jugadores": [1, 4],
   "duracion": [40, 80],
   "edad": 10
@@ -177,7 +177,7 @@ window.WISHLIST = [
   "imagen": "img/wl/ark-nova.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/ark-nova",
-  "precio": 158950,
+  "precio": 158940,
   "jugadores": [1, 4],
   "duracion": [90, 150],
   "edad": 14
@@ -225,7 +225,7 @@ window.WISHLIST = [
   "imagen": "img/wl/el-senor-de-los-anillos-las-dos-torres-el-juego-de-bazas.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/el-senor-de-los-anillos-las-dos-torres-el-juego-de-bazas",
-  "precio": 65400,
+  "precio": 65365,
   "jugadores": [1, 4],
   "duracion": [20, 20],
   "edad": 10
@@ -237,7 +237,7 @@ window.WISHLIST = [
   "imagen": "img/wl/ace-of-spades.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/ace-of-spades",
-  "precio": 53950,
+  "precio": 53940,
   "jugadores": [1, 2],
   "duracion": [40, 45],
   "edad": 14
@@ -262,7 +262,7 @@ window.WISHLIST = [
   "imagen": "img/wl/pinto.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/pinto",
-  "precio": 42500,
+  "precio": 43000,
   "jugadores": [4, 8],
   "duracion": [20, 20],
   "edad": 8
@@ -336,7 +336,7 @@ window.WISHLIST = [
   "imagen": "img/wl/jinxo.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/jinxo",
-  "precio": 61750,
+  "precio": 61900,
   "jugadores": [3, 7],
   "duracion": [30, 45],
   "edad": 10
@@ -348,7 +348,7 @@ window.WISHLIST = [
   "imagen": "img/wl/finspan.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/finspan",
-  "precio": 107712,
+  "precio": 107702,
   "jugadores": [1, 5],
   "duracion": [45, 60],
   "edad": 10
@@ -360,7 +360,7 @@ window.WISHLIST = [
   "imagen": "img/wl/toy-battle.webp",
   "tienda": "Cazagangas",
   "url": "https://www.cazagangas.com.ar/juego/toy-battle",
-  "precio": 71900,
+  "precio": 71910,
   "jugadores": [2, 2],
   "duracion": [15, 15],
   "edad": 8
