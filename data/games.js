@@ -714,5 +714,18 @@ window.GAMES = [
   "jugadores": [2, 5],
   "duracion": [20, 20],
   "edad": 10
+ },
+ {
+  "id": "g-la-campana",
+  "nombre": "La Campaña",
+  "tipo": "Cartas",
+  "dificultad": "Baja",
+  "nota": null,
+  "comentario": "Una campaña electoral sin los políticos de verdad. Todavía sin estrenar, pero las promesas ya están hechas.",
+  "imagen": "img/la-campana.webp",
+  "color": "#787658",
+  "jugadores": [2, 5],
+  "duracion": [20, 60],
+  "edad": 10
  }
 ];

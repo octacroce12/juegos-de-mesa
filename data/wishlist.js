@@ -195,18 +195,6 @@ window.WISHLIST = [
   "edad": 10
  },
  {
-  "id": "w-la-campana",
-  "nombre": "La Campaña",
-  "frase": "Una campaña electoral sin los políticos de verdad. Menos mal.",
-  "imagen": "img/wl/la-campana.webp",
-  "tienda": "Cazagangas",
-  "url": "https://www.cazagangas.com.ar/juego/la-campana",
-  "precio": 42500,
-  "jugadores": [2, 5],
-  "duracion": [20, 60],
-  "edad": 10
- },
- {
   "id": "w-dune-imperium",
   "nombre": "Dune: Imperium",
   "frase": "Que la especia fluya. Y la plata también, pero para la caja.",
